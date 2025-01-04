@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Polapikir Investor</title>
+    <!-- Add Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: white;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(to right, #ffeb3b, #ffffff);
+            animation: backgroundAnim 3s ease-in-out infinite;
+        }
+
+        .login-container, .signup-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .login-container h2, .signup-container h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: black;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-btn, .signup-btn {
+            background-color: #ffeb3b;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .login-btn:hover, .signup-btn:hover {
+            background-color: #fdd835;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: #000;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Login Page -->
+    <div class="login-container">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button class="login-btn" onclick="login()">Login</button>
+
+        <p>Belum punya akun? <button class="signup-btn" onclick="showSignupForm()">Buat Akun</button></p>
+    </div>
+
+    <!-- Sign Up Form -->
+    <div class="signup-container" style="display:none;">
+        <h2>Buat Akun</h2>
+        <input type="text" id="new-username" placeholder="Username" required>
+        <input type="password" id="new-password" placeholder="Password" required>
+        <button class="signup-btn" onclick="signup()">Daftar</button>
+        <p>Sudah punya akun? <button class="login-btn" onclick="showLoginForm()">Login</button></p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 Polapikir Investor. All Rights Reserved.</p>
+    </div>
+
+    <script>
+        // Konfigurasi Firebase Anda
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // Fungsi untuk Login
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            auth.signInWithEmailAndPassword(username, password)
+                .then((userCredential) => {
+                    alert('Login berhasil!');
+                    window.location.href = 'home.html'; // Arahkan ke home.html setelah login berhasil
+                })
+                .catch((error) => {
+                    alert('Username atau password salah!');
+                });
+        }
+
+        // Fungsi untuk Menampilkan Form Signup
+        function showSignupForm() {
+            document.querySelector('.login-container').style.display = 'none';
+            document.querySelector('.signup-container').style.display = 'block';
+        }
+
+        // Fungsi untuk Menampilkan Form Login
+        function showLoginForm() {
+            document.querySelector('.signup-container').style.display = 'none';
+            document.querySelector('.login-container').style.display = 'block';
+        }
+
+        // Fungsi untuk Pendaftaran Akun
+        function signup() {
+            const newUsername = document.getElementById('new-username').value.trim();
+            const newPassword = document.getElementById('new-password').value.trim();
+
+            if (!newUsername || !newPassword) {
+                alert('Semua kolom harus diisi!');
+                return;
+            }
+
+            auth.createUserWithEmailAndPassword(newUsername, newPassword)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+
+                    // Menyimpan data pengguna di Firestore
+                    db.collection("users").doc(user.uid).set({
+                        username: newUsername,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    })
+                    .then(() => {
+                        alert('Akun berhasil dibuat!');
+                        window.location.href = 'home.html'; // Arahkan ke home.html setelah akun berhasil dibuat
+                    })
+                    .catch((error) => {
+                        alert('Gagal menyimpan data pengguna.');
+                    });
+                })
+                .catch((error) => {
+                    alert('Gagal membuat akun.');
+                });
+        }
+    </script>
+
+</body>
+</html>
