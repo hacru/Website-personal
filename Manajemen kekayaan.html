@@ -172,6 +172,80 @@
             color: #666;
             margin-top: 10px;
         }
+
+        /* Media Queries for Responsiveness */
+
+        @media (max-width: 1200px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                padding: 8px 16px;
+            }
+
+            .image-container img {
+                max-width: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .taskbar {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .taskbar a {
+                padding: 8px 12px;
+            }
+
+            .website-name img {
+                height: 40px;
+            }
+
+            section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .cta-button {
+                font-size: 1rem;
+            }
+
+            .image-container img {
+                max-width: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                padding: 6px 12px;
+            }
+
+            .image-container img {
+                max-width: 180px;
+            }
+
+            footer {
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -225,15 +299,17 @@
             <h1>Perencanaan Warisan</h1>
             <p>Memastikan aset Anda diteruskan dengan cara yang paling efisien dan sesuai dengan keinginan Anda.</p>
             <a href="properti.html" class="cta-button">Pelajari Lebih Lanjut</a>
-            <div class="indicator">Indikator: Yield Sewa, ROI, Apresiasi Nilai</div>
+            <div class="indicator">Indikator: Capital Gains, Portfolio Yield</div>
         </div>
         <div class="image-container">
-            <img src="images/properti.jpg" alt="properti>
+            <img src="images/warisan.jpg" alt="perencanaan warisan">
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Polapikir Investor. Semua Hak Cipta Dilindungi.</p>
+        <p>&copy; 2025 Polapikir Investor. Semua hak dilindungi.</p>
+        <p>Kontak | Privasi | Syarat & Ketentuan</p>
     </footer>
 
 </body>
