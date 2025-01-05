@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strategi Investasi - Polapikir Investor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Montserrat', sans-serif;
             color: #000;
             scroll-behavior: smooth;
         }
 
+        /* Taskbar */
         .taskbar {
             display: flex;
             justify-content: space-between;
@@ -24,7 +26,6 @@
             border-bottom: 2px solid #000;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
             z-index: 1000;
-            animation: slideInFromTop 1s ease-in-out;
         }
 
         .taskbar a {
@@ -32,7 +33,6 @@
             text-decoration: none;
             padding: 10px 15px;
             border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
             font-weight: bold;
         }
 
@@ -58,6 +58,76 @@
             color: #000;
         }
 
+        /* Hamburger menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 24px;
+        }
+
+        .hamburger div {
+            width: 100%;
+            height: 3px;
+            background-color: #000;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hamburger.active div:nth-child(1) {
+            transform: translateY(10px) rotate(45deg);
+        }
+
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active div:nth-child(3) {
+            transform: translateY(-10px) rotate(-45deg);
+        }
+
+        /* Menu */
+        .menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+                padding: 10px;
+                z-index: 999;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .taskbar {
+                justify-content: space-between;
+                position: relative;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
         section {
             min-height: 100vh;
             display: flex;
@@ -81,20 +151,6 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideInFromTop {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(0); }
-        }
-
-        .text-container {
-            max-width: 600px;
-            order: 1;
-        }
-
-        .image-container {
-            order: 2;
         }
 
         h1 {
@@ -187,6 +243,7 @@
     </style>
 </head>
 <body>
+
     <!-- Taskbar -->
     <div class="taskbar">
         <div class="website-name">
@@ -195,7 +252,12 @@
             </a>
             <span>Polapikir Investor</span>
         </div>
-        <div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="menu">
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
@@ -204,11 +266,19 @@
         </div>
     </div>
 
+    <script>
+        function toggleMenu() {
+            document.querySelector('.hamburger').classList.toggle('active');
+            document.querySelector('.menu').classList.toggle('active');
+        }
+    </script>
+
+    <!-- Content Sections -->
     <section id="saham">
         <div class="text-container">
-            <h1>investasi saham</h1>
+            <h1>Investasi Saham</h1>
             <p>Investasi saham adalah cara yang efektif untuk memiliki bagian dari perusahaan yang Anda percaya memiliki potensi pertumbuhan. Dengan strategi yang tepat, saham dapat memberikan keuntungan besar.</p>
-            <a href="investasi saham.html" class="cta-button">Pelajari Lebih Lanjut</a>
+            <a href="Investasi Saham.html" class="cta-button">Pelajari Lebih Lanjut</a>
             <div class="indicator">Indikator: PER, PBV, ROE</div>
         </div>
         <div class="image-container">
@@ -218,9 +288,9 @@
 
     <section id="reksa-dana">
         <div class="text-container">
-            <h1>reksa dana</h1>
+            <h1>Reksa Dana</h1>
             <p>Reksa dana dikelola oleh profesional dan dirancang untuk menyebar risiko dengan portofolio yang terdiversifikasi. Cocok untuk investor pemula maupun berpengalaman.</p>
-            <a href="reksa dana.html" class="cta-button">Pelajari Lebih Lanjut</a>
+            <a href="Reksa Dana.html" class="cta-button">Pelajari Lebih Lanjut</a>
             <div class="indicator">Indikator: Expense Ratio, AUM, Historical Returns</div>
         </div>
         <div class="image-container">
@@ -228,29 +298,21 @@
         </div>
     </section>
 
-    <section id="properti">
-        <div class="text-container">
-            <h1>Investasi Properti</h1>
-            <p>Properti dapat menjadi sumber pendapatan pasif melalui sewa, atau keuntungan besar dari apresiasi nilai properti.</p>
-            <a href="properti.html" class="cta-button">Pelajari Lebih Lanjut</a>
-            <div class="indicator">Indikator: Yield Sewa, ROI, Apresiasi Nilai</div>
-        </div>
-        <div class="image-container">
-            <img src="images/properti.jpg" alt="Investasi Properti">
-        </div>
-    </section>
-
     <section id="kripto">
         <div class="text-container">
             <h1>Investasi Kripto</h1>
-            <p>Investasi kripto dan blockchain merupakan salah satu cara yang berkembang pesat untuk memperoleh keuntungan dengan potensi volatilitas yang tinggi.</p>
-            <a href="btc-kripto.html" class="cta-button">Pelajari Lebih Lanjut</a>
-            <div class="indicator">Indikator: ROI, Volatilitas, Adopsi</div>
+            <p>Kripto telah menjadi fenomena global dengan potensi keuntungan tinggi. Namun, penting untuk memahami risiko tinggi yang terlibat dan melakukan riset mendalam sebelum berinvestasi.</p>
+            <a href="Investasi Kripto.html" class="cta-button">Pelajari Lebih Lanjut</a>
+            <div class="indicator">Indikator: Volatilitas, Market Sentiment, Blockchain Technology</div>
         </div>
         <div class="image-container">
             <img src="images/kripto.jpg" alt="Investasi Kripto">
         </div>
     </section>
+
+    <footer>
+        <p>&copy; 2025 Polapikir Investor. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
