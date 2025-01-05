@@ -53,6 +53,7 @@
         .website-name {
             display: flex;
             align-items: center;
+            justify-content: flex-start; /* Pindahkan ke kiri */
         }
 
         .website-name img {
@@ -202,6 +203,95 @@
             text-decoration: underline;
         }
 
+        /* Hamburger Menu */
+        .menu-icon {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        .menu-icon div {
+            height: 5px;
+            width: 100%;
+            background-color: #000;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* Menu items */
+        .taskbar .menu-items {
+            display: flex;
+            align-items: center;
+        }
+
+        .taskbar .menu-items a {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .taskbar {
+                flex-direction: column;
+                padding: 15px;
+            }
+
+            .taskbar .menu-items {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                margin-top: 10px;
+                animation: slideDownMenu 0.8s ease-out;
+            }
+
+            .taskbar .menu-items.active {
+                display: flex;
+            }
+
+            .taskbar .menu-items a {
+                margin: 10px 0;
+                text-align: center;
+                width: 100%;
+            }
+
+            .menu-icon {
+                display: flex;
+                position: absolute;
+                top: 20px;
+                right: 20px; /* Menempatkan hamburger menu di pojok kanan */
+            }
+
+            .menu-icon.active div:nth-child(1) {
+                transform: rotate(45deg);
+                position: relative;
+                top: 8px;
+            }
+
+            .menu-icon.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-icon.active div:nth-child(3) {
+                transform: rotate(-45deg);
+                position: relative;
+                top: -8px;
+            }
+        }
+
+        /* Animasi dropdown menu */
+        @keyframes slideDownMenu {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -212,7 +302,14 @@
             </a>
             <span>Polapikir Investor</span>
         </div>
-        <div>
+        <!-- Hamburger Icon -->
+        <div class="menu-icon" id="hamburger-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- Menu Items -->
+        <div class="menu-items" id="menu-items">
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
@@ -227,7 +324,6 @@
 
         <div class="section">
             <h2>Grafik Kinerja Reksa Dana Campuran</h2>
-            <!-- Grafik Kinerja -->
             <img src="images/campuran.jpg" alt="Grafik Kinerja Reksa Dana Campuran">
             <p>Grafik ini menunjukkan performa Reksa Dana Campuran dalam 12 bulan terakhir. Dengan alokasi yang fleksibel antara saham dan obligasi, produk ini berusaha untuk memberikan imbal hasil yang optimal dengan mengelola risiko.</p>
         </div>
@@ -262,5 +358,19 @@
             <a href="terms.html">Syarat & Ketentuan</a>
         </div>
     </footer>
+
+    <script>
+        // Fungsi untuk toggle menu hamburger
+        function toggleMenu() {
+            const menuItems = document.getElementById("menu-items");
+            const hamburgerIcon = document.getElementById("hamburger-icon");
+
+            // Toggle antara menu yang muncul dan disembunyikan
+            menuItems.classList.toggle("active");
+
+            // Ganti hamburger icon dengan X
+            hamburgerIcon.classList.toggle("active");
+        }
+    </script>
 </body>
 </html>
