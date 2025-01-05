@@ -229,7 +229,12 @@
             </a>
             <span>Polapikir Investor</span>
         </div>
-        <div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="menu">
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
@@ -287,8 +292,15 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 Polapikir Investor | Semua Hak Dilindungi</p>
+        <p>&copy; 2025 Polapikir Investor. Semua hak dilindungi.</p>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.hamburger').classList.toggle('active');
+            document.querySelector('.menu').classList.toggle('active');
+        }
+    </script>
 </body>
 
 </html>
