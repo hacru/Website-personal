@@ -8,7 +8,7 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #e0f7fa, #ffffff); /* Gradasi biru ke putih */
+            background: linear-gradient(to right, #e0f7fa, #ffffff);
             color: #000;
             overflow-x: hidden;
             animation: fadeIn 1s ease-in-out;
@@ -28,18 +28,7 @@
             border-bottom: 2px solid #ffeb3b;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
             z-index: 1000;
-            transform: translateY(-100%);
-            animation: slideDown 0.8s ease forwards;
-        }
-
-        /* Animasi Taskbar muncul */
-        @keyframes slideDown {
-            0% {
-                transform: translateY(-100%);
-            }
-            100% {
-                transform: translateY(0);
-            }
+            transform: translateY(0);
         }
 
         @keyframes fadeIn {
@@ -65,6 +54,11 @@
             font-size: 1.5em;
             font-weight: bold;
             color: #000;
+        }
+
+        .taskbar-menu {
+            display: flex; /* Fix: make sure menu is displayed normally on larger screens */
+            gap: 15px;
         }
 
         .taskbar a {
@@ -96,19 +90,19 @@
         }
 
         @media (max-width: 768px) {
-            .taskbar div {
-                display: none;
+            .taskbar-menu {
+                display: none; /* Hide menu by default on mobile */
                 flex-direction: column;
                 align-items: center;
                 width: 100%;
             }
 
-            .taskbar.active div {
-                display: flex;
+            .taskbar.active .taskbar-menu {
+                display: flex; /* Show menu when taskbar is active */
             }
 
             .menu-toggle {
-                display: block;
+                display: block; /* Display the hamburger menu on mobile */
             }
         }
 
@@ -243,7 +237,7 @@
             </a>
             <span>Polapikir Investor</span>
         </div>
-        <div>
+        <div class="taskbar-menu">
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
@@ -263,7 +257,6 @@
 
         <div class="section">
             <h2>Grafik Kinerja Reksa Dana Saham</h2>
-            <!-- Grafik Kinerja -->
             <img src="images/pasar saham.jpg" alt="Grafik Kinerja Reksa Dana Saham">
             <p>Grafik ini menunjukkan performa Reksa Dana Saham dalam 12 bulan terakhir. Seiring dengan fluktuasi pasar, potensi keuntungan yang tinggi bisa tercapai, namun dengan risiko yang harus dipertimbangkan.</p>
         </div>
@@ -301,10 +294,10 @@
 
     <script>
         const menuToggle = document.querySelector('.menu-toggle');
-        const taskbar = document.querySelector('.taskbar');
+        const taskbarMenu = document.querySelector('.taskbar-menu');
 
         menuToggle.addEventListener('click', () => {
-            taskbar.classList.toggle('active');
+            document.querySelector('.taskbar').classList.toggle('active');
         });
     </script>
 </body>
