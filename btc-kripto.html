@@ -59,6 +59,15 @@
             color: #000;
         }
 
+        .menu-items {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-items a {
+            margin-left: 20px;
+        }
+
         section {
             min-height: 100vh;
             display: flex;
@@ -193,6 +202,90 @@
             padding: 20px;
             text-align: center;
         }
+
+        /* Hamburger Menu Styles */
+        .menu-icon {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        .menu-icon div {
+            height: 5px;
+            width: 100%;
+            background-color: #000;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        @media screen and (max-width: 768px) {
+            .menu-items {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                width: 200px;
+                border-radius: 5px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            }
+
+            .menu-items.active {
+                display: flex;
+                animation: slideDownMenu 0.5s ease-out;
+            }
+
+            .menu-icon {
+                display: flex;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+
+            .menu-icon.active div:nth-child(1) {
+                transform: rotate(45deg);
+                position: relative;
+                top: 8px;
+            }
+
+            .menu-icon.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-icon.active div:nth-child(3) {
+                transform: rotate(-45deg);
+                position: relative;
+                top: -8px;
+            }
+
+            .menu-items a {
+                padding: 15px;
+                width: 100%;
+                text-align: center;
+                color: #000;
+                text-decoration: none;
+            }
+
+            .menu-items a:hover {
+                background-color: #e0f7fa;
+            }
+        }
+
+        @keyframes slideDownMenu {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 
@@ -204,12 +297,18 @@
             </a>
             <span>Polapikir Investor</span>
         </div>
-        <div>
+        <div class="menu-items">
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
             <a href="portfolio.html">Portofolio</a>
             <a href="contact.html">Kontak</a>
+        </div>
+        <!-- Hamburger Icon -->
+        <div class="menu-icon" id="hamburger-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
     </div>
 
@@ -260,6 +359,16 @@
     <footer>
         <p>&copy; 2025 Polapikir Investor | Semua Hak Dilindungi</p>
     </footer>
+
+    <script>
+        // Fungsi untuk toggle menu hamburger
+        function toggleMenu() {
+            const menuItems = document.querySelector(".menu-items");
+            const hamburgerIcon = document.getElementById("hamburger-icon");
+            menuItems.classList.toggle("active");
+            hamburgerIcon.classList.toggle("active");
+        }
+    </script>
 </body>
 
 </html>
