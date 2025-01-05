@@ -8,15 +8,14 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-       body {
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(to bottom, #e0f7fa, #ffffff); /* Background gradient */
-    color: #000;
-    animation: fadeIn 1s ease-out;
-    padding-bottom: 50px;
-}
-
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+            color: #000;
+            animation: fadeIn 1s ease-out;
+            padding-bottom: 50px;
+        }
 
         /* Animasi FadeIn */
         @keyframes fadeIn {
@@ -24,22 +23,22 @@
             to { opacity: 1; }
         }
 
+        /* Navbar dan Menu */
         .taskbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(255, 255, 255, 0.8); /* Transparan putih */
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 15px 25px;
             position: fixed;
             top: 0;
             width: 100%;
-            border-bottom: 2px solid #000; /* Border hitam untuk taskbar */
+            border-bottom: 2px solid #000;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             z-index: 1000;
-            animation: slideDown 0.5s ease-out; /* Menambahkan animasi slideDown */
+            animation: slideDown 0.5s ease-out;
         }
 
-        /* Animasi SlideDown */
         @keyframes slideDown {
             from { transform: translateY(-100%); }
             to { transform: translateY(0); }
@@ -77,6 +76,81 @@
             color: #000;
         }
 
+        .menu-items {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-items a {
+            display: inline-block;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 3px;
+            background-color: #000;
+            margin: 5px;
+            border-radius: 3px;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-items.active {
+            display: block;
+            animation: slideDownMenu 0.5s ease-out;
+        }
+
+        @keyframes slideDownMenu {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hamburger.active div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Menampilkan menu saat hamburger diklik */
+        @media (max-width: 768px) {
+            .menu-items {
+                display: none;
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                background-color: rgba(255, 255, 255, 0.9);
+                width: 200px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+                border-radius: 10px;
+                flex-direction: column;
+                padding: 10px;
+                align-items: center;
+            }
+
+            .menu-items a {
+                margin: 10px 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* Konten */
         .content {
             max-width: 1200px;
             margin: 40px auto;
@@ -84,9 +158,33 @@
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 100px; /* Memberikan ruang agar taskbar tidak menutupi konten */
+            margin-top: 100px;
         }
 
+        /* Footer */
+        footer {
+            background-color: #fff;
+            color: #000;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            z-index: 999;
+            animation: fadeIn 1s ease-out;
+        }
+
+        footer a {
+            color: #000;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Section */
         .section-title {
             font-size: 2rem;
             color: #000;
@@ -119,76 +217,6 @@
             max-width: 100%;
             border-radius: 8px;
         }
-
-        footer {
-            background-color: #fff;
-            color: #000;
-            text-align: center;
-            padding: 15px;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-            z-index: 999;
-            animation: fadeIn 1s ease-out;
-        }
-
-        footer a {
-            color: #000;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #ffeb3b;
-            color: #000;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .cta-button:hover {
-            background-color: #000;
-            color: #ffeb3b;
-        }
-
-        .tradingview-widget-container {
-            position: relative;
-            margin-top: 20px;
-            width: 100%;
-            height: 600px; /* Ukuran lebih besar untuk TradingView */
-        }
-
-        /* Styling tombol play di pojok kanan bawah */
-        #music-controls {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .play-button {
-            display: inline-block;
-            padding: 15px 25px;
-            background-color: #000;
-            color: #fff;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 5px;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .play-button:hover {
-            background-color: #ffeb3b;
-            color: #000;
-        }
     </style>
 </head>
 <body>
@@ -210,7 +238,16 @@
             </a>
             <span>Polapikir Investor</span>
         </div>
-        <div>
+
+        <!-- Hamburger Icon -->
+        <div class="hamburger" id="hamburger-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- Menu Items -->
+        <div class="menu-items">
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
@@ -248,65 +285,11 @@
             <div class="text-content">
                 <h2 class="section-title">Binance Coin (BNB)</h2>
                 <div class="section-content">
-                    <p>Binance Coin (BNB) adalah cryptocurrency yang digunakan untuk membayar biaya transaksi di platform Binance, salah satu bursa cryptocurrency terbesar di dunia. BNB juga dapat digunakan untuk berbagai layanan lainnya di ekosistem Binance...</p>
+                    <p>Binance Coin (BNB) adalah cryptocurrency yang digunakan untuk membayar biaya transaksi di Binance Exchange, salah satu bursa cryptocurrency terbesar di dunia. BNB dapat digunakan untuk berbagai layanan dalam ekosistem Binance, termasuk pembayaran biaya trading dan lebih banyak lagi...</p>
                 </div>
             </div>
             <div class="image-content">
                 <img src="https://www.example.com/binance-coin-image.jpg" alt="Binance Coin Overview">
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="text-content">
-                <h2 class="section-title">Ripple (XRP)</h2>
-                <div class="section-content">
-                    <p>Ripple adalah jaringan pembayaran dan platform yang memungkinkan pembayaran instan dan biaya rendah di seluruh dunia. XRP adalah token digital yang digunakan untuk memfasilitasi transaksi dalam jaringan Ripple...</p>
-                </div>
-            </div>
-            <div class="image-content">
-                <img src="https://www.example.com/ripple-image.jpg" alt="Ripple Overview">
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="text-content">
-                <h2 class="section-title">Cardano (ADA)</h2>
-                <div class="section-content">
-                    <p>Cardano adalah platform blockchain yang berfokus pada keamanan dan keberlanjutan. Dengan pendekatan ilmiah, Cardano menggunakan mekanisme konsensus proof-of-stake untuk mengurangi konsumsi energi dan meningkatkan efisiensi transaksi...</p>
-                </div>
-            </div>
-            <div class="image-content">
-                <img src="https://www.example.com/cardano-image.jpg" alt="Cardano Overview">
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="text-content">
-                <h2 class="section-title">Polkadot (DOT)</h2>
-                <div class="section-content">
-                    <p>Polkadot adalah platform multichain yang memungkinkan berbagai blockchain untuk saling berkomunikasi dan berbagi informasi. Polkadot memungkinkan interoperabilitas antar jaringan yang sebelumnya terisolasi...</p>
-                </div>
-            </div>
-            <div class="image-content">
-                <img src="https://www.example.com/polkadot-image.jpg" alt="Polkadot Overview">
-            </div>
-        </section>
-
-        <section>
-            <div class="tradingview-widget-container">
-                <div id="tradingview_1f6b2"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-                <script type="text/javascript">
-                    new TradingView.widget({
-                        "autosize": true,
-                        "symbol": "BINANCE:BTCUSD",
-                        "interval": "60",
-                        "timezone": "Asia/Jakarta",
-                        "theme": "light",
-                        "style": "1",
-                        "locale": "id"
-                    });
-                </script>
             </div>
         </section>
     </div>
@@ -319,10 +302,17 @@
         function playMusic() {
             var audio = document.getElementById('background-music');
             if (audio.paused) {
-                audio.play();  // Memutar musik
+                audio.play(); // Play music
             } else {
-                audio.pause(); // Menjeda musik
+                audio.pause(); // Pause music
             }
+        }
+
+        function toggleMenu() {
+            const menuItems = document.querySelector(".menu-items");
+            const hamburgerIcon = document.getElementById("hamburger-icon");
+            menuItems.classList.toggle("active");
+            hamburgerIcon.classList.toggle("active");
         }
     </script>
 </body>
