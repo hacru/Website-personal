@@ -79,6 +79,8 @@
         .menu-toggle {
             display: none;
             cursor: pointer;
+            position: absolute;
+            left: 20px; /* Move hamburger to the left */
         }
 
         .menu-toggle .bar {
@@ -93,12 +95,27 @@
             .taskbar-menu {
                 display: none; /* Hide menu by default on mobile */
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-start;
                 width: 100%;
+                padding-left: 20px;
+                gap: 10px;
             }
 
             .taskbar.active .taskbar-menu {
-                display: flex; /* Show menu when taskbar is active */
+                display: flex;
+            }
+
+            .taskbar-menu a {
+                padding: 10px 0;
+                font-weight: normal;
+                transition: transform 0.3s ease-in-out;
+                transform: translateY(-20px); /* Initially hide with translation */
+                opacity: 0;
+            }
+
+            .taskbar.active .taskbar-menu a {
+                transform: translateY(0); /* Slide down effect */
+                opacity: 1;
             }
 
             .menu-toggle {
