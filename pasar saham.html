@@ -29,25 +29,14 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
             z-index: 1000;
             transform: translateY(0);
-            animation: slideInFromTop 1s ease-in-out;
         }
 
-        /* Taskbar Animations */
         @keyframes fadeIn {
             0% {
                 opacity: 0;
             }
             100% {
                 opacity: 1;
-            }
-        }
-
-        @keyframes slideInFromTop {
-            from {
-                transform: translateY(-100%);
-            }
-            to {
-                transform: translateY(0);
             }
         }
 
@@ -67,7 +56,6 @@
             color: #000;
         }
 
-        /* Taskbar Menu */
         .taskbar-menu {
             display: flex;
             gap: 15px;
@@ -103,7 +91,6 @@
             background-color: #000;
         }
 
-        /* Responsive Layout */
         @media (max-width: 768px) {
             .taskbar-menu {
                 display: none;
@@ -260,7 +247,6 @@
     </style>
 </head>
 <body>
-    <!-- Taskbar -->
     <div class="taskbar">
         <div class="website-name">
             <a href="home.html">
@@ -275,7 +261,7 @@
             <a href="portfolio.html">Portofolio</a>
             <a href="contact.html">Kontak</a>
         </div>
-        <div class="menu-toggle" onclick="toggleMenu()">
+        <div class="menu-toggle">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
