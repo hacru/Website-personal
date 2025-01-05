@@ -15,12 +15,12 @@
             animation: fadeIn 1s ease-in-out;
         }
 
+        /* Taskbar */
         .taskbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             background-color: #fff;
-            color: #000;
             padding: 10px 20px;
             position: fixed;
             top: 0;
@@ -80,6 +80,7 @@
             color: #000;
         }
 
+        /* Hamburger Menu */
         .menu-icon {
             display: none;
             cursor: pointer;
@@ -91,6 +92,22 @@
             background-color: #000;
             margin: 5px;
             transition: transform 0.3s ease;
+        }
+
+        .menu-icon.active div:nth-child(1) {
+            transform: rotate(45deg);
+            position: relative;
+            top: 8px;
+        }
+
+        .menu-icon.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-icon.active div:nth-child(3) {
+            transform: rotate(-45deg);
+            position: relative;
+            top: -8px;
         }
 
         .nav-links {
@@ -121,6 +138,7 @@
             display: none;
         }
 
+        /* Responsif */
         @media (max-width: 768px) {
             .taskbar {
                 flex-direction: column;
@@ -142,13 +160,18 @@
             }
         }
 
-        .content {
-            text-align: center;
-            margin-top: 100px;
-            padding: 20px;
-            animation: slideUp 0.8s ease-out;
+        @media (min-width: 769px) {
+            .taskbar {
+                justify-content: space-between;
+            }
+
+            .taskbar .nav-links {
+                display: flex;
+                gap: 20px;
+            }
         }
 
+        /* Animasi */
         @keyframes slideUp {
             0% {
                 transform: translateY(50px);
@@ -158,6 +181,13 @@
                 transform: translateY(0);
                 opacity: 1;
             }
+        }
+
+        .content {
+            text-align: center;
+            margin-top: 100px;
+            padding: 20px;
+            animation: slideUp 0.8s ease-out;
         }
 
         .content h1 {
@@ -184,48 +214,9 @@
             animation: fadeInSection 1s ease-out;
         }
 
-        @keyframes fadeInSection {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         .section h2 {
             font-size: 1.5em;
             margin-bottom: 20px;
-        }
-
-        .section img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            animation: fadeInImage 1.2s ease-in-out;
-        }
-
-        @keyframes fadeInImage {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        .section ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .section li {
-            margin: 10px 0;
-            font-size: 1.1em;
-            color: #000;
         }
 
         footer {
@@ -301,22 +292,16 @@
             <h2>Alokasi Aset Reksa Dana Pendapatan Tetap</h2>
             <p>Alokasi aset pada Reksa Dana Pendapatan Tetap adalah sebagai berikut:</p>
             <ul>
-                <li>70% pada **Obligasi Pemerintah**: Menjamin hasil yang aman dan stabil dalam jangka panjang.</li>
-                <li>20% pada **Obligasi Korporasi**: Memberikan hasil yang lebih tinggi namun tetap terkelola dengan hati-hati.</li>
-                <li>10% pada **Deposito Berjangka**: Menjamin likuiditas dan pengelolaan dana yang efisien.</li>
+                <li>70% pada <strong>Obligasi Pemerintah</strong>: Menjamin hasil yang aman dan stabil dalam jangka panjang.</li>
+                <li>20% pada <strong>Obligasi Korporasi</strong>: Memberikan hasil yang lebih tinggi namun tetap terkelola dengan hati-hati.</li>
+                <li>10% pada <strong>Deposito Berjangka</strong>: Menjamin likuiditas dan pengelolaan dana yang efisien.</li>
             </ul>
         </div>
 
         <div class="section">
             <h2>Data Manajer Investasi: Tri Megah Semesta</h2>
-            <p><strong>AUM (Asset Under Management):</strong> Rp 10.000.000.000.000 (10 Triliun) – Tri Megah Semesta telah mengelola dana yang signifikan dengan fokus pada produk yang aman dan menghasilkan pendapatan tetap yang stabil.</p>
+            <p><strong>AUM (Asset Under Management):</strong> Rp 10.000.000.000.000 (10 Triliun)</p>
             <p><strong>Dana Kelola:</strong> Tri Megah Semesta mengelola berbagai produk reksa dana dengan alokasi pada instrumen obligasi pemerintah dan korporasi yang dipilih secara selektif.</p>
-            <p><strong>Produknya:</strong> 
-                <ul>
-                    <li>Reksa Dana Pendapatan Tetap Tri Megah - Fokus pada obligasi pemerintah dan korporasi.</li>
-                    <li>Reksa Dana Stabilitas Pendapatan - Fokus pada instrumen dengan risiko lebih rendah.</li>
-                </ul>
-            </p>
         </div>
     </div>
 
@@ -332,6 +317,8 @@
         function toggleMenu() {
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('active');
+            const menuIcon = document.querySelector('.menu-icon');
+            menuIcon.classList.toggle('active');
         }
     </script>
 </body>
