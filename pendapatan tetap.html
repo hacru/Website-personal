@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reksa Dana Pendapatan Tetap - Polapikir Investor</title>
-    <link rel="stylesheet" href="style.css">
     <style>
         body {
             margin: 0;
@@ -15,6 +15,7 @@
             animation: fadeIn 1s ease-in-out;
         }
 
+        /* Taskbar */
         .taskbar {
             display: flex;
             justify-content: space-between;
@@ -36,6 +37,7 @@
             0% {
                 transform: translateY(-100%);
             }
+
             100% {
                 transform: translateY(0);
             }
@@ -45,6 +47,7 @@
             0% {
                 opacity: 0;
             }
+
             100% {
                 opacity: 1;
             }
@@ -66,20 +69,27 @@
             color: #000;
         }
 
-        .taskbar a {
-            color: #000;
-            text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            font-weight: bold;
+        /* Taskbar Menu */
+        .taskbar .menu {
+            display: flex;
+            gap: 20px;
         }
 
-        .taskbar a:hover {
+        .taskbar .menu a {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .taskbar .menu a:hover {
             background-color: #ffeb3b;
             color: #000;
         }
 
+        /* Hamburger Menu */
         .menu-icon {
             display: none;
             cursor: pointer;
@@ -93,51 +103,32 @@
             transition: transform 0.3s ease;
         }
 
-        .nav-links {
-            display: flex;
-        }
-
-        .nav-links a {
-            display: block;
-        }
-
-        .nav-links a:hover {
-            background-color: #ffeb3b;
-        }
-
-        .nav-links.active {
-            display: block;
-            width: 100%;
-            text-align: center;
-            position: absolute;
-            top: 60px;
-            left: 0;
-            right: 0;
-            background-color: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-        }
-
-        .taskbar .nav-links {
-            display: none;
-        }
-
+        /* Responsif */
         @media (max-width: 768px) {
             .taskbar {
                 flex-direction: column;
                 align-items: flex-start;
-                height: auto;
+            }
+
+            .menu {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                background-color: #fff;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+                padding: 10px;
+                z-index: 999;
+            }
+
+            .menu.active {
+                display: flex;
             }
 
             .menu-icon {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                width: 100%;
-            }
-
-            .nav-links.active {
                 display: block;
             }
         }
@@ -154,6 +145,7 @@
                 transform: translateY(50px);
                 opacity: 0;
             }
+
             100% {
                 transform: translateY(0);
                 opacity: 1;
@@ -189,6 +181,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             100% {
                 opacity: 1;
                 transform: translateY(0);
@@ -212,6 +205,7 @@
             0% {
                 opacity: 0;
             }
+
             100% {
                 opacity: 1;
             }
@@ -243,6 +237,7 @@
             0% {
                 transform: translateY(100%);
             }
+
             100% {
                 transform: translateY(0);
             }
@@ -265,6 +260,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="taskbar">
         <div class="website-name">
@@ -278,7 +274,7 @@
             <div></div>
             <div></div>
         </div>
-        <div class="nav-links">
+        <div class="menu">
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
@@ -293,7 +289,6 @@
 
         <div class="section">
             <h2>Grafik Kinerja Reksa Dana Pendapatan Tetap</h2>
-            <!-- Grafik Kinerja -->
             <img src="images/pendapatan tetap.jpg" alt="Grafik Kinerja Reksa Dana Pendapatan Tetap">
             <p>Grafik ini menunjukkan performa Reksa Dana Pendapatan Tetap dalam 12 bulan terakhir. Imbal hasil yang stabil dan aman menjadi daya tarik utama produk ini.</p>
         </div>
@@ -302,9 +297,9 @@
             <h2>Alokasi Aset Reksa Dana Pendapatan Tetap</h2>
             <p>Alokasi aset pada Reksa Dana Pendapatan Tetap adalah sebagai berikut:</p>
             <ul>
-                <li>70% pada **Obligasi Pemerintah**: Menjamin hasil yang aman dan stabil dalam jangka panjang.</li>
-                <li>20% pada **Obligasi Korporasi**: Memberikan hasil yang lebih tinggi namun tetap terkelola dengan hati-hati.</li>
-                <li>10% pada **Deposito Berjangka**: Menjamin likuiditas dan pengelolaan dana yang efisien.</li>
+                <li>70% pada <strong>Obligasi Pemerintah</strong>: Menjamin hasil yang aman dan stabil dalam jangka panjang.</li>
+                <li>20% pada <strong>Obligasi Korporasi</strong>: Memberikan hasil yang lebih tinggi namun tetap terkelola dengan hati-hati.</li>
+                <li>10% pada <strong>Deposito Berjangka</strong>: Menjamin likuiditas dan pengelolaan dana yang efisien.</li>
             </ul>
         </div>
 
@@ -312,7 +307,7 @@
             <h2>Data Manajer Investasi: Tri Megah Semesta</h2>
             <p><strong>AUM (Asset Under Management):</strong> Rp 10.000.000.000.000 (10 Triliun) – Tri Megah Semesta telah mengelola dana yang signifikan dengan fokus pada produk yang aman dan menghasilkan pendapatan tetap yang stabil.</p>
             <p><strong>Dana Kelola:</strong> Tri Megah Semesta mengelola berbagai produk reksa dana dengan alokasi pada instrumen obligasi pemerintah dan korporasi yang dipilih secara selektif.</p>
-            <p><strong>Produknya:</strong> 
+            <p><strong>Produknya:</strong>
                 <ul>
                     <li>Reksa Dana Pendapatan Tetap Tri Megah - Fokus pada obligasi pemerintah dan korporasi.</li>
                     <li>Reksa Dana Stabilitas Pendapatan - Fokus pada instrumen dengan risiko lebih rendah.</li>
@@ -331,9 +326,10 @@
 
     <script>
         function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('active');
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('active');
         }
     </script>
 </body>
+
 </html>
