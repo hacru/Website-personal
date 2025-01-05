@@ -39,6 +39,38 @@
             }
         }
 
+        .price-up {
+            color: green;
+            animation: fadeInUp 0.5s ease-in-out;
+        }
+
+        .price-down {
+            color: red;
+            animation: fadeInDown 0.5s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Latar Belakang */
         .background {
             position: relative;
@@ -240,6 +272,101 @@
                 opacity: 1;
             }
         }
+
+        /* Media Queries untuk Responsivitas */
+        /* Tablet */
+        @media (max-width: 768px) {
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .feature {
+                width: 90%;
+            }
+
+            .content h1 {
+                font-size: 36px;
+            }
+
+            .content p {
+                font-size: 16px;
+            }
+
+            header h1 {
+                font-size: 28px;
+            }
+
+            header p {
+                font-size: 16px;
+            }
+
+            .welcome-section h2 {
+                font-size: 24px;
+            }
+        }
+
+        /* Ponsel */
+        @media (max-width: 480px) {
+            .crypto-ticker {
+                font-size: 14px;
+            }
+
+            .content h1 {
+                font-size: 28px;
+            }
+
+            .content p {
+                font-size: 14px;
+            }
+
+            .feature {
+                width: 100%;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+
+            header p {
+                font-size: 14px;
+            }
+
+            .welcome-section h2 {
+                font-size: 20px;
+            }
+        }
+
+        /* Desktop */
+        @media (min-width: 1024px) {
+            .features {
+                gap: 30px;
+            }
+
+            .feature {
+                width: 300px;
+            }
+
+            .content h1 {
+                font-size: 64px;
+            }
+
+            .content p {
+                font-size: 18px;
+            }
+
+            header h1 {
+                font-size: 48px;
+            }
+
+            header p {
+                font-size: 20px;
+            }
+
+            .welcome-section h2 {
+                font-size: 32px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -305,5 +432,26 @@
             <a href="https://www.tiktok.com/@polapikir_investor" target="_blank">TikTok</a>
         </div>
     </div>
+
+    <script>
+        async function fetchCryptoData() {
+            try {
+                const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,litecoin,cardano,polkadot,ripple,doge,uniswap,litecoin,solana,avax,chainlink,shiba-inu,stellar,terrapower,dash,monero,tron,ftx-token,binancecoin,tezos,cosmos,algorand,sushi,pancakeswap,polkadot,matic,compound,vechain,zilliqa,chainlink,ftx,maker,lido,arbitrum,celo,sushiswap,yearn-finance,polygon,ethereum-classic,fantom,elrond,flow,klaytn,palantir,bancor&vs_currencies=usd');
+                const data = await response.json();
+                let tickerContent = "";
+                for (const [coin, values] of Object.entries(data)) {
+                    let coinPrice = values.usd;
+                    tickerContent += `<span class="${coinPrice > 1000 ? 'price-up' : 'price-down'}">${coin.charAt(0).toUpperCase() + coin.slice(1)}: $${coinPrice}</span> | `;
+                }
+                const tickerElement = document.getElementById('cryptoTicker');
+                tickerElement.innerHTML = tickerContent.slice(0, -3);  // Remove the last " | "
+            } catch (error) {
+                console.error('Error fetching crypto data:', error);
+            }
+        }
+
+        fetchCryptoData();
+        setInterval(fetchCryptoData, 60000); // Update every 1 minute
+    </script>
 </body>
 </html>
