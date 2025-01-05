@@ -15,6 +15,7 @@
             animation: fadeIn 1s ease-in-out;
         }
 
+        /* Taskbar Styles */
         .taskbar {
             display: flex;
             justify-content: space-between;
@@ -32,6 +33,7 @@
             animation: slideDown 0.8s ease forwards;
         }
 
+        /* Animasi Taskbar muncul */
         @keyframes slideDown {
             0% {
                 transform: translateY(-100%);
@@ -78,6 +80,37 @@
         .taskbar a:hover {
             background-color: #ffeb3b;
             color: #000;
+        }
+
+        /* Menu Hamburger */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+        }
+
+        .menu-toggle .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .taskbar div {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .taskbar.active div {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
         }
 
         .content {
@@ -219,6 +252,11 @@
             <a href="portfolio.html">Portofolio</a>
             <a href="contact.html">Kontak</a>
         </div>
+        <div class="menu-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
     </div>
 
     <div class="content">
@@ -262,5 +300,14 @@
             <a href="terms.html">Syarat & Ketentuan</a>
         </div>
     </footer>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const taskbar = document.querySelector('.taskbar');
+
+        menuToggle.addEventListener('click', () => {
+            taskbar.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
