@@ -19,16 +19,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Animasi Zoom pada Gambar */
-        .image-content img {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .image-content img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
         /* Smooth Scrolling */
         html {
             scroll-behavior: smooth;
@@ -86,6 +76,77 @@
             color: #000;
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            background-color: #000;
+            height: 4px;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .menu-items {
+            display: flex;
+            gap: 20px;
+        }
+
+        .menu-items a {
+            display: inline-block;
+        }
+
+        .menu-items.active {
+            display: block;
+            background-color: #fff;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            width: 200px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+        }
+
+        .menu-items a {
+            display: block;
+            padding: 10px 0;
+            color: #000;
+            text-decoration: none;
+            text-align: right;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-items a:hover {
+            background-color: #ffeb3b;
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .menu-items {
+                display: none;
+            }
+
+            .menu-items.active {
+                display: block;
+            }
+
+            .taskbar {
+                justify-content: space-between;
+            }
+        }
+
         /* Container */
         .container {
             display: flex;
@@ -111,7 +172,6 @@
             flex: 1;
         }
 
-        /* Footer */
         .footer {
             background-color: #fff;
             padding: 20px;
@@ -128,7 +188,6 @@
             font-size: 1rem;
         }
 
-        /* TradingView Widget */
         .tradingview-widget-container {
             margin-top: 40px;
             width: 100%;
@@ -138,12 +197,6 @@
         .tradingview-widget-container iframe {
             width: 100%;
             height: 100%;
-        }
-
-        /* Keyframes */
-        @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
         }
     </style>
 </head>
@@ -156,7 +209,12 @@
             </a>
             <span>Polapikir Investor</span>
         </div>
-        <div>
+        <div class="hamburger" id="hamburger-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="menu-items" id="menu-items">
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
@@ -282,5 +340,12 @@
     <div class="footer">
         <p>&copy; 2025 Polapikir Investor. All Rights Reserved.</p>
     </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('menu-items').classList.toggle('active');
+            document.getElementById('hamburger-icon').classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
