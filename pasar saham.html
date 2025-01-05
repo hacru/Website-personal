@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,6 +36,7 @@
             0% {
                 opacity: 0;
             }
+
             100% {
                 opacity: 1;
             }
@@ -80,7 +82,7 @@
             display: none;
             cursor: pointer;
             position: absolute;
-            left: 10px; /* Geser hamburger lebih ke kiri */
+            right: 10px; /* Memindahkan hamburger ke kanan */
         }
 
         .menu-toggle .bar {
@@ -91,6 +93,7 @@
             background-color: #000;
         }
 
+        /* Responsif untuk layar kecil */
         @media (max-width: 768px) {
             .taskbar-menu {
                 display: none;
@@ -135,6 +138,7 @@
                 transform: translateY(50px);
                 opacity: 0;
             }
+
             100% {
                 transform: translateY(0);
                 opacity: 1;
@@ -170,6 +174,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             100% {
                 opacity: 1;
                 transform: translateY(0);
@@ -193,6 +198,7 @@
             0% {
                 opacity: 0;
             }
+
             100% {
                 opacity: 1;
             }
@@ -224,6 +230,7 @@
             0% {
                 transform: translateY(100%);
             }
+
             100% {
                 transform: translateY(0);
             }
@@ -246,6 +253,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="taskbar">
         <div class="website-name">
@@ -261,7 +269,7 @@
             <a href="portfolio.html">Portofolio</a>
             <a href="contact.html">Kontak</a>
         </div>
-        <div class="menu-toggle">
+        <div class="menu-toggle" onclick="toggleMenu()">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
@@ -316,6 +324,11 @@
         menuToggle.addEventListener('click', () => {
             document.querySelector('.taskbar').classList.toggle('active');
         });
+        
+        function toggleMenu() {
+            menuToggle.classList.toggle('active');
+        }
     </script>
 </body>
+
 </html>
