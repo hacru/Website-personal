@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,13 +19,23 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes slideDown {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(0); }
+            from {
+                transform: translateY(-100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
         }
 
         .taskbar {
@@ -185,8 +196,99 @@
             background-color: #ffeb3b;
             color: #000;
         }
+
+        /* Hamburger Menu */
+        .menu-icon {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .menu-icon div {
+            height: 5px;
+            width: 100%;
+            background-color: #000;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .menu-items {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-items a {
+            color: #000;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+
+        .menu-items a:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .menu-items {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+                width: 200px;
+                animation: slideDownMenu 0.5s ease-out;
+            }
+
+            .menu-items.active {
+                display: flex;
+            }
+
+            .menu-icon {
+                display: flex;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+
+            .menu-icon.active div:nth-child(1) {
+                transform: rotate(45deg);
+                position: relative;
+                top: 8px;
+            }
+
+            .menu-icon.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-icon.active div:nth-child(3) {
+                transform: rotate(-45deg);
+                position: relative;
+                top: -8px;
+            }
+        }
+
+        @keyframes slideDownMenu {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
+
 <body>
     <audio id="background-music" loop>
         <source src="audio/Billie Eilish - No Time To Die.mp3" type="audio/mp3">
@@ -204,7 +306,12 @@
             </a>
             <span>Polapikir Investor</span>
         </div>
-        <div>
+        <div class="menu-icon" id="hamburger-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="menu-items">
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
@@ -295,6 +402,14 @@
                 audio.pause();
             }
         }
+
+        function toggleMenu() {
+            const menuItems = document.querySelector(".menu-items");
+            const hamburgerIcon = document.getElementById("hamburger-icon");
+            menuItems.classList.toggle("active");
+            hamburgerIcon.classList.toggle("active");
+        }
     </script>
 </body>
+
 </html>
