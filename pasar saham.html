@@ -29,7 +29,6 @@
             border-bottom: 2px solid #ffeb3b;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
             z-index: 1000;
-            transform: translateY(0);
         }
 
         @keyframes fadeIn {
@@ -82,7 +81,7 @@
             display: none;
             cursor: pointer;
             position: absolute;
-            right: 10px; /* Memindahkan hamburger ke kanan */
+            right: 10px;
         }
 
         .menu-toggle .bar {
@@ -102,6 +101,11 @@
                 width: 100%;
                 padding-left: 20px;
                 gap: 10px;
+                background-color: #fff; /* Background untuk menu dropdown */
+                position: absolute;
+                top: 50px; /* Menyelaraskan dengan taskbar */
+                left: 0;
+                padding-top: 20px;
             }
 
             .taskbar.active .taskbar-menu {
@@ -324,9 +328,9 @@
         menuToggle.addEventListener('click', () => {
             document.querySelector('.taskbar').classList.toggle('active');
         });
-        
+
         function toggleMenu() {
-            menuToggle.classList.toggle('active');
+            document.querySelector('.taskbar').classList.toggle('active');
         }
     </script>
 </body>
