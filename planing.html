@@ -8,12 +8,13 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #e0f7fa, #ffffff); /* Gradient background */
+            background: linear-gradient(to bottom, #e0f7fa, #ffffff);
             color: #000;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
             padding-top: 80px; /* Memberikan jarak dari taskbar */
+            overflow-x: hidden;
         }
 
         /* Taskbar */
@@ -26,7 +27,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            border-bottom: 3px solid #e0f7fa; /* Sesuaikan border dengan warna latar belakang */
+            border-bottom: 3px solid #e0f7fa;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             z-index: 1000;
             animation: slideDown 1s ease-in-out;
@@ -43,7 +44,7 @@
         }
 
         .taskbar a:hover {
-            background-color: #e0f7fa; /* Hover effect yang sesuai dengan latar belakang */
+            background-color: #e0f7fa;
             color: #000;
         }
 
@@ -80,6 +81,79 @@
             to { transform: translateY(0); }
         }
 
+        /* Menu Hamburger */
+        .menu-icon {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        .menu-icon div {
+            height: 5px;
+            width: 100%;
+            background-color: #000;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-icon.open div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-icon.open div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-icon.open div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Navbar */
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+            width: 60%;
+        }
+
+        .nav-links a {
+            color: #000;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+
+        /* Mobile version */
+        @media (max-width: 768px) {
+            .taskbar .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                background-color: #fff;
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .taskbar .nav-links.open {
+                display: flex;
+            }
+
+            .taskbar a {
+                padding: 15px 20px;
+                width: 100%;
+                text-align: center;
+                border-top: 1px solid #ccc;
+            }
+
+            .menu-icon {
+                display: flex;
+            }
+        }
+
         /* Footer */
         .footer {
             background-color: #fff;
@@ -88,7 +162,7 @@
             width: 100%;
             box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
             animation: slideUp 1s ease-in-out;
-            margin-top: 50px; /* Memberikan jarak dari konten */
+            margin-top: 50px;
         }
 
         .footer p {
@@ -159,7 +233,6 @@
             cursor: pointer;
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 </head>
 <body>
     <div class="taskbar">
@@ -169,7 +242,12 @@
             </a>
             <span>Polapikir Investor</span>
         </div>
-        <div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="nav-links">
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
@@ -205,6 +283,13 @@
             tujuan: '',
             keuangan: ''
         };
+
+        function toggleMenu() {
+            const menuIcon = document.querySelector(".menu-icon");
+            const navLinks = document.querySelector(".nav-links");
+            menuIcon.classList.toggle("open");
+            navLinks.classList.toggle("open");
+        }
 
         function simpanData() {
             planningData.tanggal = document.getElementById('tanggal').value;
