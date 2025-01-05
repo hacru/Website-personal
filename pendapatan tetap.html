@@ -9,7 +9,7 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #e0f7fa, #ffffff); /* Gradien dari biru muda ke putih */
+            background: linear-gradient(to bottom, #e0f7fa, #ffffff);
             color: #000;
             overflow-x: hidden;
             animation: fadeIn 1s ease-in-out;
@@ -28,26 +28,6 @@
             border-bottom: 2px solid #ffeb3b;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
             z-index: 1000;
-            transform: translateY(-100%);
-            animation: slideDown 0.8s ease forwards;
-        }
-
-        @keyframes slideDown {
-            0% {
-                transform: translateY(-100%);
-            }
-            100% {
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
         }
 
         .website-name {
@@ -78,6 +58,90 @@
         .taskbar a:hover {
             background-color: #ffeb3b;
             color: #000;
+        }
+
+        /* Menu Hamburger */
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            position: absolute;
+            right: 20px; /* Pindahkan ke kanan */
+        }
+
+        .menu-icon div {
+            height: 5px;
+            width: 100%;
+            background-color: #000;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .menu-items {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-items a {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        /* Media Queries */
+        @media screen and (max-width: 768px) {
+            .taskbar {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .menu-items {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                margin-top: 10px;
+            }
+
+            .menu-items.active {
+                display: flex;
+            }
+
+            .menu-items a {
+                margin: 10px 0;
+                text-align: center;
+                width: 100%;
+            }
+
+            .menu-icon {
+                display: flex;
+            }
+
+            /* Efek ketika hamburger berubah menjadi X */
+            .menu-icon.active div:nth-child(1) {
+                transform: rotate(45deg);
+                position: relative;
+                top: 8px;
+            }
+
+            .menu-icon.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-icon.active div:nth-child(3) {
+                transform: rotate(-45deg);
+                position: relative;
+                top: -8px;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
 
         .content {
@@ -205,6 +269,7 @@
     </style>
 </head>
 <body>
+
     <div class="taskbar">
         <div class="website-name">
             <a href="home.html">
@@ -212,7 +277,15 @@
             </a>
             <span>Polapikir Investor</span>
         </div>
-        <div>
+        
+        <!-- Menu Hamburger untuk perangkat mobile -->
+        <div class="menu-icon" id="hamburger-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- Menu Navbar -->
+        <div class="menu-items" id="menu-items">
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
@@ -262,5 +335,20 @@
             <a href="terms.html">Syarat & Ketentuan</a>
         </div>
     </footer>
+
+    <script>
+        // Fungsi untuk toggle menu hamburger
+        function toggleMenu() {
+            const menuItems = document.getElementById("menu-items");
+            const hamburgerIcon = document.getElementById("hamburger-icon");
+
+            // Toggle antara menu yang muncul dan disembunyikan
+            menuItems.classList.toggle("active");
+
+            // Ganti hamburger icon dengan X
+            hamburgerIcon.classList.toggle("active");
+        }
+    </script>
+
 </body>
 </html>
