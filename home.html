@@ -8,7 +8,7 @@
         /* Reset Margin dan Padding */
         body {
             margin: 0;
-            font-family: 'mmontserrat', montserrat;
+            font-family: 'Arial', sans-serif;
             color: #000;
             background: linear-gradient(to bottom, #e0f7fa, #ffffff); /* Latar belakang gradasi */
         }
@@ -129,6 +129,51 @@
             font-size: 18px;
             color: #000;
         }
+/* Styling untuk ikon mengambang */
+.floating-menu {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ffcc00;
+    border-radius: 50%;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.floating-menu i {
+    font-size: 30px;
+    color: #fff;
+}
+
+.floating-menu .menu-items {
+    display: none;
+    position: absolute;
+    bottom: 50px;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+}
+
+.floating-menu.active .menu-items {
+    display: block;
+}
+
+.floating-menu .menu-items a {
+    display: block;
+    color: #000;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.floating-menu .menu-items a:hover {
+    background-color: #f0f0f0;
+}
+
 
         /* Welcome Section */
         .welcome-section {
@@ -376,6 +421,16 @@
             Memuat data harga kripto terbaru...
         </div>
     </div>
+<!-- Floating Icon -->
+<div class="floating-menu">
+    <i class="fa fa-bars"></i>
+    <div class="menu-items">
+        <a href="about.html">Tentang</a>  <!-- Mengarah ke about.html -->
+        <a href="contact.html">Kontak</a>  <!-- Mengarah ke contact.html -->
+    </div>
+</div>
+
+</div>
 
     <!-- Background Lengkungan -->
     <div class="background">
@@ -434,6 +489,21 @@
     </div>
 
     <script>
+        // JavaScript untuk menangani klik pada ikon
+document.querySelector('.floating-menu').addEventListener('click', function(event) {
+    // Mencegah klik di luar ikon menutup menu
+    event.stopPropagation();
+    this.classList.toggle('active');
+});
+
+// Menutup menu jika pengguna mengklik di luar area menu
+document.addEventListener('click', function() {
+    const menu = document.querySelector('.floating-menu');
+    if (menu.classList.contains('active')) {
+        menu.classList.remove('active');
+    }
+});
+
         async function fetchCryptoData() {
             try {
                 const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,litecoin,cardano,polkadot,ripple,doge,uniswap,litecoin,solana,avax,chainlink,shiba-inu,stellar,terrapower,dash,monero,tron,ftx-token,binancecoin,tezos,cosmos,algorand,sushi,pancakeswap,polkadot,matic,compound,vechain,zilliqa,chainlink,ftx,maker,lido,arbitrum,celo,sushiswap,yearn-finance,polygon,ethereum-classic,fantom,elrond,flow,klaytn,palantir,bancor&vs_currencies=usd');
