@@ -8,7 +8,7 @@
     <style>
         body {
             margin: 0;
-            font-family: montserrat, smontserrat;
+            font-family: Arial, sans-serif;
             background: linear-gradient(to right, #e0f7fa, #ffffff);
             color: #000;
             overflow-x: hidden;
@@ -29,6 +29,7 @@
             border-bottom: 2px solid #ffeb3b;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
             z-index: 1000;
+            transform: translateY(0);
         }
 
         @keyframes fadeIn {
@@ -81,7 +82,7 @@
             display: none;
             cursor: pointer;
             position: absolute;
-            right: 10px;
+            right: 10px; /* Memindahkan hamburger ke kanan */
         }
 
         .menu-toggle .bar {
@@ -101,11 +102,6 @@
                 width: 100%;
                 padding-left: 20px;
                 gap: 10px;
-                background-color: #fff; /* Background untuk menu dropdown */
-                position: absolute;
-                top: 50px; /* Menyelaraskan dengan taskbar */
-                left: 0;
-                padding-top: 20px;
             }
 
             .taskbar.active .taskbar-menu {
@@ -302,12 +298,13 @@
 
         <div class="section">
             <h2>Data Manajer Investasi: Tri Megah Semesta</h2>
-            <p><strong>AUM (Asset Under Management):</strong> Rp 15.000.000.000.000 (15 Triliun) – Tri Megah Semesta telah mengelola dana yang besar dengan fokus pada saham-saham yang menjanjikan pertumbuhan tinggi di pasar modal.</p>
-            <p><strong>Dana Kelola:</strong> Tri Megah Semesta mengelola berbagai produk reksa dana dengan fokus pada saham perusahaan yang memiliki potensi pertumbuhan signifikan.</p>
-            <p><strong>Produknya:</strong>
-                <ul>
-                    <li>Reksa Dana Saham Tri Megah - Fokus pada saham-saham dengan potensi pertumbuhan yang tinggi.</li>
-                    <li>Reksa Dana Growth Fund - Fokus pada saham perusahaan besar dengan pertumbuhan stabil.</li>
+            <p><strong>Saham: 87,22%
+                Mayoritas investasi dialokasikan pada saham, sesuai fokusnya sebagai reksa dana saham.
+                Pendapatan Tetap (Obligasi): 3,29%
+                Sebagian kecil alokasi pada obligasi untuk stabilitas.
+                Instrumen Pasar Uang & Lainnya: 9,68%
+                Untuk menjaga likuiditas, termasuk deposito atau surat berharga jangka pendek.
+                </li>
                 </ul>
             </p>
         </div>
@@ -328,9 +325,9 @@
         menuToggle.addEventListener('click', () => {
             document.querySelector('.taskbar').classList.toggle('active');
         });
-
+        
         function toggleMenu() {
-            document.querySelector('.taskbar').classList.toggle('active');
+            menuToggle.classList.toggle('active');
         }
     </script>
 </body>
