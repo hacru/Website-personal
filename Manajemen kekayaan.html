@@ -59,6 +59,11 @@
             color: #000;
         }
 
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+        }
+
         /* Section Styles */
         section {
             min-height: 100vh;
@@ -204,18 +209,8 @@
         }
 
         .taskbar .nav-links {
-            display: none;
-            flex-direction: column;
-            width: 100%;
-            background-color: #fff;
-            position: absolute;
-            top: 70px;
-            left: 0;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .taskbar .nav-links.open {
             display: flex;
+            justify-content: space-between;
         }
 
         .taskbar .nav-links a {
@@ -344,6 +339,7 @@
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
+            <a href="portfolio.html">Portofolio</a>
             <a href="contact.html">Kontak</a>
         </div>
     </div>
