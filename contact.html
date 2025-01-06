@@ -7,7 +7,7 @@
     <style>
         body {
             margin: 0;
-            font-family: montserrat, montserrat;
+            font-family: Arial, sans-serif;
             background: linear-gradient(to right, #e0f7fa, #ffffff); /* Gradasi linear */
             color: #000;
             animation: fadeIn 1s ease-out;
@@ -121,14 +121,17 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            width: 200px;
+            transition: all 0.3s ease;
+            width: 250px;
             justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .contact-link:hover {
-            background-color: #fff;
-            color: #000;
+            background-color: #00796b;
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
         .contact-link i {
@@ -153,6 +156,139 @@
         footer a:hover {
             text-decoration: underline;
         }
+
+        /* Hamburger Icon */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1010;
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 3px;
+            background-color: #000;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active div:nth-child(1) {
+            transform: rotate(45deg);
+            position: relative;
+            top: 8px;
+        }
+
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active div:nth-child(3) {
+            transform: rotate(-45deg);
+            position: relative;
+            top: -8px;
+        }
+
+        /* Menu for mobile */
+        .taskbar-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .taskbar-links a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            background-color: #fff;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            z-index: 1000;
+            padding: 20px 0;
+        }
+
+        .menu.active {
+            display: block;
+        }
+
+        .menu a {
+            display: block;
+            padding: 15px;
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .menu a:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .taskbar {
+                padding: 10px;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .taskbar-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .menu {
+                width: 100%;
+            }
+
+            .contact-section {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 15px;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .contact-link {
+                width: 100%;
+                font-size: 1.2rem;
+                padding: 12px;
+                justify-content: center;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-link {
+                font-size: 1.1rem; /* Lebih kecil untuk tampilan handphone kecil */
+                padding: 12px 10px;
+            }
+
+            .contact-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .website-name span {
+                font-size: 1.5rem;
+            }
+        }
     </style>
     <!-- Link to Font Awesome (for icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -165,7 +301,16 @@
             </a>
             <span>Polapikir Investor</span>
         </div>
-        <div>
+
+        <!-- Hamburger Menu -->
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="taskbar-links">
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
@@ -174,28 +319,32 @@
         </div>
     </div>
 
-    <div style="padding: 100px;">
-        <h1>Kontak Kami</h1>
+    <!-- Mobile Menu -->
+    <div class="menu" id="menu">
+        <a href="home.html">Beranda</a>
+        <a href="about.html">Tentang</a>
+        <a href="media.html">Media</a>
+        <a href="portfolio.html">Portofolio</a>
+        <a href="contact.html">Kontak</a>
+    </div>
 
-        <div class="contact-section">
-            <h2>Hubungi Kami</h2>
-            <p>
-                Kami senang mendengar dari Anda! Jika Anda ingin berbicara langsung dengan kami atau mengikuti kami di media sosial, silakan gunakan salah satu link di bawah ini.
-            </p>
-            <div class="contact-links">
-                <a href="https://wa.me/628xxxxxxxxxx" class="contact-link" target="_blank">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
-                <a href="https://t.me/+gcseD-_sCqUyMTJl" class="contact-link" target="_blank">
-                    <i class="fab fa-telegram-plane"></i> Telegram
-                </a>
-                <a href="https://www.instagram.com/polapikir_investor/" class="contact-link" target="_blank">
-                    <i class="fab fa-instagram"></i> Instagram
-                </a>
-                <a href="https://www.tiktok.com/@polapikir_investor" class="contact-link" target="_blank">
-                    <i class="fab fa-tiktok"></i> TikTok
-                </a>
-            </div>
+    <h1>Kontak Kami</h1>
+
+    <div class="contact-section">
+        <h2>Hubungi Kami di platform pilihan Anda</h2>
+        <div class="contact-links">
+            <a href="https://wa.me/628xxxxxxxxxx" class="contact-link" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="https://t.me/+gcseD-_sCqUyMTJl" class="contact-link" target="_blank">
+                <i class="fab fa-telegram-plane"></i> Telegram
+            </a>
+            <a href="https://www.instagram.com/polapikir_investor/" class="contact-link" target="_blank">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://www.tiktok.com/@polapikir_investor" class="contact-link" target="_blank">
+                <i class="fab fa-tiktok"></i> TikTok
+            </a>
         </div>
     </div>
 
@@ -207,5 +356,14 @@
             <a href="contact.html">Kontak Kami</a>
         </div>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            var hamburger = document.getElementById("hamburger");
+            menu.classList.toggle("active");
+            hamburger.classList.toggle("active");
+        }
+    </script>
 </body>
 </html>
