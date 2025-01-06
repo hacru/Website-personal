@@ -4,33 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strategi Investasi - Polapikir Investor</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+            font-family: 'Montserrat', sans-serif;
             color: #000;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            padding-top: 80px;
-            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
+        /* Taskbar */
         .taskbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             background-color: #fff;
-            padding: 20px;
+            padding: 10px 20px;
             position: fixed;
             top: 0;
             width: 100%;
-            border-bottom: 3px solid #ffffff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-bottom: 2px solid #000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
             z-index: 1000;
-            animation: slideDown 1s ease-in-out;
         }
 
         .taskbar a {
@@ -38,12 +33,11 @@
             text-decoration: none;
             padding: 10px 15px;
             border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
             font-weight: bold;
         }
 
         .taskbar a:hover {
-            background-color: #ffffff;
+            background-color: #e0f7fa;
             color: #000;
         }
 
@@ -55,192 +49,213 @@
         .website-name img {
             height: 50px;
             margin-right: 15px;
+            cursor: pointer;
         }
 
         .website-name span {
-            font-size: 1.8rem;
+            font-size: 1.4rem; /* Ukuran font lebih kecil */
             font-weight: bold;
             color: #000;
         }
 
+        /* Hamburger menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 24px;
+        }
+
+        .hamburger div {
+            width: 100%;
+            height: 3px;
+            background-color: #000;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hamburger.active div:nth-child(1) {
+            transform: translateY(10px) rotate(45deg);
+        }
+
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active div:nth-child(3) {
+            transform: translateY(-10px) rotate(-45deg);
+        }
+
+        /* Menu */
         .menu {
             display: flex;
             gap: 20px;
         }
 
-        .link-boxes {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 120px;
-            gap: 20px;
-            animation: fadeIn 1.5s ease-in-out;
-            flex-wrap: wrap;
-            margin-bottom: 50px;
-        }
-
-        .link-box {
-            background-color: #fff;
-            border: 2px solid #ffffff;
-            border-radius: 8px;
-            padding: 20px;
-            width: 250px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
-            height: 200px;
-        }
-
-        .link-box h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: #000;
-        }
-
-        .link-box a {
-            color: #000;
+        .menu a {
             text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: bold;
-            display: block;
-            margin-top: 10px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            padding: 8px 12px;
-            border-radius: 8px;
-        }
-
-        .link-box a:hover {
-            background-color: #ffeb3b;
             color: #000;
         }
 
-        .link-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-            }
-            to {
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(100%);
-            }
-            to {
-                transform: translateY(0);
-            }
-        }
-
-        .footer {
-            background-color: #fff;
-            padding: 20px;
-            text-align: center;
-            width: 100%;
-            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-            animation: slideUp 1s ease-in-out;
-            margin-top: 50px;
-        }
-
-        .footer p {
-            color: #000;
-            font-size: 1rem;
-        }
-
-        /* Hamburger menu styles */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .hamburger div {
-            width: 30px;
-            height: 3px;
-            background-color: #000;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        /* Responsive menu for tablet and mobile */
+        /* Responsif */
         @media (max-width: 768px) {
-            .taskbar .menu {
+            .menu {
                 display: none;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+                padding: 10px;
+                z-index: 999;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .taskbar {
+                justify-content: space-between;
+                position: relative;
             }
 
             .hamburger {
                 display: flex;
             }
+        }
 
-            .menu-mobile {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 80px;
-                right: 0;
-                background-color: #fff;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                width: 200px;
-                padding: 20px;
-                gap: 15px;
-                animation: slideDown 0.5s ease-in-out;
-            }
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            text-align: center;
+            padding: 20px;
+            animation: fadeIn 1.5s ease-out;
+            margin-top: 70px;
+        }
 
-            .menu-mobile a {
-                color: #000;
-                font-size: 1.2rem;
-                text-decoration: none;
-                font-weight: bold;
-                padding: 8px 0;
-                display: block;
-            }
+        section:nth-child(odd) {
+            background: linear-gradient(to right, #e0f7fa, #ffffff);
+        }
 
-            .menu-mobile a:hover {
-                background-color: #ffeb3b;
-                color: #000;
-            }
+        section:nth-child(even) {
+            background: linear-gradient(to right, #ffffff, #e0f7fa);
+        }
 
-            .hamburger.active div:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-            .hamburger.active div:nth-child(2) {
-                opacity: 0;
-            }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: slideIn 1.5s ease-out;
+        }
 
-            .hamburger.active div:nth-child(3) {
-                transform: rotate(-45deg) translate(5px, -5px);
-            }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            animation: slideIn 1.5s ease-out;
+        }
 
-            .menu-mobile.active {
-                display: flex;
-            }
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            animation: bounceIn 1.5s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #e0f7fa;
+            color: #000;
+        }
+
+        @keyframes bounceIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .image-container img {
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            animation: zoomIn 1.5s ease-out;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        footer {
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .navigation {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+
+        .navigation a {
+            display: inline-block;
+            margin: 0 5px;
+            color: #000;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .navigation a:hover {
+            text-decoration: underline;
+        }
+
+        .indicator {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
+
+    <!-- Taskbar -->
     <div class="taskbar">
         <div class="website-name">
             <a href="home.html">
-                <img src="images/logo.webp" alt="Polapikir Investor Logo">
+                <img src="images/logo.webp" alt="Polapikir Investor Logo" height="50">
             </a>
             <span>Polapikir Investor</span>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
         <div class="menu">
             <a href="home.html">Beranda</a>
@@ -249,47 +264,55 @@
             <a href="portfolio.html">Portofolio</a>
             <a href="contact.html">Kontak</a>
         </div>
-        <div class="hamburger" onclick="toggleMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
-
-    <div class="menu-mobile" id="menu-mobile">
-        <a href="home.html">Beranda</a>
-        <a href="about.html">Tentang</a>
-        <a href="media.html">Media</a>
-        <a href="portfolio.html">Portofolio</a>
-        <a href="contact.html">Kontak</a>
-    </div>
-
-    <div class="link-boxes">
-        <div class="link-box">
-            <h3>Rencana Keuangan</h3>
-            <a href="rencana keuangan.html">Pelajari Lebih Lanjut</a>
-        </div>
-        <div class="link-box">
-            <h3>Budgeting</h3>
-            <a href="bugedting.html">Pelajari Lebih Lanjut</a>
-        </div>
-        <div class="link-box">
-            <h3>Tujuan Keuanganmu</h3>
-            <a href="planing.html">Pelajari Lebih Lanjut</a>
-        </div>
-    </div>
-
-    <div class="footer">
-        <p>&copy; 2024 Polapikir Investor. All Rights Reserved.</p>
     </div>
 
     <script>
         function toggleMenu() {
-            const menuMobile = document.getElementById('menu-mobile');
-            const hamburger = document.querySelector('.hamburger');
-            menuMobile.classList.toggle('active');
-            hamburger.classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('active');
+            document.querySelector('.menu').classList.toggle('active');
         }
     </script>
+
+    <!-- Content Sections -->
+    <section id="rencana keuangan">
+        <div class="text-container">
+            <h1>Rencana Keuangan</h1>
+            <p>Investasi saham adalah cara yang efektif untuk memiliki bagian dari perusahaan yang Anda percaya memiliki potensi pertumbuhan. Dengan strategi yang tepat, saham dapat memberikan keuntungan besar.</p>
+            <a href="rencana keuangan.html" class="cta-button">Pelajari Lebih Lanjut</a>
+            <div class="indicator">Indikator: PER, PBV, ROE</div>
+        </div>
+        <div class="image-container">
+            <img src="images/saham.jpg" alt="Investasi Saham">
+        </div>
+    </section>
+
+    <section id="bugedting">
+        <div class="text-container">
+            <h1>Bugedting</h1>
+            <p>Reksa dana dikelola oleh profesional dan dirancang untuk menyebar risiko dengan portofolio yang terdiversifikasi. Cocok untuk investor pemula maupun berpengalaman.</p>
+            <a href="bugedting.html" class="cta-button">Pelajari Lebih Lanjut</a>
+            <div class="indicator">Indikator: Expense Ratio, AUM, Historical Returns</div>
+        </div>
+        <div class="image-container">
+            <img src="images/reksa-dana.jpg" alt="Reksa Dana">
+        </div>
+    </section>
+
+    <section id="tujuan keuanganmu">
+        <div class="text-container">
+            <h1>Tujuan Keuanganmu</h1>
+            <p>Kripto telah menjadi fenomena global dengan potensi keuntungan tinggi. Namun, penting untuk memahami risiko tinggi yang terlibat dan melakukan riset mendalam sebelum berinvestasi.</p>
+            <a href="planing.html" class="cta-button">Pelajari Lebih Lanjut</a>
+            <div class="indicator">Indikator: Volatilitas, Market Sentiment, Blockchain Technology</div>
+        </div>
+        <div class="image-container">
+            <img src="images/kripto.jpg" alt="Investasi Kripto">
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Polapikir Investor. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
