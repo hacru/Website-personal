@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: montserrat, montserrat;
+            font-family: Arial, sans-serif;
             background: linear-gradient(to right, #e0f7fa, #ffffff); /* Gradasi linear */
             color: #333; /* Dark text color */
             display: flex;
@@ -70,6 +70,91 @@
             color: #fff;
         }
 
+        /* Hamburger Menu */
+        .menu-icon {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-icon div {
+            width: 30px;
+            height: 4px;
+            background-color: #333;
+            margin: 5px;
+            transition: 0.3s;
+        }
+
+        .menu-items {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .menu-items a {
+            display: inline-block;
+            color: #000;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .menu-items a:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* Dropdown Menu */
+        .menu-dropdown {
+            display: none;
+            flex-direction: column;
+            background-color: #fff;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-dropdown a {
+            padding: 10px 15px;
+            text-align: center;
+        }
+
+        .menu-open .menu-icon div:nth-child(1) {
+            transform: rotate(-45deg);
+            position: relative;
+            top: 8px;
+        }
+
+        .menu-open .menu-icon div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-open .menu-icon div:nth-child(3) {
+            transform: rotate(45deg);
+            position: relative;
+            top: -8px;
+        }
+
+        .menu-open .menu-dropdown {
+            display: flex;
+            animation: dropdownAnim 0.3s ease-out;
+        }
+
+        @keyframes dropdownAnim {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Container */
         .container {
             background-color: #fff;
             padding: 30px;
@@ -188,6 +273,17 @@
         footer a:hover {
             text-decoration: underline;
         }
+
+        /* Responsif untuk Mobile */
+        @media (max-width: 768px) {
+            .menu-items {
+                display: none;
+            }
+
+            .menu-icon {
+                display: flex;
+            }
+        }
     </style>
 </head>
 <body>
@@ -200,13 +296,27 @@
             </a>
             <span>Polapikir Investor</span>
         </div>
-        <div>
+        <div class="menu-items">
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
             <a href="portfolio.html">Portofolio</a>
             <a href="contact.html">Kontak</a>
         </div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- Menu Dropdown -->
+    <div class="menu-dropdown">
+        <a href="home.html">Beranda</a>
+        <a href="about.html">Tentang</a>
+        <a href="media.html">Media</a>
+        <a href="portfolio.html">Portofolio</a>
+        <a href="contact.html">Kontak</a>
     </div>
 
     <!-- Main content container -->
@@ -245,6 +355,11 @@
     </footer>
 
     <script>
+        // Fungsi toggle untuk menu
+        function toggleMenu() {
+            document.querySelector(".taskbar").classList.toggle("menu-open");
+        }
+
         // Fungsi untuk format Rupiah
         function formatRupiah(value) {
             return "Rp " + value.toLocaleString('id-ID');
@@ -252,32 +367,24 @@
 
         // Fungsi untuk menghitung P/E dan PEG
         document.getElementById("hitung_button").addEventListener("click", function() {
-            // Ambil nilai input
             let hargaSaham = parseFloat(document.getElementById("harga_saham").value.replace(".", "").replace(",", "."));
             let eps = parseFloat(document.getElementById("eps").value.replace(".", "").replace(",", "."));
             let growthRate = parseFloat(document.getElementById("growth_rate").value);
 
-            // Validasi input
             if (isNaN(hargaSaham) || isNaN(eps) || isNaN(growthRate)) {
                 alert("Harap masukkan data dengan benar!");
                 return;
             }
 
-            // Menghitung P/E Ratio
             let peRatio = hargaSaham / eps;
-
-            // Menghitung PEG Ratio
             let pegRatio = peRatio / growthRate;
 
-            // Format hasil menjadi rupiah
             let hargaSahamRupiah = formatRupiah(hargaSaham);
             let epsRupiah = formatRupiah(eps);
 
-            // Menampilkan hasil
             document.getElementById("pe_ratio").innerText = "P/E Ratio: " + peRatio.toFixed(2);
             document.getElementById("peg_ratio").innerText = "PEG Ratio: " + pegRatio.toFixed(2);
 
-            // Kesimpulan
             let kesimpulan = "";
             if (pegRatio < 1) {
                 kesimpulan = "PEG Ratio kurang dari 1: Saham undervalued.";
