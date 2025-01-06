@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analisis Teknikal dan TradingView</title>
     <style>
+        /* Global Styles */
         body {
             margin: 0;
-            font-family: montserrat, smontserrat;
+            font-family: Arial, sans-serif;
             background: linear-gradient(to bottom, #e0f7fa, #ffffff); /* Gradasi background */
             color: #000;
             animation: fadeIn 1.5s ease-out;
@@ -69,6 +70,90 @@
             color: #000;
         }
 
+        /* Menu Styles */
+        .menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu a {
+            margin: 0 10px;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 20px;
+            width: 25px;
+        }
+
+        .hamburger div {
+            width: 100%;
+            height: 4px;
+            background-color: #000;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .menu {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links.active {
+                display: block;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background-color: #fff;
+                width: 200px;
+                padding: 10px 0;
+                border: 1px solid #ddd;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-links a {
+                padding: 10px;
+                text-align: center;
+                width: 100%;
+                border-bottom: 1px solid #ddd;
+                background-color: #fff;
+            }
+
+            .nav-links a:hover {
+                background-color: #000;
+                color: #fff;
+            }
+
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(45deg);
+                position: relative;
+                top: 5px;
+            }
+
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(-45deg);
+                position: relative;
+                top: -5px;
+            }
+        }
+
+        /* Content and Footer Styles */
         .container {
             max-width: 1200px;
             margin: 50px auto;
@@ -159,12 +244,11 @@
             color: #000;
         }
 
-        /* Adjusted size of tradingview widget */
         .tradingview-widget-container {
             position: relative;
-            width: 100%; /* 100% width for full available width */
-            height: 600px; /* Set fixed height */
-            margin: 0 auto; /* Center the widget */
+            width: 100%;
+            height: 600px;
+            margin: 0 auto;
         }
 
         footer {
@@ -211,12 +295,19 @@
             </a>
             <span>Polapikir Investor</span>
         </div>
-        <div>
-            <a href="home.html">Beranda</a>
-            <a href="about.html">Tentang</a>
-            <a href="media.html">Media</a>
-            <a href="portfolio.html">Portofolio</a>
-            <a href="contact.html">Kontak</a>
+        <div class="menu">
+            <div class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="nav-links">
+                <a href="home.html">Beranda</a>
+                <a href="about.html">Tentang</a>
+                <a href="media.html">Media</a>
+                <a href="portfolio.html">Portofolio</a>
+                <a href="contact.html">Kontak</a>
+            </div>
         </div>
     </div>
 
@@ -227,8 +318,8 @@
         <div class="instructions">
             <h3>Penjelasan Teknikal</h3>
             <ul>
-                <li><strong>Support dan Resistance:</strong> Support adalah level harga di mana saham cenderung tidak jatuh lebih rendah, sedangkan resistance adalah level harga di mana saham sulit naik lebih tinggi. Menentukan area support dan resistance membantu dalam memprediksi potensi pergerakan harga.</li>
-                <li><strong>Moving Averages (MA):</strong> Moving average adalah indikator yang digunakan untuk menentukan arah tren dengan menghaluskan fluktuasi harga. Dua jenis umum adalah Simple Moving Average (SMA) dan Exponential Moving Average (EMA). Ketika harga melintasi MA, itu sering dianggap sebagai sinyal beli atau jual.</li>
+                <li><strong>Support dan Resistance:</strong> Ini adalah level harga di mana pergerakan harga kemungkinan besar akan terhenti atau berbalik.</li>
+                <li><strong>Moving Averages:</strong> Indikator ini digunakan untuk menentukan arah tren dan memberikan sinyal beli atau jual.</li>
                 <li><strong>Relative Strength Index (RSI):</strong> RSI adalah indikator momentum yang mengukur tingkat kelebihan beli atau jual suatu aset. RSI di atas 70 menunjukkan kondisi overbought (terlalu banyak dibeli), sementara di bawah 30 menunjukkan oversold (terlalu banyak dijual).</li>
                 <li><strong>Bollinger Bands:</strong> Bollinger Bands adalah indikator volatilitas yang terdiri dari tiga garis: moving average tengah, band atas dan band bawah. Ketika harga mendekati band atas, harga dianggap overbought, dan ketika mendekati band bawah, harga dianggap oversold.</li>
             </ul>
@@ -262,9 +353,9 @@
     <script type="text/javascript">
         function createChart(symbol) {
             new TradingView.widget({
-                "autosize": false,   /* Disabled autosize */
-                "width": "100%",     /* Set width to 100% */
-                "height": "600px",   /* Set height explicitly */
+                "autosize": false,
+                "width": "100%",
+                "height": "600px",
                 "symbol": symbol,
                 "interval": "D",
                 "timezone": "Etc/UTC",
@@ -281,15 +372,22 @@
             });
         }
 
-        // Initial chart
-        createChart("NASDAQ:AAPL");
-
         function updateChart() {
             var symbol = document.getElementById('symbol').value;
             if(symbol) {
                 createChart(symbol.toUpperCase());
             }
         }
+
+        function toggleMenu() {
+            var navLinks = document.querySelector('.nav-links');
+            var hamburger = document.querySelector('.hamburger');
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        // Initial chart
+        createChart("NASDAQ:AAPL");
     </script>
 
     <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
