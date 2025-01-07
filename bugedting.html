@@ -13,7 +13,7 @@
     }
 
     body {
-      font-family: montserrat, montserrat;
+      font-family: Arial, sans-serif;
       background: linear-gradient(to bottom, #e0f7fa, #ffffff);
       color: #000;
       display: flex;
@@ -77,79 +77,6 @@
     .taskbar a:hover {
       background-color: #000;
       color: #fff;
-    }
-
-    /* Hamburger menu */
-    .menu-icon {
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 25px;
-      cursor: pointer;
-    }
-
-    .menu-icon div {
-      height: 5px;
-      width: 100%;
-      background-color: #000;
-      transition: transform 0.3s ease;
-    }
-
-    .menu-icon.open div:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-
-    .menu-icon.open div:nth-child(2) {
-      opacity: 0;
-    }
-
-    .menu-icon.open div:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
-
-    /* Navbar */
-    .nav-links {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-direction: row;
-      width: 60%;
-    }
-
-    .nav-links a {
-      color: #000;
-      text-decoration: none;
-      padding: 10px 20px;
-    }
-
-    /* Mobile version */
-    @media (max-width: 768px) {
-      .taskbar .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 80px;
-        left: 0;
-        background-color: #fff;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-      }
-
-      .taskbar .nav-links.open {
-        display: flex;
-      }
-
-      .taskbar a {
-        padding: 15px 20px;
-        width: 100%;
-        text-align: center;
-        border-top: 1px solid #ccc;
-      }
-
-      .menu-icon {
-        display: flex;
-      }
     }
 
     .container {
@@ -262,32 +189,6 @@
     footer a:hover {
       text-decoration: underline;
     }
-
-    /* Image sections */
-    .images {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 40%;
-      height: auto;
-      margin-top: 40px;
-    }
-
-    .image-box {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      background-color: #fff;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .image-box img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
   </style>
 </head>
 <body>
@@ -299,90 +200,92 @@
       </a>
       <span>Polapikir Investor</span>
     </div>
-    <!-- Menu icon for mobile -->
-    <div class="menu-icon" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <div class="nav-links">
-      <a href="home.html">Beranda</a>
-      <a href="about.html">Tentang</a>
-      <a href="media.html">Media</a>
-      <a href="portfolio.html">Portofolio</a>
-      <a href="contact.html">Kontak</a>
-    </div>
   </div>
 
   <!-- Main content container -->
   <div class="container">
-    <!-- Calculator section -->
     <div class="calculator">
       <h1 class="heading">Pengelolaan Anggaran Keuangan</h1>
       <p class="sub-heading">Gunakan kalkulator ini untuk menghitung anggaran bulanan Anda dan mendapatkan saran keuangan.</p>
       <div class="form-container">
         <label for="income">Pendapatan Bulanan:</label>
-        <input type="number" id="income" placeholder="Masukkan pendapatan" required>
-        <label for="expenses">Pengeluaran Bulanan:</label>
-        <input type="number" id="expenses" placeholder="Masukkan pengeluaran" required>
+        <input type="text" id="income" placeholder="Masukkan pendapatan Anda" oninput="formatCurrency(this)">
+
+        <label for="food-expenses">Pengeluaran untuk Makanan:</label>
+        <input type="text" id="food-expenses" placeholder="Masukkan pengeluaran untuk makanan" oninput="formatCurrency(this)">
+
+        <label for="housing-expenses">Pengeluaran untuk Tempat Tinggal:</label>
+        <input type="text" id="housing-expenses" placeholder="Masukkan pengeluaran untuk tempat tinggal" oninput="formatCurrency(this)">
+
+        <label for="transport-expenses">Pengeluaran untuk Transportasi:</label>
+        <input type="text" id="transport-expenses" placeholder="Masukkan pengeluaran untuk transportasi" oninput="formatCurrency(this)">
+
+        <label for="other-expenses">Pengeluaran Lainnya:</label>
+        <input type="text" id="other-expenses" placeholder="Masukkan pengeluaran lainnya" oninput="formatCurrency(this)">
+
+        <button onclick="calculateBudget()">Hitung Anggaran</button>
       </div>
-      <button onclick="calculateBudget()">Hitung Anggaran</button>
+      
       <div class="result">
         <p id="remaining-budget"></p>
         <p id="suggestions"></p>
-        <button id="download-btn" class="btn-download" style="display:none;" onclick="downloadPDF()">Unduh PDF</button>
-      </div>
-    </div>
-
-    <!-- Image section -->
-    <div class="images">
-      <div class="image-box">
-        <img src="images/image1.jpg" alt="Image 1">
-      </div>
-      <div class="image-box">
-        <img src="images/image2.jpg" alt="Image 2">
+        <button class="btn-download" id="download-btn" style="display:none;" onclick="downloadPDF()">Unduh Anggaran</button>
       </div>
     </div>
   </div>
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 Polapikir Investor. Semua Hak Dilindungi.</p>
-    <a href="privacy.html">Kebijakan Privasi</a>
-    <a href="terms.html">Syarat dan Ketentuan</a>
+    <p>&copy; 2025 Polapikir Investor. All rights reserved. | 
+      <a href="privacy-policy.html">Privacy Policy</a> | 
+      <a href="terms-of-use.html">Terms of Use</a>
+    </p>
   </footer>
 
   <script>
-    function toggleMenu() {
-      const menuIcon = document.querySelector(".menu-icon");
-      const navLinks = document.querySelector(".nav-links");
-      menuIcon.classList.toggle("open");
-      navLinks.classList.toggle("open");
+    function formatCurrency(input) {
+      let value = input.value.replace(/\D/g, '');  // Remove non-numeric characters
+      value = value.replace(/\B(?=(\d{3})+(?!\d))/g, "."); // Add '.' for thousands separator
+      input.value = value;
     }
 
     function calculateBudget() {
-      const income = document.getElementById("income").value;
-      const expenses = document.getElementById("expenses").value;
-      const remainingBudget = income - expenses;
-      document.getElementById("remaining-budget").innerText = `Anggaran Tersisa: Rp${remainingBudget}`;
+      const income = parseFloat(document.getElementById("income").value.replace(/\D/g, '')) || 0;
+      const foodExpenses = parseFloat(document.getElementById("food-expenses").value.replace(/\D/g, '')) || 0;
+      const housingExpenses = parseFloat(document.getElementById("housing-expenses").value.replace(/\D/g, '')) || 0;
+      const transportExpenses = parseFloat(document.getElementById("transport-expenses").value.replace(/\D/g, '')) || 0;
+      const otherExpenses = parseFloat(document.getElementById("other-expenses").value.replace(/\D/g, '')) || 0;
+
+      const totalExpenses = foodExpenses + housingExpenses + transportExpenses + otherExpenses;
+      const remainingBudget = income - totalExpenses;
+
+      document.getElementById("remaining-budget").innerText = `Anggaran Tersisa: Rp${remainingBudget.toLocaleString('id-ID')}`;
+      
       let suggestions = "Saran Keuangan:";
       if (remainingBudget < 0) {
-        suggestions += " Anda melebihi anggaran. Pertimbangkan untuk mengurangi pengeluaran.";
+        suggestions += "\n- Anda melebihi anggaran. Pertimbangkan untuk mengurangi pengeluaran.";
       } else {
-        suggestions += " Anda memiliki anggaran lebih. Pertimbangkan untuk menabung atau berinvestasi.";
+        suggestions += "\n- Anda memiliki anggaran lebih. Pertimbangkan untuk menabung atau berinvestasi.";
       }
+      
+      // Poin-poin penting lainnya
+      suggestions += "\n\nPoin Penting:";
+      suggestions += "\n1. Pisahkan pengeluaran Anda ke dalam kategori yang jelas.";
+      suggestions += "\n2. Pastikan untuk menabung atau berinvestasi setiap bulan.";
+      suggestions += "\n3. Sisihkan dana untuk pengeluaran tak terduga.";
+      suggestions += "\n4. Atur prioritas pengeluaran Anda untuk kebutuhan dasar.";
+      suggestions += "\n5. Evaluasi anggaran Anda secara berkala.";
+      
       document.getElementById("suggestions").innerText = suggestions;
       document.querySelector(".result").style.display = "block";
       document.getElementById("download-btn").style.display = "inline-block";
     }
 
     function downloadPDF() {
-      const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
-      doc.text("Pengelolaan Anggaran Keuangan", 20, 30);
-      doc.text(document.getElementById("remaining-budget").innerText, 20, 40);
-      doc.text(document.getElementById("suggestions").innerText, 20, 50);
-      doc.save("anggaran-keuangan.pdf");
+      const content = document.querySelector('.result').innerText;
+      doc.text(content, 10, 10);
+      doc.save('anggaran-keuangan.pdf');
     }
   </script>
 </body>
