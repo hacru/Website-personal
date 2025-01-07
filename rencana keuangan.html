@@ -7,7 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         body {
-            font-family: montserrat, montserrat;
+            font-family: Arial, sans-serif;
             background: linear-gradient(to bottom, #e0f7fa, #ffffff);
             color: #000;
             text-align: center;
@@ -35,7 +35,7 @@
 
         form {
             background-color: #fff;
-            padding: 20px;
+            padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin-bottom: 30px;
@@ -49,13 +49,23 @@
         }
 
         input[type="text"], input[type="number"], select {
-            padding: 10px;
+            padding: 15px;
             width: 80%;
-            font-size: 1rem;
+            font-size: 1.2rem;
             margin-bottom: 20px;
             border-radius: 5px;
             border: 1px solid #ccc;
             transition: all 0.3s ease;
+        }
+
+        textarea {
+            padding: 15px;
+            width: 80%;
+            height: 120px;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
 
         button {
@@ -267,21 +277,21 @@
 
         <div id="short-term-fields">
             <label for="short-term">Tujuan Jangka Pendek:</label>
-            <input type="text" id="short-term" placeholder="Masukkan tujuan jangka pendek">
+            <textarea id="short-term" placeholder="Masukkan tujuan jangka pendek"></textarea>
             <input type="text" id="short-term-amount" placeholder="Jumlah yang dibutuhkan" />
             <input type="number" id="short-term-duration" placeholder="Berapa bulan sampai tercapai?" />
         </div>
 
         <div id="medium-term-fields" style="display:none;">
             <label for="medium-term">Tujuan Jangka Menengah:</label>
-            <input type="text" id="medium-term" placeholder="Masukkan tujuan jangka menengah">
+            <textarea id="medium-term" placeholder="Masukkan tujuan jangka menengah"></textarea>
             <input type="text" id="medium-term-amount" placeholder="Jumlah yang dibutuhkan" />
             <input type="number" id="medium-term-duration" placeholder="Berapa tahun sampai tercapai?" />
         </div>
 
         <div id="long-term-fields" style="display:none;">
             <label for="long-term">Tujuan Jangka Panjang:</label>
-            <input type="text" id="long-term" placeholder="Masukkan tujuan jangka panjang">
+            <textarea id="long-term" placeholder="Masukkan tujuan jangka panjang"></textarea>
             <input type="text" id="long-term-amount" placeholder="Jumlah yang dibutuhkan" />
             <input type="number" id="long-term-duration" placeholder="Berapa tahun sampai tercapai?" />
         </div>
@@ -289,71 +299,74 @@
         <button type="button" id="calculate">Hitung</button>
     </form>
 
-    <div id="result" class="result"></div>
+    <div class="result" id="result"></div>
 
+    <!-- Tombol untuk download -->
     <div class="button-container">
-        <button id="download-pdf">Unduh sebagai PDF</button>
+        <button id="download-btn">Download Data (PDF)</button>
     </div>
 
     <footer>
-        <p>&copy; 2024 Polapikir Investor</p>
-        <div>
-            <a href="privacy.html">Kebijakan Privasi</a>
-            <a href="terms.html">Syarat & Ketentuan</a>
-            <a href="sitemap.html">Peta Situs</a>
-        </div>
+        <p>&copy; 2025 Polapikir Investor. All rights reserved.</p>
     </footer>
 
     <script>
-        function toggleMenu() {
-            document.querySelector(".hamburger").classList.toggle("active");
-            document.getElementById("menu-mobile").classList.toggle("active");
+        document.getElementById("goal-type").addEventListener("change", function() {
+            const goalType = this.value;
+            document.getElementById("short-term-fields").style.display = goalType === "short-term" ? "block" : "none";
+            document.getElementById("medium-term-fields").style.display = goalType === "medium-term" ? "block" : "none";
+            document.getElementById("long-term-fields").style.display = goalType === "long-term" ? "block" : "none";
+        });
+
+        function handleInputFormatting(e) {
+            let value = e.target.value.replace(/[^\d]/g, "");
+            if (value.length > 3) {
+                value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            }
+            e.target.value = value;
         }
 
-        function formatNumber(number) {
-            let parts = number.toString().split('.');
-            let integer = parts[0];
-            let decimal = parts[1] ? '.' + parts[1] : '';
-
-            let formattedInteger = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-            return formattedInteger + decimal;
-        }
-
-        function handleInputFormatting(id) {
-            let input = document.getElementById(id);
-            input.addEventListener('input', function() {
-                let value = input.value.replace(/\D/g, '');
-                input.value = formatNumber(value);
-            });
-        }
-
-        handleInputFormatting("short-term-amount");
-        handleInputFormatting("medium-term-amount");
-        handleInputFormatting("long-term-amount");
+        document.querySelectorAll("input[id$='-amount']").forEach(input => {
+            input.addEventListener("input", handleInputFormatting);
+        });
 
         document.getElementById("calculate").addEventListener("click", function () {
             const goalType = document.getElementById("goal-type").value;
             let resultText = '';
 
             if (goalType === 'short-term') {
-                resultText = "Tujuan Jangka Pendek: " + document.getElementById("short-term").value;
+                const shortTermGoal = document.getElementById("short-term").value;
+                const shortTermAmount = document.getElementById("short-term-amount").value;
+                const shortTermDuration = document.getElementById("short-term-duration").value;
+                resultText = `Tujuan Jangka Pendek: ${shortTermGoal}\nJumlah yang Dibutuhkan: Rp ${shortTermAmount}\nDurasi: ${shortTermDuration} bulan`;
             } else if (goalType === 'medium-term') {
-                resultText = "Tujuan Jangka Menengah: " + document.getElementById("medium-term").value;
-            } else {
-                resultText = "Tujuan Jangka Panjang: " + document.getElementById("long-term").value;
+                const mediumTermGoal = document.getElementById("medium-term").value;
+                const mediumTermAmount = document.getElementById("medium-term-amount").value;
+                const mediumTermDuration = document.getElementById("medium-term-duration").value;
+                resultText = `Tujuan Jangka Menengah: ${mediumTermGoal}\nJumlah yang Dibutuhkan: Rp ${mediumTermAmount}\nDurasi: ${mediumTermDuration} tahun`;
+            } else if (goalType === 'long-term') {
+                const longTermGoal = document.getElementById("long-term").value;
+                const longTermAmount = document.getElementById("long-term-amount").value;
+                const longTermDuration = document.getElementById("long-term-duration").value;
+                resultText = `Tujuan Jangka Panjang: ${longTermGoal}\nJumlah yang Dibutuhkan: Rp ${longTermAmount}\nDurasi: ${longTermDuration} tahun`;
             }
 
             document.getElementById("result").innerHTML = resultText;
         });
 
-        document.getElementById("download-pdf").addEventListener("click", function () {
+        // Tombol download menjadi PDF
+        document.getElementById("download-btn").addEventListener("click", function() {
             const resultText = document.getElementById("result").innerText;
-
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             doc.text(resultText, 10, 10);
-            doc.save("goal-result.pdf");
+            doc.save('data_keuangan.pdf');
         });
+
+        function toggleMenu() {
+            document.querySelector(".hamburger").classList.toggle("active");
+            document.getElementById("menu-mobile").classList.toggle("active");
+        }
     </script>
 
 </body>
