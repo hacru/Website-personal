@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diversifikasi Investasi</title>
+    <title>Strategi Investasi - Polapikir Investor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            font-family: 'montserrat', montserrat;
-            background: linear-gradient(120deg, #e0f7fa, #ffffff); /* Gradasi latar belakang */
+            font-family: 'Montserrat', sans-serif;
             color: #000;
-            animation: fadeIn 1.5s ease-in-out;
+            scroll-behavior: smooth;
         }
 
         /* Taskbar */
@@ -19,14 +19,13 @@
             justify-content: space-between;
             align-items: center;
             background-color: #fff;
-            padding: 20px;
+            padding: 10px 20px;
             position: fixed;
             top: 0;
             width: 100%;
-            border-bottom: 3px solid #ffd54f;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-bottom: 2px solid #000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
             z-index: 1000;
-            animation: slideDown 1s ease-in-out;
         }
 
         .taskbar a {
@@ -35,12 +34,11 @@
             padding: 10px 15px;
             border-radius: 5px;
             font-weight: bold;
-            transition: all 0.3s ease;
         }
 
         .taskbar a:hover {
-            background-color: #000;
-            color: #fff; /* Efek hover pada tautan */
+            background-color: #e0f7fa;
+            color: #000;
         }
 
         .website-name {
@@ -51,319 +49,270 @@
         .website-name img {
             height: 50px;
             margin-right: 15px;
-            animation: zoomIn 1.5s ease-in-out;
+            cursor: pointer;
         }
 
         .website-name span {
-            font-size: 1.8rem;
+            font-size: 1.4rem; /* Ukuran font lebih kecil */
             font-weight: bold;
+            color: #000;
         }
 
-        /* Hamburger Icon */
-        .menu-icon {
+        /* Hamburger menu */
+        .hamburger {
             display: none;
+            flex-direction: column;
             cursor: pointer;
-            z-index: 1001;
-            position: absolute;
-            top: 20px;
-            right: 20px;
+            width: 30px;
+            height: 24px;
         }
 
-        .menu-icon div {
-            width: 30px;
-            height: 4px;
+        .hamburger div {
+            width: 100%;
+            height: 3px;
             background-color: #000;
-            margin: 6px 0;
+            border-radius: 2px;
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
-        .menu-icon.open div:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
+        .hamburger.active div:nth-child(1) {
+            transform: translateY(10px) rotate(45deg);
         }
 
-        .menu-icon.open div:nth-child(2) {
+        .hamburger.active div:nth-child(2) {
             opacity: 0;
         }
 
-        .menu-icon.open div:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
+        .hamburger.active div:nth-child(3) {
+            transform: translateY(-10px) rotate(-45deg);
         }
 
-        .nav-links {
+        /* Menu */
+        .menu {
             display: flex;
-            justify-content: space-around;
-            width: 100%;
-            margin-left: 40px;
-        }
-
-        /* Mobile Menu */
-        .nav-links.mobile {
-            display: none;
-            flex-direction: column;
-            position: absolute;
-            top: 70px;
-            left: 0;
-            right: 0;
-            background-color: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-top: 3px solid #ffd54f;
-        }
-
-        .nav-links.mobile a {
-            padding: 15px;
-            text-align: center;
-            font-size: 1.2rem;
-            border-top: 1px solid #ddd;
-        }
-
-        .nav-links.mobile.open {
-            display: flex;
-        }
-
-        /* Footer */
-        .footer {
-            background-color: #fff;
-            padding: 20px;
-            text-align: center;
-            position: relative;
-            width: 100%;
-            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-            animation: fadeInUp 1s ease-in-out;
-        }
-
-        .footer p {
-            color: #000;
-            font-size: 1rem;
-        }
-
-        .container {
-            padding: 120px 20px 100px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        h1, h2, h3 {
-            color: #000;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        .section {
-            margin-bottom: 50px;
-            animation: fadeInUp 1s ease-in-out;
-        }
-
-        /* Pembagian Risiko */
-        .asset-allocation {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
             gap: 20px;
         }
 
-        .asset-card {
-            background: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            width: 30%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: zoomIn 1s ease-in-out;
-        }
-
-        .asset-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
-        }
-
-        .asset-card img {
-            width: 50px;
-            margin-bottom: 10px;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        .asset-card h3 {
-            font-size: 1.5rem;
-            color: #000;
-        }
-
-        .asset-card p {
-            font-size: 1rem;
-            color: #000;
-        }
-
-        /* CTA */
-        .cta-section {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .cta-section a {
-            display: inline-block;
-            padding: 15px 30px;
-            background: linear-gradient(120deg, #000, #212121);
-            color: #ffeb3b;
+        .menu a {
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            animation: fadeIn 1.5s ease-in-out;
+            color: #000;
         }
 
-        .cta-section a:hover {
-            background: linear-gradient(120deg, #212121, #424242);
-            color: #ffd54f;
+        /* Responsif */
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+                padding: 10px;
+                z-index: 999;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .taskbar {
+                justify-content: space-between;
+                position: relative;
+            }
+
+            .hamburger {
+                display: flex;
+            }
         }
 
-        /* Animations */
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            text-align: center;
+            padding: 20px;
+            animation: fadeIn 1.5s ease-out;
+            margin-top: 70px;
+        }
+
+        section:nth-child(odd) {
+            background: linear-gradient(to right, #e0f7fa, #ffffff);
+        }
+
+        section:nth-child(even) {
+            background: linear-gradient(to right, #ffffff, #e0f7fa);
+        }
+
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: slideIn 1.5s ease-out;
         }
 
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-            }
-            to {
-                transform: translateY(0);
-            }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            animation: slideIn 1.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            animation: bounceIn 1.5s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #e0f7fa;
+            color: #000;
+        }
+
+        @keyframes bounceIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .image-container img {
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            animation: zoomIn 1.5s ease-out;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.1);
         }
 
         @keyframes zoomIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
 
-        /* Media Queries for Responsiveness */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
+        footer {
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
 
-            .menu-icon {
-                display: block;
-            }
+        .navigation {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
 
-            .nav-links.mobile {
-                flex-direction: column;
-                align-items: center;
-            }
+        .navigation a {
+            display: inline-block;
+            margin: 0 5px;
+            color: #000;
+            font-weight: bold;
+            text-decoration: none;
+        }
 
-            .nav-links a {
-                padding: 15px;
-                text-align: center;
-                font-size: 1.2rem;
-                width: 100%;
-                border-top: 1px solid #ddd;
-            }
+        .navigation a:hover {
+            text-decoration: underline;
+        }
 
-            .nav-links.mobile.open {
-                display: flex;
-            }
+        .indicator {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
+
     <!-- Taskbar -->
     <div class="taskbar">
         <div class="website-name">
             <a href="home.html">
-                <img src="images/logo.webp" alt="Logo">
+                <img src="images/logo.webp" alt="Polapikir Investor Logo" height="50">
             </a>
             <span>Polapikir Investor</span>
         </div>
-        <!-- Hamburger Icon -->
-        <div class="menu-icon" onclick="toggleMenu()">
+        <div class="hamburger" onclick="toggleMenu()">
             <div></div>
             <div></div>
             <div></div>
         </div>
-        <div class="nav-links">
+        <div class="menu">
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
             <a href="portfolio.html">Portofolio</a>
             <a href="contact.html">Kontak</a>
         </div>
-        <!-- Mobile Menu -->
-        <div class="nav-links mobile">
-            <a href="home.html">Beranda</a>
-            <a href="about.html">Tentang</a>
-            <a href="media.html">Media</a>
-            <a href="portfolio.html">Portofolio</a>
-            <a href="contact.html">Kontak</a>
-        </div>
-    </div>
-
-    <div class="container">
-        <!-- Judul Halaman -->
-        <div class="section">
-            <h1>Diversifikasi Investasi</h1>
-            <p>Strategi diversifikasi bertujuan untuk membagi investasi ke berbagai kelas aset berdasarkan tingkat risiko. Berikut adalah pembagiannya:</p>
-        </div>
-
-        <!-- Pembagian Risiko -->
-        <div class="section">
-            <h2>Pembagian Risiko</h2>
-            <div class="asset-allocation">
-                <a href="mpt.html" class="asset-card">
-                    <img src="images/low-risk-icon.png" alt="TEORI MPT">
-                    <h3>Teori Portofolio Modern (MPT)</h3>
-                    <p>Teori portofolio modern (MPT) merupakan terobosan dalam investasi pribadi untuk mengelola risiko dengan cara diversifikasi.</p>
-                </a>
-                <a href="multifaktor.html" class="asset-card">
-                    <img src="images/medium-risk-icon.png" alt="TEORI MULTI FAKTOR">
-                    <h3>Teori Multifaktor</h3>
-                    <p>Investasi multifaktor adalah strategi yang menyaring saham berdasarkan faktor utama seperti nilai, kualitas, momentum, volatilitas minimum, dan ukuran.</p>
-                </a>
-                <a href="bpt.html" class="asset-card">
-                    <img src="images/high-risk-icon.png" alt="TEORI BPT">
-                    <h3>Behavioral Portfolio Theory (BPT)</h3>
-                    <p>BPT berfokus pada pengelolaan portofolio berdasarkan psikologi investor dan pengambilan keputusan dalam menghadapi risiko.</p>
-                </a>
-            </div>
-        </div>
-
-        <!-- CTA -->
-        <div class="cta-section">
-            <h3>Hubungi Kami Untuk Memulai Investasi Anda</h3>
-            <a href="contact.html">Hubungi Kami</a>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-        <p>&copy; 2024 Polapikir Investor. All Rights Reserved.</p>
     </div>
 
     <script>
         function toggleMenu() {
-            const menu = document.querySelector('.nav-links.mobile');
-            const icon = document.querySelector('.menu-icon');
-            menu.classList.toggle('open');
-            icon.classList.toggle('open');
+            document.querySelector('.hamburger').classList.toggle('active');
+            document.querySelector('.menu').classList.toggle('active');
         }
     </script>
+
+    <!-- Content Sections -->
+    <section id="saham">
+        <div class="text-container">
+            <h1>Teori Portofolio Modern (MPT)</h1>
+            <p>Teori portofolio modern (MPT) merupakan terobosan dalam investasi pribadi untuk mengelola risiko dengan cara diversifikasi.</p>
+            <a href="mpt.html" class="cta-button">Pelajari Lebih Lanjut</a>
+            <div class="indicator">Indikator: PER, PBV, ROE</div>
+        </div>
+        <div class="image-container">
+            <img src="images/saham.jpg" alt="Investasi Saham">
+        </div>
+    </section>
+
+    <section id="reksa-dana">
+        <div class="text-container">
+            <h1>Teori Multifaktor</h1>
+            <p>Investasi multifaktor adalah strategi yang menyaring saham berdasarkan faktor utama seperti nilai, kualitas, momentum, volatilitas minimum, dan ukuran.</p>
+            <a href="multifaktor.html" class="cta-button">Pelajari Lebih Lanjut</a>
+            <div class="indicator">Indikator: Expense Ratio, AUM, Historical Returns</div>
+        </div>
+        <div class="image-container">
+            <img src="images/reksa-dana.jpg" alt="Reksa Dana">
+        </div>
+    </section>
+
+    <section id="kripto">
+        <div class="text-container">
+            <h1>Behavioral Portfolio Theory (BPT)</h1>
+            <p>BPT berfokus pada pengelolaan portofolio berdasarkan psikologi investor dan pengambilan keputusan dalam menghadapi risiko.</p>
+            <a href="bpt.html" class="cta-button">Pelajari Lebih Lanjut</a>
+            <div class="indicator">Indikator: Volatilitas, Market Sentiment, Blockchain Technology</div>
+        </div>
+        <div class="image-container">
+            <img src="images/kripto.jpg" alt="Investasi Kripto">
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Polapikir Investor. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
