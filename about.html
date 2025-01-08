@@ -139,6 +139,22 @@
             animation: fadeInUp 1s ease-out;
         }
 
+        .team-member img {
+    width: 150px; /* Menentukan lebar gambar */
+    height: 150px; /* Menentukan tinggi gambar */
+    border-radius: 50%; /* Membuat gambar menjadi berbentuk lingkaran */
+    object-fit: cover; /* Memastikan gambar tetap proporsional */
+    border: 4px solid #ddd; /* Menambahkan border yang halus */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan agar terlihat lebih profesional */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Menambahkan efek transisi saat hover */
+}
+
+.team-member img:hover {
+    transform: scale(1.05); /* Efek zoom in saat hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Bayangan yang lebih kuat saat hover */
+}
+
+        
         .about-image {
             width: 100%;
             max-height: 400px;
@@ -401,7 +417,7 @@
 <!-- Co-Founder -->
 <div class="team-member" style="animation-delay: 0.6s;">
 <a href="https://www.instagram.com/fuadli.29/" target="_blank">
-    <img src="images/cofounder1.jpg" alt="Sophia James">
+    <img src="images/harris.jpg" alt="Sophia James">
     <h3>Fuad</h3>
 </a>
 <p>Co-Founder</p>
