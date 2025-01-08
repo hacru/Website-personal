@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saham Pemula - Polapikir Investor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Montserrat', sans-serif;
+        color: #000;
+        padding-top: 80px; /* Menambahkan padding untuk menghindari konten tertutup taskbar */
+        background-color: #ffffff;
+        animation: backgroundAnimation 10s ease infinite;
+      }
+
+      @keyframes backgroundAnimation {
+        0% {
+          background: url('images/ai-brain-animation.gif') center/cover no-repeat fixed;
+        }
+        50% {
+          background: url('images/ai-brain-animation.gif') center/cover no-repeat fixed;
+        }
+        100% {
+          background: url('images/ai-brain-animation.gif') center/cover no-repeat fixed;
+        }
+      }
+
+        .taskbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            border-bottom: 3px solid #fbfbfb;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .taskbar a {
+            color: #000;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: bold;
+        }
+
+        .taskbar a:hover {
+            background-color: #ffeb3b;
+            color: #000;
+        }
+
+        .website-name {
+            display: flex;
+            align-items: center;
+            animation: fadeInLeft 0.8s ease-out;
+        }
+
+        .website-name img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .website-name span {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .menu {
+            display: flex;
+            gap: 20px;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 30px;
+            padding: 5px;
+        }
+
+        .hamburger.open {
+            transform: rotate(45deg);
+        }
+
+        .hamburger.open::before {
+            content: '×';
+            font-size: 40px;
+        }
+
+        .hamburger::before {
+            content: '☰';
+            font-size: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+                padding: 10px;
+                z-index: 999;
+                animation: slideDown 0.6s ease-out;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        h1, h2, h3 {
+            color: #000;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .about-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            animation: zoomIn 0.8s ease-out;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+
+        .section:hover {
+            background: linear-gradient(to bottom, #f0f0f0, #ffffff);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        .section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .section ul li {
+            padding: 10px;
+            background: #f9f9f9;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .section ul li:hover {
+            background: #f1f1f1;
+        }
+
+        .box {
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid #ddd;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .box:hover {
+            background-color: #f1f1f1;
+        }
+
+        .box p {
+            margin: 0;
+        }
+
+        .formula {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <div class="website-name">
+            <a href="home.html">
+                <img src="images/logo.webp" alt="Polapikir Investor Logo">
+            </a>
+            <span>Polapikir Investor</span>
+        </div>
+        <div class="menu">
+            <a href="home.html">Beranda</a>
+            <a href="about.html">Tentang</a>
+            <a href="media.html">Media</a>
+            <a href="portfolio.html">Portofolio</a>
+            <a href="contact.html">Kontak</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()"></div>
+    </div>
+
+    <div class="container">
+        <body>
+            <header>
+              <h1>Laporan Keuangan Perusahaan Tbk</h1>
+              <p>PT Bank Rakyat Indonesia (BBRI) dan PT Bank Mandiri (BMRI)</p>
+            </header>
+          
+            <section>
+              <div class="table-container">
+                <h2>PT Bank Rakyat Indonesia (BBRI)</h2>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Tahun</th>
+                      <th>Laba Bersih (Rp Triliun)</th>
+                      <th>Pertumbuhan Aset (Nominal, Rp Triliun)</th>
+                      <th>Pertumbuhan Aset (%)</th>
+                      <th>ROE (%)</th>
+                      <th>ROA (%)</th>
+                      <th>CAR (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>2023</td>
+                      <td>60,4</td>
+                      <td>141,5</td>
+                      <td>7,7%</td>
+                      <td>24,7%</td>
+                      <td>3,1%</td>
+                      <td>24,1%</td>
+                    </tr>
+                    <tr>
+                      <td>2022</td>
+                      <td>51,4</td>
+                      <td>99,3</td>
+                      <td>5,6%</td>
+                      <td>23,3%</td>
+                      <td>2,7%</td>
+                      <td>23,5%</td>
+                    </tr>
+                    <tr>
+                      <td>2021</td>
+                      <td>31,0</td>
+                      <td>69,5</td>
+                      <td>4,2%</td>
+                      <td>17,2%</td>
+                      <td>1,7%</td>
+                      <td>22,8%</td>
+                    </tr>
+                    <tr>
+                      <td>2020</td>
+                      <td>18,6</td>
+                      <td>85,3</td>
+                      <td>5,6%</td>
+                      <td>11,2%</td>
+                      <td>1,1%</td>
+                      <td>23,0%</td>
+                    </tr>
+                    <tr>
+                      <td>2019</td>
+                      <td>34,4</td>
+                      <td>125,6</td>
+                      <td>9,6%</td>
+                      <td>20,0%</td>
+                      <td>2,3%</td>
+                      <td>22,2%</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="explanation">
+                  <h3>Analisis Kesehatan Fundamental BBRI</h3>
+                  <ul>
+                    <li><strong>Laba Bersih yang Stabil:</strong> Laba bersih BBRI mengalami pertumbuhan yang signifikan pada 2023 dan menunjukkan tren yang positif dibandingkan dengan tahun sebelumnya. Ini menunjukkan kemampuan perusahaan untuk meningkatkan pendapatan dan mengelola biaya.</li>
+                    <li><strong>ROE dan ROA yang Kuat:</strong> Return on Equity (ROE) yang tinggi di 2023 menunjukkan bahwa BBRI berhasil menghasilkan laba yang baik dari ekuitas pemegang saham. ROA yang stabil dan tinggi juga menunjukkan efisiensi dalam penggunaan aset untuk menghasilkan laba.</li>
+                    <li><strong>Pertumbuhan Aset Positif:</strong> Pertumbuhan aset yang terus meningkat setiap tahun menunjukkan kemampuan BBRI untuk memperbesar portofolio aset dengan baik.</li>
+                    <li><strong>Capital Adequacy Ratio (CAR):</strong> Rasio CAR yang sangat sehat menunjukkan bahwa BBRI memiliki cadangan modal yang cukup untuk mendukung operasional dan risiko.</li>
+                  </ul>
+                </div>
+              </div>
+          
+              <div class="table-container">
+                <h2>PT Bank Mandiri (BMRI)</h2>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Tahun</th>
+                      <th>Laba Bersih (Rp Triliun)</th>
+                      <th>Pertumbuhan Aset (Nominal, Rp Triliun)</th>
+                      <th>Pertumbuhan Aset (%)</th>
+                      <th>ROE (%)</th>
+                      <th>ROA (%)</th>
+                      <th>CAR (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>2023</td>
+                      <td>42,0</td>
+                      <td>332,2</td>
+                      <td>16,7%</td>
+                      <td>22,0%</td>
+                      <td>1,8%</td>
+                      <td>23,3%</td>
+                    </tr>
+                    <tr>
+                      <td>2022</td>
+                      <td>41,2</td>
+                      <td>239,2</td>
+                      <td>13,7%</td>
+                      <td>21,6%</td>
+                      <td>1,8%</td>
+                      <td>22,7%</td>
+                    </tr>
+                    <tr>
+                      <td>2021</td>
+                      <td>28,0</td>
+                      <td>175,2</td>
+                      <td>10,3%</td>
+                      <td>17,5%</td>
+                      <td>1,5%</td>
+                      <td>22,1%</td>
+                    </tr>
+                    <tr>
+                      <td>2020</td>
+                      <td>17,1</td>
+                      <td>67,6</td>
+                      <td>4,4%</td>
+                      <td>11,6%</td>
+                      <td>1,1%</td>
+                      <td>23,5%</td>
+                    </tr>
+                    <tr>
+                      <td>2019</td>
+                      <td>27,5</td>
+                      <td>121,3</td>
+                      <td>8,5%</td>
+                      <td>20,8%</td>
+                      <td>2,0%</td>
+                      <td>22,1%</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="explanation">
+                  <h3>Analisis Kesehatan Fundamental BMRI</h3>
+                  <ul>
+                    <li><strong>Laba Bersih yang Stabil dan Kuat:</strong> BMRI menunjukkan laba bersih yang stabil dan cukup besar, dengan pertumbuhan yang baik pada tahun 2023. Ini mencerminkan kinerja yang solid dan kemampuan untuk menghadapi tantangan pasar.</li>
+                    <li><strong>ROE dan ROA:</strong> Meskipun sedikit lebih rendah dibandingkan dengan BBRI, ROE dan ROA BMRI menunjukkan bahwa perusahaan berhasil menghasilkan laba dengan efisiensi yang cukup baik. Perusahaan masih dalam jalur yang sehat meskipun ada sedikit penurunan pada ROA.</li>
+                    <li><strong>Pertumbuhan Aset yang Sangat Positif:</strong> BMRI menunjukkan pertumbuhan aset yang tinggi, yang menunjukkan ekspansi yang solid dalam hal volume bisnis dan portofolio.</li>
+                    <li><strong>Capital Adequacy Ratio (CAR):</strong> Rasio CAR BMRI menunjukkan bahwa bank memiliki cukup modal untuk menghadapi risiko yang ada dan mendukung pertumbuhannya.</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+          
+            <footer>
+                <p>&copy; 2024 Polapikir Investor. Semua hak dilindungi.</p>
+                <div>
+                    <a href="privacy.html">Kebijakan Privasi</a> | 
+                    <a href="terms.html">Syarat & Ketentuan</a> | 
+                    <a href="contact.html">Kontak Kami</a>
+                </div>
+            </footer>
+        
+            <script>
+                function toggleMenu() {
+                    var menu = document.getElementById("menu");
+                    var hamburger = document.getElementById("hamburger");
+                    menu.classList.toggle("active");
+                    hamburger.classList.toggle("active");
+                }
+            </script>
+        </body>
+        </html>
+        

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saham Pemula - Polapikir Investor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Montserrat', sans-serif;
+        color: #000;
+        padding-top: 80px; /* Menambahkan padding untuk menghindari konten tertutup taskbar */
+        background-color: #ffffff;
+        animation: backgroundAnimation 10s ease infinite;
+      }
+
+      @keyframes backgroundAnimation {
+        0% {
+          background: url('images/ai-brain-animation.gif') center/cover no-repeat fixed;
+        }
+        50% {
+          background: url('images/ai-brain-animation.gif') center/cover no-repeat fixed;
+        }
+        100% {
+          background: url('images/ai-brain-animation.gif') center/cover no-repeat fixed;
+        }
+      }
+
+        .taskbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            border-bottom: 3px solid #fbfbfb;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .taskbar a {
+            color: #000;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: bold;
+        }
+
+        .taskbar a:hover {
+            background-color: #ffeb3b;
+            color: #000;
+        }
+
+        .website-name {
+            display: flex;
+            align-items: center;
+            animation: fadeInLeft 0.8s ease-out;
+        }
+
+        .website-name img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .website-name span {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .menu {
+            display: flex;
+            gap: 20px;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 30px;
+            padding: 5px;
+        }
+
+        .hamburger.open {
+            transform: rotate(45deg);
+        }
+
+        .hamburger.open::before {
+            content: '×';
+            font-size: 40px;
+        }
+
+        .hamburger::before {
+            content: '☰';
+            font-size: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+                padding: 10px;
+                z-index: 999;
+                animation: slideDown 0.6s ease-out;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        h1, h2, h3 {
+            color: #000;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .about-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            animation: zoomIn 0.8s ease-out;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+
+        .section:hover {
+            background: linear-gradient(to bottom, #f0f0f0, #ffffff);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        .section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .section ul li {
+            padding: 10px;
+            background: #f9f9f9;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .section ul li:hover {
+            background: #f1f1f1;
+        }
+
+        .box {
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid #ddd;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .box:hover {
+            background-color: #f1f1f1;
+        }
+
+        .box p {
+            margin: 0;
+        }
+
+        .formula {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <div class="website-name">
+            <a href="home.html">
+                <img src="images/logo.webp" alt="Polapikir Investor Logo">
+            </a>
+            <span>Polapikir Investor</span>
+        </div>
+        <div class="menu">
+            <a href="home.html">Beranda</a>
+            <a href="about.html">Tentang</a>
+            <a href="media.html">Media</a>
+            <a href="portfolio.html">Portofolio</a>
+            <a href="contact.html">Kontak</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()"></div>
+    </div>
+
+    <div class="container">
+        <body>
+          <!-- Header Section -->
+    <div class="header">
+        <h1>Value Investing: Investasi Berdasarkan Nilai</h1>
+        <p>Mengapa membeli saham undervalued bisa menguntungkan?</p>
+    </div>
+
+    <!-- Penjelasan Value Investing -->
+    <div class="section">
+        <h2>Apa itu Value Investing?</h2>
+        <div class="explanation">
+            <p><strong>Value Investing</strong> adalah strategi investasi yang mengutamakan pembelian saham yang dianggap undervalued atau diperdagangkan lebih rendah daripada nilai intrinsiknya. Teknik ini berfokus pada perusahaan yang memiliki fundamental yang baik, namun sementara waktu harga sahamnya turun atau terabaikan oleh pasar.</p>
+            <p>Beberapa prinsip utama dalam Value Investing adalah:</p>
+            <ul>
+                <li><strong>Analisis Fundamental:</strong> Investor akan menganalisis laporan keuangan perusahaan, seperti pendapatan, laba bersih, hutang, dan arus kas untuk menilai apakah perusahaan tersebut bernilai lebih atau kurang dari harga pasar.</li>
+                <li><strong>Margin Keamanan:</strong> Salah satu prinsip paling penting dalam Value Investing adalah membeli saham dengan harga yang lebih rendah daripada nilai intrinsiknya, memberikan ruang aman bagi investor jika harga saham turun lebih jauh.</li>
+                <li><strong>Investasi Jangka Panjang:</strong> Value Investing biasanya digunakan untuk investasi jangka panjang. Investor cenderung membeli saham dengan harapan harga saham akan naik seiring waktu ketika pasar mulai menyadari nilai perusahaan tersebut.</li>
+                <li><strong>Hindari Spekulasi:</strong> Value Investing tidak berfokus pada spekulasi atau fluktuasi harga jangka pendek, melainkan pada penilaian yang rasional berdasarkan data keuangan dan prospek jangka panjang.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Poin Membeli Saham dengan Harga Diskon -->
+    <div class="discount-point">
+        <h3>Membeli Saham dengan Harga Diskon: Strategi Value Investing</h3>
+        <p>Strategi Value Investing sangat bergantung pada mencari saham perusahaan yang diperdagangkan dengan harga diskon (undervalued). Ini berarti saham perusahaan tersebut diperdagangkan lebih rendah dari nilai intrinsiknya, memberi peluang bagi investor untuk membeli dengan harga lebih murah dibandingkan dengan nilai yang sebenarnya.</p>
+        <p><strong>Bagaimana cara mengetahui saham yang diskon?</strong> Salah satu cara adalah dengan menggunakan analisis rasio keuangan seperti <strong>Price-to-Earnings (P/E) Ratio</strong>, <strong>Price-to-Book (P/B) Ratio</strong>, dan <strong>Dividend Yield</strong>. Jika perusahaan menunjukkan rasio yang lebih rendah dibandingkan dengan rata-rata industrinya, ini bisa menjadi indikator bahwa saham tersebut undervalued.</p>
+    </div>
+
+    <!-- Contoh Perusahaan: PT Bank Rakyat Indonesia (BBRI) -->
+    <div class="section">
+        <h2>Contoh Penerapan: PT Bank Rakyat Indonesia (BBRI)</h2>
+        <p>Sebagai contoh penerapan Value Investing, kita dapat melihat perusahaan seperti <strong>PT Bank Rakyat Indonesia (BBRI)</strong>. Perusahaan ini memiliki rekam jejak keuangan yang solid dan fundamental yang baik, namun harga sahamnya terkadang terabaikan oleh pasar.</p>
+        
+        <p>Berikut adalah beberapa indikator keuangan utama yang digunakan dalam Value Investing untuk menilai apakah saham BBRI undervalued:</p>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tahun</th>
+                        <th>Laba Bersih (Rp Triliun)</th>
+                        <th>Pertumbuhan Aset (Nominal, Rp Triliun)</th>
+                        <th>Pertumbuhan Aset (%)</th>
+                        <th>ROE (%)</th>
+                        <th>ROA (%)</th>
+                        <th>CAR (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2023</td>
+                        <td>60,4</td>
+                        <td>141,5</td>
+                        <td>7,7%</td>
+                        <td>24,7%</td>
+                        <td>3,1%</td>
+                        <td>24,1%</td>
+                    </tr>
+                    <tr>
+                        <td>2022</td>
+                        <td>51,4</td>
+                        <td>99,3</td>
+                        <td>5,6%</td>
+                        <td>23,3%</td>
+                        <td>2,7%</td>
+                        <td>23,5%</td>
+                    </tr>
+                    <tr>
+                        <td>2021</td>
+                        <td>42,0</td>
+                        <td>94,0</td>
+                        <td>4,9%</td>
+                        <td>20,9%</td>
+                        <td>2,6%</td>
+                        <td>22,8%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+          
+            <footer>
+                <p>&copy; 2024 Polapikir Investor. Semua hak dilindungi.</p>
+                <div>
+                    <a href="privacy.html">Kebijakan Privasi</a> | 
+                    <a href="terms.html">Syarat & Ketentuan</a> | 
+                    <a href="contact.html">Kontak Kami</a>
+                </div>
+            </footer>
+        
+            <script>
+                function toggleMenu() {
+                    var menu = document.getElementById("menu");
+                    var hamburger = document.getElementById("hamburger");
+                    menu.classList.toggle("active");
+                    hamburger.classList.toggle("active");
+                }
+            </script>
+        </body>
+        </html>
+        
