@@ -10,8 +10,8 @@
         /* General Styles */
         body {
             margin: 0;
-            font-family: 'Poppins', Arial, sans-serif; /* Menggunakan font Poppins untuk body */
-            background: linear-gradient(to bottom, #e0f7fa, #ffffff); /* Linear gradient dari biru muda ke putih */
+            font-family: 'Poppins', Arial, sans-serif;
+            background: linear-gradient(to bottom, #e0f7fa, #ffffff);
             color: #333;
             animation: fadeIn 1.5s ease-in-out;
             display: flex;
@@ -24,23 +24,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #ffffff; /* Background putih */
+            background-color: #ffffff;
             padding: 15px 25px;
             position: fixed;
             top: 0;
             width: 100%;
-            border-bottom: 2px solid #000; /* Border hitam untuk taskbar */
+            border-bottom: 2px solid #000;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             z-index: 1000;
-            animation: slideDown 0.5s ease-out; /* Menambahkan animasi slideDown */
+            animation: slideDown 0.5s ease-out;
         }
 
-        /* Animasi SlideDown */
-        @keyframes slideDown {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(0); }
-        }
-
+        /* Taskbar Links */
         .taskbar a {
             color: #000;
             text-decoration: none;
@@ -73,11 +68,27 @@
             color: #000;
         }
 
+        /* Hamburger Menu (Mobile) */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 2000;
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 4px;
+            background-color: #000;
+            margin: 6px 0;
+            transition: all 0.3s ease;
+        }
+
         /* Highlight Section */
         .highlight {
             padding: 20px;
-            background-color: #ffffff; /* Background putih */
-            margin-top: 80px; /* Memberikan jarak dari taskbar */
+            background-color: #ffffff;
+            margin-top: 80px;
             max-width: 900px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -98,7 +109,7 @@
             font-size: 2rem;
             margin: 10px 0;
             color: #333;
-            font-weight: 600; /* Font weight yang lebih elegan */
+            font-weight: 600;
         }
 
         .highlight p {
@@ -169,20 +180,19 @@
         }
 
         .article-item img {
-            width: 120px; /* Ukuran gambar lebih kecil */
+            width: 120px;
             height: auto;
             border-radius: 10px;
         }
 
         /* Footer */
         .footer {
-            background-color: #ffffff; /* Background putih */
+            background-color: #ffffff;
             text-align: center;
             padding: 20px;
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 1.5s ease-in-out;
             width: 100%;
-            margin-top: auto; /* Agar footer berada di paling bawah */
+            margin-top: auto;
         }
 
         .footer p {
@@ -192,36 +202,107 @@
 
         /* Animations */
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
         }
 
         @keyframes zoomIn {
-            from {
-                transform: scale(0.8);
-                opacity: 0;
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Media Queries for Mobile Responsiveness */
+        @media screen and (max-width: 768px) {
+            .taskbar {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 10px;
+                align-items: center;
             }
-            to {
-                transform: scale(1);
-                opacity: 1;
+
+            .taskbar .website-name {
+                display: flex;
+                align-items: center;
+                flex-grow: 1;
+            }
+
+            .website-name span {
+                font-size: 1.5rem;
+                margin-left: 10px;
+            }
+
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+            }
+
+            .taskbar .menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
+                background-color: #ffffff;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .taskbar.active .menu {
+                display: flex;
+            }
+
+            .taskbar a {
+                display: none;
+                padding: 10px;
+                margin: 5px 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .taskbar.active a {
+                display: block;
+            }
+
+            .taskbar a:hover {
+                background-color: #f8f8f8;
+                color: #000;
+            }
+
+            .highlight {
+                margin-top: 130px;
+                padding: 15px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .highlight h2 {
+                font-size: 1.6rem;
             }
         }
     </style>
 </head>
 <body>
-   <!-- Taskbar -->
-   <div class="taskbar">
+    <!-- Taskbar (Navbar) -->
+    <div class="taskbar">
         <div class="website-name">
             <a href="home.html">
                 <img src="images/logo.webp" alt="Polapikir Investor Logo">
             </a>
             <span>Polapikir Investor</span>
         </div>
-        <div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="menu">
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
@@ -233,13 +314,13 @@
     <!-- Highlight Section -->
     <section class="highlight">
         <img src="images/media.jpg" alt="Highlight Artikel" style="width: 200px; max-width: 350px; height: auto; margin-bottom: 50px;">
-        <h2>Polapikir Investor </h2>
+        <h2>Polapikir Investor</h2>
         <p>
             "Media dan riset mengenai investasi dan keuangan, dimulai dari saham hingga cryptocurrency."
         </p>
         <a href="hilight.html" target="_blank">Baca Selengkapnya</a>
     </section>
-    
+
     <!-- Article List Section -->
     <section class="article-list">
         <!-- Artikel 1 -->
@@ -277,5 +358,15 @@
     <footer class="footer">
         <p>© 2025 Media Grid. All rights reserved.</p>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            const taskbar = document.querySelector('.taskbar');
+            taskbar.classList.toggle('active');
+            const hamburger = document.querySelector('.hamburger');
+            hamburger.classList.toggle('active');
+            hamburger.querySelectorAll('div').forEach(div => div.classList.toggle('active'));
+        }
+    </script>
 </body>
 </html>
