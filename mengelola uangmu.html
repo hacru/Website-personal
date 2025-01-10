@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saham Pemula - Polapikir Investor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to bottom, #00aaff, #ffffff);
+            color: #000;
+            animation: backgroundAnimation 10s ease infinite;
+        }
+
+        .taskbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            border-bottom: 3px solid #fbfbfb;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .taskbar a {
+            color: #000;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: bold;
+        }
+
+        .taskbar a:hover {
+            background-color: #ffeb3b;
+            color: #000;
+        }
+
+        .website-name {
+            display: flex;
+            align-items: center;
+            animation: fadeInLeft 0.8s ease-out;
+        }
+
+        .website-name img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .website-name span {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .menu {
+            display: flex;
+            gap: 20px;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 30px;
+            padding: 5px;
+        }
+
+        .hamburger.open {
+            transform: rotate(45deg);
+        }
+
+        .hamburger.open::before {
+            content: '×';
+            font-size: 40px;
+        }
+
+        .hamburger::before {
+            content: '☰';
+            font-size: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+                padding: 10px;
+                z-index: 999;
+                animation: slideDown 0.6s ease-out;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+
+        .container {
+            padding: 120px 20px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        h1, h2, h3 {
+            color: #000;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .about-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            animation: zoomIn 0.8s ease-out;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+
+        .section:hover {
+            background: linear-gradient(to bottom, #f0f0f0, #ffffff);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        .section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .section ul li {
+            padding: 10px;
+            background: #f9f9f9;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .section ul li:hover {
+            background: #f1f1f1;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .about-text {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .team-member {
+            display: inline-block;
+            text-align: center;
+            margin: 20px;
+            opacity: 0;
+            animation: fadeInUp 1.5s forwards;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            animation: zoomIn 0.6s ease-out;
+        }
+
+        .team-member h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .team-member p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background: linear-gradient(to bottom, #00aaff, #ffffff);
+            }
+            50% {
+                background: linear-gradient(to bottom, #0099cc, #ffffff);
+            }
+            100% {
+                background: linear-gradient(to bottom, #00aaff, #ffffff);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <div class="website-name">
+            <a href="home.html">
+                <img src="images/logo.webp" alt="Polapikir Investor Logo">
+            </a>
+            <span>Polapikir Investor</span>
+        </div>
+        <div class="menu">
+            <a href="home.html">Beranda</a>
+            <a href="about.html">Tentang</a>
+            <a href="media.html">Media</a>
+            <a href="portfolio.html">Portofolio</a>
+            <a href="contact.html">Kontak</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()"></div>
+    </div>
+
+    <header class="hero">
+        <h1></h1>
+        <p class="sub-heading"></p>
+    </header>
+
+    <section class="container">
+        <div class="container">
+            <h1>Pengelolaan dan Pengalokasian Keuangan Pribadi</h1>
+    
+            <div class="section">
+                <h2>Apa Itu Tujuan Keuangan?</h2>
+                <p>Tujuan keuangan adalah rencana atau sasaran yang ingin dicapai terkait dengan keuangan pribadi atau keluarga. Tujuan ini dapat berupa:</p>
+                <ul>
+                    <li><strong>Jangka pendek:</strong> Misalnya, menabung untuk liburan dalam 1 tahun.</li>
+                    <li><strong>Jangka menengah:</strong> Menabung untuk membeli kendaraan dalam 3-5 tahun.</li>
+                    <li><strong>Jangka panjang:</strong> Persiapan dana pensiun atau membeli rumah dalam 10 tahun atau lebih.</li>
+                </ul>
+                <div class="example">
+                    <strong>Contoh:</strong> Andi ingin liburan ke Bali dalam 1 tahun. Ia membutuhkan Rp12 juta dan mulai menyisihkan Rp1 juta per bulan untuk mencapai tujuannya.
+                </div>
+            </div>
+    
+            <div class="section">
+                <h2>Bagaimana Mengelola Keuangan Pribadi?</h2>
+                <p>Mengelola keuangan berarti memastikan pengeluaran, tabungan, dan investasi Anda tetap seimbang. Berikut langkah-langkahnya:</p>
+                <ul>
+                    <li><strong>Membuat anggaran:</strong> Gunakan metode 50/30/20 untuk mengelola pendapatan Anda.</li>
+                    <li><strong>Mencatat pengeluaran:</strong> Catat semua pengeluaran agar tahu ke mana uang Anda pergi.</li>
+                    <li><strong>Siapkan dana darurat:</strong> Setidaknya 3-6 bulan pengeluaran untuk menghadapi situasi darurat.</li>
+                    <li><strong>Kurangi hutang konsumtif:</strong> Fokus pada utang produktif yang menghasilkan nilai di masa depan.</li>
+                    <li><strong>Investasi:</strong> Sisihkan sebagian uang untuk diinvestasikan agar uang Anda berkembang.</li>
+                </ul>
+                <div class="example">
+                    <strong>Contoh:</strong> Dari penghasilan Rp10 juta per bulan, Andi mengalokasikan Rp5 juta untuk kebutuhan, Rp3 juta untuk keinginan, dan Rp2 juta untuk tabungan/investasi.
+                </div>
+            </div>
+    
+            <div class="section">
+                <h2>Bagaimana Mengalokasikan Keuangan Pribadi?</h2>
+                <p>Pengalokasian keuangan yang baik memastikan uang Anda bekerja untuk tujuan Anda. Berikut tipsnya:</p>
+                <ul>
+                    <li><strong>Tentukan prioritas:</strong> Dahulukan kebutuhan pokok seperti makanan, sewa, dan transportasi.</li>
+                    <li><strong>Sisihkan untuk tabungan:</strong> Minimal 20% dari penghasilan Anda setiap bulan.</li>
+                    <li><strong>Diversifikasi investasi:</strong> Sebar uang Anda di berbagai instrumen investasi seperti reksa dana, saham, atau properti.</li>
+                    <li><strong>Lindungi aset Anda:</strong> Gunakan asuransi untuk melindungi kesehatan, jiwa, dan aset Anda.</li>
+                    <li><strong>Evaluasi secara berkala:</strong> Periksa anggaran Anda setiap 3-6 bulan untuk memastikan sesuai dengan rencana.</li>
+                </ul>
+                <div class="example">
+                    <strong>Contoh:</strong> Untuk membeli rumah dalam 10 tahun, Andi berinvestasi Rp1 juta per bulan di reksa dana saham. Dengan rata-rata keuntungan 8-10% per tahun, investasinya dapat tumbuh hingga Rp200 juta.
+                </div>
+            </div>
+        </div>
+    
+    </section>
+
+  
+
+    <footer class="footer">
+        <p>&copy; 2025 Polapikir Investor. Semua hak dilindungi.</p>
+    </footer>
+
+    <script>
+        // Toggle mobile menu
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('active');
+            const hamburger = document.querySelector('.hamburger');
+            hamburger.classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>
