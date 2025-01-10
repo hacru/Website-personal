@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saham Pemula - Polapikir Investor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to bottom, #00aaff, #ffffff);
+            color: #000;
+            animation: backgroundAnimation 10s ease infinite;
+        }
+
+        .taskbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            border-bottom: 3px solid #fbfbfb;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .taskbar a {
+            color: #000;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: bold;
+        }
+
+        .taskbar a:hover {
+            background-color: #ffeb3b;
+            color: #000;
+        }
+
+        .website-name {
+            display: flex;
+            align-items: center;
+            animation: fadeInLeft 0.8s ease-out;
+        }
+
+        .website-name img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .website-name span {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .menu {
+            display: flex;
+            gap: 20px;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 30px;
+            padding: 5px;
+        }
+
+        .hamburger.open {
+            transform: rotate(45deg);
+        }
+
+        .hamburger.open::before {
+            content: '×';
+            font-size: 40px;
+        }
+
+        .hamburger::before {
+            content: '☰';
+            font-size: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+                padding: 10px;
+                z-index: 999;
+                animation: slideDown 0.6s ease-out;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+
+        .container {
+            padding: 120px 20px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        h1, h2, h3 {
+            color: #000;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .about-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            animation: zoomIn 0.8s ease-out;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+
+        .section:hover {
+            background: linear-gradient(to bottom, #f0f0f0, #ffffff);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        .section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .section ul li {
+            padding: 10px;
+            background: #f9f9f9;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .section ul li:hover {
+            background: #f1f1f1;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .about-text {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .team-member {
+            display: inline-block;
+            text-align: center;
+            margin: 20px;
+            opacity: 0;
+            animation: fadeInUp 1.5s forwards;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            animation: zoomIn 0.6s ease-out;
+        }
+
+        .team-member h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .team-member p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background: linear-gradient(to bottom, #00aaff, #ffffff);
+            }
+            50% {
+                background: linear-gradient(to bottom, #0099cc, #ffffff);
+            }
+            100% {
+                background: linear-gradient(to bottom, #00aaff, #ffffff);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <div class="website-name">
+            <a href="home.html">
+                <img src="images/logo.webp" alt="Polapikir Investor Logo">
+            </a>
+            <span>Polapikir Investor</span>
+        </div>
+        <div class="menu">
+            <a href="home.html">Beranda</a>
+            <a href="about.html">Tentang</a>
+            <a href="media.html">Media</a>
+            <a href="portfolio.html">Portofolio</a>
+            <a href="contact.html">Kontak</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()"></div>
+    </div>
+
+    <header class="hero">
+        <h1></h1>
+        <p class="sub-heading"></p>
+    </header>
+
+    <section class="container">
+    
+            <h1>Pengelolaan dan Pengalokasian Keuangan Pribadi</h1>
+    
+            <div class="section">
+                <h2>Apa Itu Tujuan Keuangan?</h2>
+                <p>Tujuan keuangan adalah rencana atau sasaran yang ingin dicapai terkait dengan keuangan pribadi atau keluarga. Tujuan ini dapat berupa:</p>
+                <ul>
+                    <li><strong>Jangka pendek:</strong> Misalnya, menabung untuk liburan dalam 1 tahun.</li>
+                    <li><strong>Jangka menengah:</strong> Menabung untuk membeli kendaraan dalam 3-5 tahun.</li>
+                    <li><strong>Jangka panjang:</strong> Persiapan dana pensiun atau membeli rumah dalam 10 tahun atau lebih.</li>
+                </ul>
+                <div class="example">
+                    <strong>Contoh:</strong> Andi ingin liburan ke Bali dalam 1 tahun. Ia membutuhkan Rp12 juta dan mulai menyisihkan Rp1 juta per bulan untuk mencapai tujuannya.
+                </div>
+            </div>
+    
+            <div class="section">
+                <div class="container">
+                    <h1>Penjelasan Lengkap Tentang Obligasi</h1>
+                    <p>Obligasi adalah salah satu instrumen investasi yang populer karena memberikan pendapatan tetap dan memiliki risiko lebih rendah dibanding saham. Berikut adalah penjelasan lengkap tentang obligasi, mulai dari jenis, cara kerja, hingga keunggulannya.</p>
+            
+                    <h2>Apa Itu Obligasi?</h2>
+                    <p>Obligasi adalah surat utang yang diterbitkan oleh pemerintah, perusahaan, atau lembaga untuk mengumpulkan dana. Investor yang membeli obligasi akan mendapatkan pendapatan berupa <strong>bunga (kupon)</strong> secara berkala serta pengembalian nilai pokok saat jatuh tempo.</p>
+            
+                    <h2>Jenis Obligasi</h2>
+                    <ul>
+                        <li><strong>Obligasi Pemerintah:</strong> Contoh, Obligasi Ritel Indonesia (ORI), aman karena dijamin pemerintah.</li>
+                        <li><strong>Obligasi Korporasi:</strong> Diterbitkan oleh perusahaan, menawarkan kupon lebih tinggi, tetapi risikonya lebih besar.</li>
+                        <li><strong>Obligasi Syariah (Sukuk):</strong> Berdasarkan prinsip syariah, menggunakan bagi hasil, bukan bunga.</li>
+                        <li><strong>Obligasi Internasional:</strong> Diterbitkan dalam mata uang asing, misalnya USD.</li>
+                    </ul>
+            
+                    <h2>Cara Kerja Obligasi</h2>
+                    <p>Berikut adalah komponen utama dalam cara kerja obligasi:</p>
+                    <ul>
+                        <li><strong>Nilai Nominal:</strong> Jumlah uang yang Anda pinjamkan kepada penerbit obligasi (misalnya Rp10 juta).</li>
+                        <li><strong>Kupon:</strong> Persentase bunga yang dibayar penerbit kepada Anda, biasanya tahunan.</li>
+                        <li><strong>Jatuh Tempo:</strong> Waktu pengembalian nilai pokok obligasi.</li>
+                        <li><strong>Yield:</strong> Tingkat pengembalian aktual, terutama jika obligasi dibeli di pasar sekunder dengan harga lebih murah atau lebih mahal dari nilai nominal.</li>
+                    </ul>
+            
+                    <h2>Contoh Kupon (Bunga)</h2>
+                    <div class="example">
+                        <p><strong>Contoh 1: Obligasi Pemerintah</strong></p>
+                        <p>Anda membeli ORI dengan nilai nominal Rp10 juta dan kupon 6% per tahun.</p>
+                        <p><strong>Pendapatan per bulan:</strong> (6% x Rp10.000.000) ÷ 12 = <strong>Rp50.000</strong></p>
+            
+                        <p><strong>Contoh 2: Obligasi Korporasi</strong></p>
+                        <p>Anda membeli obligasi korporasi senilai Rp100 juta dengan kupon 8%.</p>
+                        <p><strong>Pendapatan per 6 bulan:</strong> (8% x Rp100.000.000) ÷ 2 = <strong>Rp4.000.000</strong></p>
+                    </div>
+            
+                    <h2>Cara Membeli Obligasi</h2>
+                    <ul>
+                        <li><strong>Pasar Perdana:</strong> Membeli langsung saat diterbitkan (misalnya ORI melalui bank atau platform investasi).</li>
+                        <li><strong>Pasar Sekunder:</strong> Membeli obligasi yang sudah diperdagangkan melalui broker atau sekuritas.</li>
+                        <li><strong>Reksa Dana Obligasi:</strong> Alternatif investasi tanpa perlu membeli obligasi secara langsung.</li>
+                    </ul>
+            
+                    <h2>Risiko Obligasi</h2>
+                    <ul>
+                        <li><strong>Default:</strong> Penerbit gagal membayar kupon atau pokok.</li>
+                        <li><strong>Suku Bunga:</strong> Jika suku bunga naik, harga obligasi turun di pasar sekunder.</li>
+                        <li><strong>Inflasi:</strong> Daya beli kupon menurun akibat inflasi tinggi.</li>
+                        <li><strong>Likuiditas:</strong> Obligasi tertentu sulit dijual kembali.</li>
+                    </ul>
+            
+                    <h2>Keunggulan Obligasi sebagai Investasi</h2>
+                    <ul>
+                        <li><strong>Pendapatan Tetap:</strong> Cocok untuk aliran pendapatan pasif.</li>
+                        <li><strong>Aman:</strong> Obligasi pemerintah minim risiko.</li>
+                        <li><strong>Diversifikasi:</strong> Mengurangi risiko di portofolio yang berisi saham.</li>
+                        <li><strong>Pengembalian Modal:</strong> Anda menerima pokok investasi di akhir masa jatuh tempo.</li>
+                    </ul>
+            
+                    <p>Obligasi adalah pilihan investasi yang ideal bagi mereka yang mencari pendapatan tetap dan risiko rendah. Pastikan Anda memahami tujuan keuangan dan profil risiko sebelum berinvestasi.</p>
+                </div>
+    
+    </section>
+
+  
+
+    <footer class="footer">
+        <p>&copy; 2024 Polapikir Investor. Semua hak dilindungi.</p>
+    </footer>
+
+    <script>
+        // Toggle mobile menu
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('active');
+            const hamburger = document.querySelector('.hamburger');
+            hamburger.classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>
