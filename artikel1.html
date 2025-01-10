@@ -61,98 +61,83 @@
             color: #000;
         }
 
-        /* Memberikan ruang di bawah taskbar */
-        .article-container {
-            max-width: 1100px;
-            margin: 30px auto;
-            margin-top: 100px; /* Tambahkan margin-top untuk menghindari taskbar menutupi konten */
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            display: flex;
+        /* Hamburger menu */
+        .hamburger {
+            display: none;
             flex-direction: column;
-            background: linear-gradient(to bottom, #f9f9f9, #ffffff);
-            animation: slideUp 1.5s ease-out;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
         }
 
-        .article-header {
-            position: relative;
-            margin-bottom: 20px; /* Memberikan jarak antara gambar dan judul */
+        .hamburger div {
+            height: 4px;
+            background-color: #000;
+            transition: all 0.3s ease;
         }
 
-        /* Gambar artikel */
-        .article-header img {
-            width: 50%;  /* Ukuran gambar lebih kecil dari lebar penuh */
-            max-width: 800px; /* Batas maksimal lebar gambar */
-            height: auto;
+        .menu {
+            display: flex;
+        }
+
+        .menu a {
+            margin: 0 10px;
+        }
+
+        .menu.active {
             display: block;
-            margin: 0 auto; /* Memusatkan gambar */
-            border-radius: 8px;
-        }
-
-        .article-header .publish-date {
             position: absolute;
-            top: 10px;
-            left: 20px;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            padding: 5px 10px;
+            top: 70px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px;
             border-radius: 5px;
-            font-size: 0.9rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
-        .article-header h1 {
-            font-size: 2.5rem;
-            margin: 20px 0 10px;
-            color: #333;
-        }
+        /* Media Queries for Mobile */
+        @media screen and (max-width: 768px) {
+            .taskbar {
+                justify-content: space-between;
+                padding: 15px;
+            }
 
-        .article-body {
-            padding: 20px;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-        }
+            .menu {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+            }
 
-        .article-body p {
-            margin-bottom: 15px;
-        }
+            .menu.active {
+                display: flex;
+            }
 
-        .article-body a {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
-            transition: background-color 0.3s ease;
-        }
+            .hamburger {
+                display: flex;
+            }
 
-        .article-body a:hover {
-            background-color: #0056b3;
-        }
+            .hamburger.open div:nth-child(1) {
+                transform: rotate(45deg);
+                position: relative;
+                top: 8px;
+            }
 
-        /* Footer */
-        .footer {
-            background-color: #ffffff;
-            text-align: center;
-            padding: 15px;
-            margin-top: 40px;
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-            border-top: 2px solid #007bff;
+            .hamburger.open div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.open div:nth-child(3) {
+                transform: rotate(-45deg);
+                position: relative;
+                top: -8px;
+            }
         }
 
         /* Animations */
         @keyframes fadeIn {
             0% { opacity: 0; }
             100% { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -166,7 +151,14 @@
             </a>
             <span>Polapikir Investor</span>
         </div>
-        <div>
+        <!-- Hamburger Menu -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <!-- Menu Links -->
+        <div class="menu">
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
@@ -191,10 +183,15 @@
             <p><strong>Faktor Pendorong Ekonomi dan Pentingnya Pasar Modal</strong></p>
             <p>Dalam konteks perekonomian global yang dinamis, Sri Mulyani mengingatkan bahwa meskipun ekonomi Indonesia menghadapi tantangan, seperti fluktuasi harga komoditas dan ketegangan geopolitik, Indonesia harus terus beradaptasi dengan inovasi yang terjadi di pasar modal. Hal ini penting untuk mengurangi ketergantungan Indonesia pada ekspor dan memperkuat basis ekonomi domestik.</p>
             <p>Salah satu langkah besar yang diajukan oleh Sri Mulyani adalah pengembangan sektor teknologi dan digital di pasar modal. Indonesia, dengan jumlah penduduk yang besar dan potensi digital yang masif, dapat memanfaatkan tren ini untuk mendorong pertumbuhan pasar modal dan memberikan peluang investasi yang lebih luas kepada masyarakat.</p>
-            
         </div>
     </section>
- <script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Polapikir Investor. Semua hak dilindungi.</p>
+    </footer>
+
+    <script>
         // Toggle mobile menu
         function toggleMenu() {
             const menu = document.querySelector('.menu');
@@ -203,11 +200,6 @@
             hamburger.classList.toggle('open');
         }
     </script>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2024 Polapikir Investor. Semua hak dilindungi.</p>
-    </footer>
 
 </body>
 </html>
