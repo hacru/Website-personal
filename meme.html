@@ -3,45 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cryptocurrency - Penjelasan Lengkap</title>
+    <title>Saham Pemula - Polapikir Investor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
-            margin: 0;
-            font-family: 'montserrat', montserrat;
-            background: linear-gradient(to bottom, #e0f7fa, #ffffff);
-            color: #000;
-            animation: fadeIn 1s ease-out;
-            padding-bottom: 50px;
-        }
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffffff; /* Ganti dengan latar belakang putih */
+    color: #333; /* Gunakan warna teks gelap untuk kontras */
+}
 
-        /* Animasi FadeIn */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+.taskbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff; /* Ganti dengan latar belakang putih */
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    border-bottom: 3px solid #fbfbfb;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    animation: fadeInDown 0.6s ease-out;
+}
 
-        /* Navbar dan Menu */
+.taskbar a {
+    color: #333; /* Teks tautan menjadi lebih gelap */
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+}
+
+.taskbar a:hover {
+    background-color: #ffeb3b;
+    color: #000;
+}
+
+footer {
+    background-color: #ffffff; /* Ganti dengan latar belakang putih */
+    color: #333; /* Teks footer menjadi lebih gelap */
+    text-align: center;
+    padding: 20px;
+    animation: fadeInUp 1s ease-out;
+}
+
+.section {
+    margin-bottom: 50px;
+    padding: 20px;
+    background-color: #ffffff; /* Ganti dengan latar belakang putih */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease;
+}
+
+.section:hover {
+    background-color: #f9f9f9; /* Latar belakang lebih terang saat hover */
+}
+
+h1, h2, h3 {
+    color: #333; /* Warna teks lebih gelap agar lebih terbaca */
+}
+
+.container {
+    padding: 120px 20px 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeInUp 1s ease-out;
+}
+
+.image-content img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    animation: zoomIn 0.8s ease-out;
+}
+
+
         .taskbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 15px 25px;
+            background-color: #fff;
+            padding: 20px;
             position: fixed;
             top: 0;
             width: 100%;
-            border-bottom: 2px solid #000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            border-bottom: 3px solid #fbfbfb;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            animation: slideDown 0.5s ease-out;
-        }
-
-        @keyframes slideDown {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(0); }
+            animation: fadeInDown 0.6s ease-out;
         }
 
         .taskbar a {
@@ -51,23 +107,22 @@
             border-radius: 5px;
             transition: background-color 0.3s ease, color 0.3s ease;
             font-weight: bold;
-            text-transform: uppercase;
         }
 
         .taskbar a:hover {
-            background-color: #000;
-            color: #fff;
+            background-color: #ffeb3b;
+            color: #000;
         }
 
         .website-name {
             display: flex;
             align-items: center;
+            animation: fadeInLeft 0.8s ease-out;
         }
 
         .website-name img {
             height: 50px;
             margin-right: 15px;
-            cursor: pointer;
         }
 
         .website-name span {
@@ -76,161 +131,243 @@
             color: #000;
         }
 
-        .menu-items {
+        .menu {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            gap: 20px;
+            animation: fadeInRight 1s ease-out;
         }
 
-        .menu-items a {
-            display: inline-block;
-        }
-
-        /* Hamburger Menu */
         .hamburger {
             display: none;
-            flex-direction: column;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            font-size: 30px;
+            padding: 5px;
         }
 
-        .hamburger div {
-            width: 30px;
-            height: 3px;
-            background-color: #000;
-            margin: 5px;
-            border-radius: 3px;
-            transition: transform 0.3s ease;
+        .hamburger.open {
+            transform: rotate(45deg);
         }
 
-        .menu-items.active {
-            display: block;
-            animation: slideDownMenu 0.5s ease-out;
+        .hamburger.open::before {
+            content: '×';
+            font-size: 40px;
         }
 
-        @keyframes slideDownMenu {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .hamburger::before {
+            content: '☰';
+            font-size: 40px;
         }
 
-        .hamburger.active div:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger.active div:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active div:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        /* Menampilkan menu saat hamburger diklik */
         @media (max-width: 768px) {
-            .menu-items {
+            .menu {
                 display: none;
-                position: absolute;
-                top: 70px;
-                right: 20px;
-                background-color: rgba(255, 255, 255, 0.9);
-                width: 200px;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-                border-radius: 10px;
                 flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
                 padding: 10px;
-                align-items: center;
+                z-index: 999;
+                animation: slideDown 0.6s ease-out;
             }
 
-            .menu-items a {
-                margin: 10px 0;
+            .menu.active {
+                display: flex;
             }
 
             .hamburger {
-                display: flex;
+                display: block;
             }
         }
 
-        /* Konten */
-        .content {
+        .container {
+            padding: 120px 20px 50px;
             max-width: 1200px;
-            margin: 40px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 100px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
         }
 
-        /* Footer */
-        footer {
-            background-color: #fff;
+        h1, h2, h3 {
             color: #000;
-            text-align: center;
-            padding: 15px;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-            z-index: 999;
-            animation: fadeIn 1s ease-out;
-        }
-
-        footer a {
-            color: #000;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Section */
-        .section-title {
-            font-size: 2rem;
-            color: #000;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .section-content {
-            font-size: 1.1rem;
-            line-height: 1.8;
             margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .about-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            animation: zoomIn 0.8s ease-out;
         }
 
         .section {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
+            padding: 20px;
+            background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
         }
 
-        .section .text-content {
-            width: 48%;
+        .section:hover {
+            background: linear-gradient(to bottom, #f0f0f0, #ffffff);
         }
 
-        .section .image-content {
-            width: 48%;
+        .section h2 {
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        .section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .section ul li {
+            padding: 10px;
+            background: #f9f9f9;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .section ul li:hover {
+            background: #f1f1f1;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .about-text {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .team-member {
+            display: inline-block;
             text-align: center;
+            margin: 20px;
+            opacity: 0;
+            animation: fadeInUp 1.5s forwards;
         }
 
-        .section .image-content img {
-            max-width: 100%;
-            border-radius: 8px;
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            animation: zoomIn 0.6s ease-out;
+        }
+
+        .team-member h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .team-member p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background: linear-gradient(to bottom, #00aaff, #ffffff);
+            }
+            50% {
+                background: linear-gradient(to bottom, #0099cc, #ffffff);
+            }
+            100% {
+                background: linear-gradient(to bottom, #00aaff, #ffffff);
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Fitur Musik Otomatis -->
-    <audio id="background-music" loop>
-        <source src="audio/Billie Eilish - No Time To Die.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
 
-    <!-- Tombol Play Musik -->
-    <div id="music-controls">
-        <button class="play-button" onclick="playMusic()">Play Musik</button>
-    </div>
-
+    <!-- Taskbar -->
     <div class="taskbar">
         <div class="website-name">
             <a href="home.html">
@@ -238,31 +375,24 @@
             </a>
             <span>Polapikir Investor</span>
         </div>
-
-        <!-- Hamburger Icon -->
-        <div class="hamburger" id="hamburger-icon" onclick="toggleMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-
-        <!-- Menu Items -->
-        <div class="menu-items">
+        <div class="menu">
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
             <a href="portfolio.html">Portofolio</a>
             <a href="contact.html">Kontak</a>
         </div>
+        <div class="hamburger" onclick="toggleMenu()"></div>
     </div>
 
-    <div class="content">
-        <section class="section">
-            <div class="text-content">
-                <h2 class="section-title">Apa itu DOGE</h2>
-                <div class="section-content">
-                   <ul>
-             <p>Dogecoin adalah cryptocurrency yang awalnya dibuat sebagai lelucon pada tahun 2013 oleh Billy Markus dan Jackson Palmer. Koin ini terinspirasi dari meme internet populer yang menampilkan seekor anjing Shiba Inu. Meskipun awalnya dibuat untuk hiburan, Dogecoin telah menjadi salah satu cryptocurrency terkenal dengan komunitas yang kuat.</p>
+    <header class="hero">
+        <h1></h1>
+        <p class="sub-heading"></p>
+    </header>
+
+    <section class="container">
+        <section id="awal-penciptaan">
+            <p>Dogecoin adalah cryptocurrency yang awalnya dibuat sebagai lelucon pada tahun 2013 oleh Billy Markus dan Jackson Palmer. Koin ini terinspirasi dari meme internet populer yang menampilkan seekor anjing Shiba Inu. Meskipun awalnya dibuat untuk hiburan, Dogecoin telah menjadi salah satu cryptocurrency terkenal dengan komunitas yang kuat.</p>
         </ul>
 
                 </div>
@@ -297,28 +427,22 @@
                 <img src="images/baby doge.jpg" alt="Binance Coin Overview">
             </div>
         </section>
-    </div>
 
-    <footer>
-        <p>© 2024 Polapikir Investor | <a href="privacy-policy.html">Kebijakan Privasi</a> | <a href="terms-of-service.html">Syarat & Ketentuan</a></p>
+  
+
+    <footer class="footer">
+        <p>&copy; 2024 Polapikir Investor. Semua hak dilindungi.</p>
     </footer>
 
     <script>
-        function playMusic() {
-            var audio = document.getElementById('background-music');
-            if (audio.paused) {
-                audio.play(); // Play music
-            } else {
-                audio.pause(); // Pause music
-            }
-        }
-
+        // Toggle mobile menu
         function toggleMenu() {
-            const menuItems = document.querySelector(".menu-items");
-            const hamburgerIcon = document.getElementById("hamburger-icon");
-            menuItems.classList.toggle("active");
-            hamburgerIcon.classList.toggle("active");
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('active');
+            const hamburger = document.querySelector('.hamburger');
+            hamburger.classList.toggle('open');
         }
     </script>
+
 </body>
 </html>
