@@ -3,43 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meme Coin - Pembahasan dan Pergerakan Harga</title>
+    <title>Cryptocurrency - Penjelasan Lengkap</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(to right, #e0f7fa, #ffffff);
+            font-family: 'montserrat', montserrat;
+            background: linear-gradient(to bottom, #e0f7fa, #ffffff);
             color: #000;
-            overflow-x: hidden;
+            animation: fadeIn 1s ease-out;
+            padding-bottom: 50px;
         }
 
+        /* Animasi FadeIn */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
+        /* Navbar dan Menu */
         .taskbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #fff;
-            padding: 15px 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 15px 25px;
             position: fixed;
             top: 0;
             width: 100%;
-            border-bottom: 3px solid #ffeb3b;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-bottom: 2px solid #000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             z-index: 1000;
-            animation: fadeIn 1.2s ease-out;
+            animation: slideDown 0.5s ease-out;
         }
 
-        .taskbar.scrolled {
-            padding: 10px 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
         }
 
         .taskbar a {
@@ -49,11 +51,12 @@
             border-radius: 5px;
             transition: background-color 0.3s ease, color 0.3s ease;
             font-weight: bold;
+            text-transform: uppercase;
         }
 
         .taskbar a:hover {
-            background-color: #ffeb3b;
-            color: #000;
+            background-color: #000;
+            color: #fff;
         }
 
         .website-name {
@@ -62,138 +65,172 @@
         }
 
         .website-name img {
-            height: 40px;
-            margin-right: 10px;
-        }
-
-        .website-name span {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #000;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 25px;
-            height: 20px;
+            height: 50px;
+            margin-right: 15px;
             cursor: pointer;
         }
 
-        .hamburger div {
-            background-color: #000;
-            height: 3px;
-            width: 100%;
-            transition: 0.3s;
+        .website-name span {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #000;
         }
 
         .menu-items {
             display: flex;
-            gap: 20px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-items a {
+            display: inline-block;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 3px;
+            background-color: #000;
+            margin: 5px;
+            border-radius: 3px;
+            transition: transform 0.3s ease;
         }
 
         .menu-items.active {
             display: block;
-            background-color: #fff;
-            position: absolute;
-            top: 60px;
-            right: 0;
-            width: 200px;
-            padding: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: slideDownMenu 0.5s ease-out;
         }
 
-        .menu-items a {
-            display: block;
-            padding: 10px 0;
-            color: #000;
-            text-decoration: none;
-            text-align: right;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
+        @keyframes slideDownMenu {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .menu-items a:hover {
-            background-color: #ffeb3b;
+        .hamburger.active div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
         }
 
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Menampilkan menu saat hamburger diklik */
         @media (max-width: 768px) {
+            .menu-items {
+                display: none;
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                background-color: rgba(255, 255, 255, 0.9);
+                width: 200px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+                border-radius: 10px;
+                flex-direction: column;
+                padding: 10px;
+                align-items: center;
+            }
+
+            .menu-items a {
+                margin: 10px 0;
+            }
+
             .hamburger {
                 display: flex;
             }
-
-            .menu-items {
-                display: none;
-            }
-
-            .menu-items.active {
-                display: block;
-            }
         }
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            padding: 80px 20px 20px;
-        }
-
-        .coin-section {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            align-items: center;
-            border: 1px solid #ddd;
-            border-radius: 10px;
+        /* Konten */
+        .content {
+            max-width: 1200px;
+            margin: 40px auto;
             padding: 20px;
             background-color: #fff;
+            border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 100px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #fff;
+            color: #000;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            z-index: 999;
             animation: fadeIn 1s ease-out;
         }
 
-        .text-content {
-            flex: 1;
-        }
-
-        .image-content img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            object-fit: cover;
-            aspect-ratio: 4 / 3;
-        }
-
-        .footer {
-            background-color: #fff;
-            padding: 20px;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .footer p {
+        footer a {
             color: #000;
-            font-size: 0.9rem;
+            text-decoration: none;
+            margin: 0 10px;
         }
 
-        .tradingview-widget-container {
-            margin-top: 40px;
-            width: 100%;
-            height: 400px;
+        footer a:hover {
+            text-decoration: underline;
         }
 
-        .tradingview-widget-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        /* Section */
+        .section-title {
+            font-size: 2rem;
+            color: #000;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .section .text-content {
+            width: 48%;
+        }
+
+        .section .image-content {
+            width: 48%;
+            text-align: center;
+        }
+
+        .section .image-content img {
+            max-width: 100%;
+            border-radius: 8px;
         }
     </style>
 </head>
 <body>
+    <!-- Fitur Musik Otomatis -->
+    <audio id="background-music" loop>
+        <source src="audio/Billie Eilish - No Time To Die.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Tombol Play Musik -->
+    <div id="music-controls">
+        <button class="play-button" onclick="playMusic()">Play Musik</button>
+    </div>
+
     <div class="taskbar">
         <div class="website-name">
             <a href="home.html">
@@ -201,12 +238,16 @@
             </a>
             <span>Polapikir Investor</span>
         </div>
+
+        <!-- Hamburger Icon -->
         <div class="hamburger" id="hamburger-icon" onclick="toggleMenu()">
             <div></div>
             <div></div>
             <div></div>
         </div>
-        <div class="menu-items" id="menu-items">
+
+        <!-- Menu Items -->
+        <div class="menu-items">
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
@@ -215,45 +256,69 @@
         </div>
     </div>
 
-    <div class="container">
-        <h1>Pembahasan Meme Coin</h1>
-        <p>Meme coin adalah jenis cryptocurrency yang sering kali dibuat dengan inspirasi dari meme atau tren populer di internet...</p>
-
-        <div class="coin-section">
+    <div class="content">
+        <section class="section">
             <div class="text-content">
-                <h2>1. Dogecoin (DOGE)</h2>
-                <p>Dogecoin adalah cryptocurrency yang awalnya dibuat sebagai lelucon pada tahun 2013 oleh Billy Markus dan Jackson Palmer. Koin ini terinspirasi dari meme internet populer yang menampilkan seekor anjing Shiba Inu. Meskipun awalnya dibuat untuk hiburan, Dogecoin telah menjadi salah satu cryptocurrency terkenal dengan komunitas yang kuat.
-Dogecoin menggunakan teknologi blockchain seperti Bitcoin dan memungkinkan transaksi cepat dengan biaya rendah. Koin ini sering digunakan untuk memberi tip secara online atau untuk mendukung proyek amal. Popularitasnya meningkat drastis pada tahun 2021 karena dukungan dari tokoh-tokoh terkenal seperti Elon Musk</p>
+                <h2 class="section-title">Apa itu DOGE</h2>
+                <div class="section-content">
+                   <ul>
+             <p>Dogecoin adalah cryptocurrency yang awalnya dibuat sebagai lelucon pada tahun 2013 oleh Billy Markus dan Jackson Palmer. Koin ini terinspirasi dari meme internet populer yang menampilkan seekor anjing Shiba Inu. Meskipun awalnya dibuat untuk hiburan, Dogecoin telah menjadi salah satu cryptocurrency terkenal dengan komunitas yang kuat.</p>
+        </ul>
+
+                </div>
             </div>
             <div class="image-content">
-                <img src="images/doge.jpg" alt="Dogecoin">
+                <img src="images/doge.jpg" alt="Cryptocurrency Overview">
             </div>
-        </div>
+        </section>
 
-        <div class="coin-section">
+        <section class="section">
             <div class="text-content">
-                <h2>2. Shiba Inu (SHIB)</h2>
-                <p>Shiba Inu adalah cryptocurrency berbasis meme...</p>
+                <h2 class="section-title">Apa itu Shiba Inu ?</h2>
+                <div class="section-content">
+                    <p>Shiba Inu (SHIB) adalah cryptocurrency berbasis meme yang diluncurkan pada Agustus 2020 oleh seorang anonim bernama "Ryoshi." Shiba Inu terinspirasi oleh Dogecoin, tetapi memiliki beberapa perbedaan signifikan. Koin ini dinamai berdasarkan ras anjing Shiba Inu, yang juga menjadi simbolnya.</p>
+                </div>
             </div>
             <div class="image-content">
-                <img src="images/shiba_inu.jpg" alt="Shiba Inu">
+                <img src="images/shiba inu.jpg" alt="Ethereum Overview">
             </div>
-        </div>
+        </section>
 
-        <div class="coin-section">
+        <section class="section">
             <div class="text-content">
-                <h2>3. Baby Doge Coin (BabyDoge)</h2>
-                <p>Baby Doge Coin adalah cryptocurrency turunan dari Dogecoin...</p>
+                <h2 class="section-title">Apa itu Baby Doge ?</h2>
+                <div class="section-content">
+                    <p>Baby Doge Coin (BabyDoge) adalah cryptocurrency yang diluncurkan pada Juni 2021 sebagai turunan dari Dogecoin. Koin ini dirancang dengan tujuan menggabungkan popularitas meme dan elemen komunitas dengan fitur tambahan yang mendukung pengembangan jangka panjang. Baby Doge Coin beroperasi di blockchain Binance Smart Chain (BSC), yang memungkinkan transaksi cepat dengan biaya rendah.
+
+                    </p>
+                </div>
             </div>
             <div class="image-content">
-                <img src="images/baby_doge.jpg" alt="Baby Doge">
+                <img src="images/baby doge.jpg" alt="Binance Coin Overview">
             </div>
-        </div>
-
-        <div class="tradingview-widget-container">
-            <iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_3cc07&symbol=BINANCE%3ADOGEUSDT&interval=60&theme=light"></iframe>
-        </div>
+        </section>
     </div>
 
-    <div class="footer">
-        <p>&copy;
+    <footer>
+        <p>© 2024 Polapikir Investor | <a href="privacy-policy.html">Kebijakan Privasi</a> | <a href="terms-of-service.html">Syarat & Ketentuan</a></p>
+    </footer>
+
+    <script>
+        function playMusic() {
+            var audio = document.getElementById('background-music');
+            if (audio.paused) {
+                audio.play(); // Play music
+            } else {
+                audio.pause(); // Pause music
+            }
+        }
+
+        function toggleMenu() {
+            const menuItems = document.querySelector(".menu-items");
+            const hamburgerIcon = document.getElementById("hamburger-icon");
+            menuItems.classList.toggle("active");
+            hamburgerIcon.classList.toggle("active");
+        }
+    </script>
+</body>
+</html>
