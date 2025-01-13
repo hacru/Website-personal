@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saham Pemula - Polapikir Investor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to bottom, #00aaff, #ffffff);
+            color: #000;
+            animation: backgroundAnimation 10s ease infinite;
+        }
+
+        .taskbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            border-bottom: 3px solid #fbfbfb;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .taskbar a {
+            color: #000;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: bold;
+        }
+
+        .taskbar a:hover {
+            background-color: #ffeb3b;
+            color: #000;
+        }
+
+        .website-name {
+            display: flex;
+            align-items: center;
+            animation: fadeInLeft 0.8s ease-out;
+        }
+
+        .website-name img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .website-name span {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .menu {
+            display: flex;
+            gap: 20px;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 30px;
+            padding: 5px;
+        }
+
+        .hamburger.open {
+            transform: rotate(45deg);
+        }
+
+        .hamburger.open::before {
+            content: '×';
+            font-size: 40px;
+        }
+
+        .hamburger::before {
+            content: '☰';
+            font-size: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+                padding: 10px;
+                z-index: 999;
+                animation: slideDown 0.6s ease-out;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+
+        .container {
+            padding: 120px 20px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        h1, h2, h3 {
+            color: #000;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .about-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            animation: zoomIn 0.8s ease-out;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+
+        .section:hover {
+            background: linear-gradient(to bottom, #f0f0f0, #ffffff);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        .section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .section ul li {
+            padding: 10px;
+            background: #f9f9f9;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .section ul li:hover {
+            background: #f1f1f1;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .about-text {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .team-member {
+            display: inline-block;
+            text-align: center;
+            margin: 20px;
+            opacity: 0;
+            animation: fadeInUp 1.5s forwards;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            animation: zoomIn 0.6s ease-out;
+        }
+
+        .team-member h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .team-member p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background: linear-gradient(to bottom, #00aaff, #ffffff);
+            }
+            50% {
+                background: linear-gradient(to bottom, #0099cc, #ffffff);
+            }
+            100% {
+                background: linear-gradient(to bottom, #00aaff, #ffffff);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <div class="website-name">
+            <a href="home.html">
+                <img src="images/logo.webp" alt="Polapikir Investor Logo">
+            </a>
+            <span>Polapikir Investor</span>
+        </div>
+        <div class="menu">
+            <a href="home.html">Beranda</a>
+            <a href="about.html">Tentang</a>
+            <a href="media.html">Media</a>
+            <a href="portfolio.html">Portofolio</a>
+            <a href="contact.html">Kontak</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()"></div>
+    </div>
+
+    <header class="hero">
+        <h1></h1>
+        <p class="sub-heading"></p>
+    </header>
+
+    <section class="container">
+        <div class="section">
+                <h1>Investment Guide to Protect Your Wealth</h1>
+              </header>
+              
+                <h2>1. Properti</h2>
+                <p>Properti adalah salah satu jenis investasi yang paling umum dan aman karena nilainya cenderung meningkat seiring waktu. Selain itu, properti dapat menghasilkan pendapatan pasif melalui sewa.</p>
+                <ul>
+                  <li><strong>Membeli Apartemen:</strong> Misalnya, membeli apartemen seharga Rp1 miliar di pusat kota, lalu menyewakannya Rp8 juta per bulan. Ini memberikan pendapatan tahunan Rp96 juta.</li>
+                  <li><strong>Investasi Tanah:</strong> Membeli tanah di kawasan berkembang seharga Rp500 juta. Dengan adanya proyek infrastruktur baru, tanah tersebut dapat dijual kembali dengan nilai Rp900 juta dalam 5 tahun.</li>
+                </ul>
+            
+                <h2>2. Obligasi (Bonds)</h2>
+                <p>Obligasi adalah surat utang yang diterbitkan oleh pemerintah atau perusahaan dengan janji pembayaran bunga rutin serta pengembalian pokok di akhir periode. Cocok untuk investor yang menginginkan penghasilan tetap.</p>
+                <ul>
+                  <li><strong>Obligasi Negara:</strong> Membeli Obligasi Negara Ritel (ORI) senilai Rp100 juta dengan bunga 6% per tahun. Anda menerima Rp500 ribu setiap bulan selama tenor obligasi, dan modal dikembalikan penuh di akhir.</li>
+                  <li><strong>Obligasi Korporasi:</strong> Misalnya, obligasi yang diterbitkan oleh perusahaan besar seperti Bank BCA dengan bunga lebih tinggi, hingga 8% per tahun.</li>
+                </ul>
+            
+                <h2>3. Logam Mulia</h2>
+                <p>Investasi logam mulia seperti emas dianggap sebagai lindung nilai terhadap inflasi dan nilai tukar. Emas mudah dicairkan dan harganya cenderung stabil.</p>
+                <ul>
+                  <li><strong>Emas Batangan:</strong> Membeli emas Antam seberat 50 gram seharga Rp50 juta. Dalam 5 tahun, nilainya naik menjadi Rp75 juta seiring kenaikan harga emas.</li>
+                  <li><strong>Tabungan Emas:</strong> Beberapa platform menyediakan fasilitas tabungan emas yang mempermudah investasi emas dengan nominal kecil.</li>
+                </ul>
+            
+                <h2>4. Saham Blue Chip</h2>
+                <p>Saham blue chip berasal dari perusahaan besar yang stabil dengan catatan keuangan yang baik. Saham ini biasanya memberikan dividen rutin dan memiliki potensi apresiasi nilai.</p>
+                <ul>
+                  <li><strong>Saham BBCA:</strong> Membeli saham PT Bank Central Asia (BBCA) dengan harga Rp9.000 per lembar. Selain kenaikan harga saham, Anda juga menerima dividen tahunan.</li>
+                  <li><strong>Saham TLKM:</strong> Telkom Indonesia (TLKM) adalah contoh lain dari saham blue chip yang menawarkan stabilitas di sektor telekomunikasi.</li>
+                </ul>
+            
+                <h2>5. Reksa Dana Pasar Uang atau Pendapatan Tetap</h2>
+                <p>Reksa dana ini menawarkan kemudahan diversifikasi dan dikelola oleh manajer investasi profesional. Cocok untuk investor dengan risiko rendah.</p>
+                <ul>
+                  <li><strong>Reksa Dana Pasar Uang:</strong> Investasi ini berfokus pada instrumen seperti deposito dan obligasi jangka pendek. Return rata-rata 5% per tahun.</li>
+                  <li><strong>Reksa Dana Pendapatan Tetap:</strong> Mengalokasikan dana ke obligasi dengan imbal hasil stabil sekitar 6%-7% per tahun.</li>
+                </ul>
+            
+                <h2>6. Private Equity atau Bisnis Stabil</h2>
+                <p>Investasi ini melibatkan pendanaan bisnis yang sudah matang atau sektor yang memberikan pendapatan stabil.</p>
+                <ul>
+                  <li><strong>Franchise Minimarket:</strong> Investasi Rp500 juta untuk membuka minimarket seperti Alfamart, yang memberikan keuntungan bersih rata-rata Rp20 juta per bulan.</li>
+                  <li><strong>Investasi Perkebunan:</strong> Berinvestasi di perusahaan pengelola lahan perkebunan yang memberikan pembagian hasil tahunan.</li>
+                </ul>
+            
+                <h2>7. Asuransi Jiwa atau Unit Link</h2>
+                <p>Asuransi adalah cara melindungi aset keluarga. Unit link menggabungkan manfaat perlindungan dengan potensi hasil investasi.</p>
+                <ul>
+                  <li><strong>Asuransi Jiwa:</strong> Premi Rp10 juta per tahun memberikan santunan hingga Rp2 miliar jika terjadi risiko pada tertanggung.</li>
+                  <li><strong>Unit Link:</strong> Premi Rp1 juta per bulan, di mana Rp500 ribu dialokasikan ke investasi dan sisanya untuk proteksi jiwa.</li>
+                </ul>
+            
+                <h2>8. Instrumen Pendapatan Pasif</h2>
+                <p>Instrumen ini memberikan pendapatan rutin tanpa perlu pengelolaan aktif dari investor.</p>
+                <ul>
+                  <li><strong>REIT (Real Estate Investment Trust):</strong> Membeli unit REIT yang berinvestasi di properti komersial. Investor mendapatkan pembagian hasil dari pendapatan sewa.</li>
+                  <li><strong>Peer-to-Peer Lending:</strong> Memberikan pinjaman Rp10 juta kepada pelaku UMKM melalui platform dengan bunga 10% per tahun.</li>
+                </ul>
+            
+                <h2>9. Diversifikasi Portofolio</h2>
+                <p>Strategi ini bertujuan menyebar investasi ke berbagai jenis aset untuk mengurangi risiko.</p>
+                <ul>
+                  <li><strong>Contoh Alokasi:</strong>
+                    <ul>
+                      <li>Rp300 juta ke properti.</li>
+                      <li>Rp200 juta ke obligasi pemerintah.</li>
+                      <li>Rp150 juta ke saham blue chip.</li>
+                      <li>Rp100 juta ke emas.</li>
+                      <li>Rp250 juta ke reksa dana pasar uang.</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+  
+
+    <footer class="footer">
+        <p>&copy; 2024 Polapikir Investor. Semua hak dilindungi.</p>
+    </footer>
+
+    <script>
+        // Toggle mobile menu
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('active');
+            const hamburger = document.querySelector('.hamburger');
+            hamburger.classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>
