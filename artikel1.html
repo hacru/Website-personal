@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -96,6 +96,53 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
+        /* Article Styles */
+        .article-container {
+            margin-top: 80px;
+            padding: 15px;
+        }
+
+        .article-header img {
+            width: 100%;  /* Default for small screens */
+            max-width: 1200px; /* Limit maximum width on larger screens */
+            height: auto;
+            display: block;
+            margin: 20px auto; /* Center image */
+            border-radius: 8px;
+        }
+
+        .article-body {
+            padding: 10px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .article-body p {
+            margin-bottom: 12px;
+        }
+
+        .article-body a {
+            padding: 8px 18px;
+            font-size: 1rem;
+        }
+
+        .footer {
+            font-size: 0.9rem;
+            padding: 12px;
+        }
+
+        /* Media Queries for Desktop */
+        @media screen and (min-width: 1024px) {
+            .article-header img {
+                width: 80%; /* Restrict width on larger screens */
+            }
+
+            .article-body {
+                font-size: 1.2rem; /* Slightly larger text for readability */
+                padding: 20px;
+            }
+        }
+
         /* Media Queries for Mobile */
         @media screen and (max-width: 768px) {
             .taskbar {
@@ -133,34 +180,14 @@
                 top: -8px;
             }
 
-            .article-container {
-                margin-top: 80px; /* Menghindari taskbar yang menghalangi konten */
-                padding: 15px;
-            }
-
-            /* Gambar Artikel */
             .article-header img {
-                width: 100%;  /* Gambar akan menyesuaikan dengan lebar layar */
-                max-width: 600px; /* Batas maksimal gambar */
-                height: auto;
-                display: block;
-                margin: 0 auto; /* Memusatkan gambar */
-                border-radius: 8px;
+                width: 100%;  /* Gambar menyesuaikan layar */
+                max-width: 600px; /* Maksimum untuk gambar besar */
             }
 
             .article-body {
                 padding: 10px;
-                font-size: 1rem; /* Ukuran font lebih kecil di ponsel */
-                line-height: 1.6;
-            }
-
-            .article-body p {
-                margin-bottom: 12px;
-            }
-
-            .article-body a {
-                padding: 8px 18px;
-                font-size: 1rem;
+                font-size: 1rem; /* Ukuran font untuk mobile */
             }
 
             .footer {
@@ -212,8 +239,7 @@
         <div class="article-body">
             <h1>Optimisme Sri Mulyani untuk Pasar Modal Indonesia di 2025</h1>
             <p><strong>Jakarta, 2 Januari 2025</strong> – Pembukaan pasar modal Indonesia di awal tahun 2025 menunjukkan optimisme yang tinggi di tengah tantangan ekonomi global yang masih terus mempengaruhi pasar keuangan dunia. Dalam pidato resmi yang disampaikan oleh Menteri Keuangan, Sri Mulyani Indrawati, ia mengungkapkan harapannya bahwa pasar modal Indonesia akan terus tumbuh dan berkembang menjadi salah satu pilar utama dalam mendukung ekonomi nasional.</p>
-            <p>Menurut Sri Mulyani, pasar modal Indonesia memiliki potensi besar untuk menjadi motor penggerak ekonomi yang inklusif dan berkelanjutan. Salah satu poin penting yang disampaikan adalah terkait dengan keberlanjutan dan stabilitas yang telah dicapai oleh pasar modal Tanah Air dalam beberapa tahun terakhir, meski mengalami gejolak akibat krisis ekonomi global.</p>
-            <p>"Pasar modal Indonesia telah mengalami transformasi yang luar biasa, dan kita telah melihat bagaimana sektor ini membantu memperkuat perekonomian kita," ujar Sri Mulyani. "Tahun 2025 menjadi tonggak penting di mana kita harus memperkuat momentum yang ada untuk menghadapi tantangan baru yang datang, baik dari faktor eksternal maupun internal," tambahnya.</p>
+            <p>Menurut Sri Mulyani, pasar modal Indonesia memiliki potensi besar untuk menjadi motor penggerak ekonomi yang inklusif dan berkelanjutan. Salah satu poin penting yang disampaikan adalah terkait dengan keberlanjutan dan stabilitas yang telah dicapai oleh pasar modal Tanah Air dalam beberapa tahun terakhir, meski mengalami gejolak akibat krisis ekonomi global.</p>  <p>"Pasar modal Indonesia telah mengalami transformasi yang luar biasa, dan kita telah melihat bagaimana sektor ini membantu memperkuat perekonomian kita," ujar Sri Mulyani. "Tahun 2025 menjadi tonggak penting di mana kita harus memperkuat momentum yang ada untuk menghadapi tantangan baru yang datang, baik dari faktor eksternal maupun internal," tambahnya.</p>
             <p>Sri Mulyani juga menyoroti beberapa kebijakan yang telah diimplementasikan pemerintah, termasuk pembaruan regulasi yang semakin mempermudah akses bagi perusahaan-perusahaan baru untuk mencatatkan saham mereka di Bursa Efek Indonesia (BEI). Menurutnya, hal ini penting untuk menarik lebih banyak investasi domestik maupun internasional, serta untuk menciptakan lapangan kerja yang lebih luas bagi masyarakat Indonesia.</p>
             <p><strong>Faktor Pendorong Ekonomi dan Pentingnya Pasar Modal</strong></p>
             <p>Dalam konteks perekonomian global yang dinamis, Sri Mulyani mengingatkan bahwa meskipun ekonomi Indonesia menghadapi tantangan, seperti fluktuasi harga komoditas dan ketegangan geopolitik, Indonesia harus terus beradaptasi dengan inovasi yang terjadi di pasar modal. Hal ini penting untuk mengurangi ketergantungan Indonesia pada ekspor dan memperkuat basis ekonomi domestik.</p>
