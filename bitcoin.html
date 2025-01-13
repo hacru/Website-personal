@@ -1,56 +1,103 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bitcoin - Penjelasan Lengkap</title>
+    <title>Saham Pemula - Polapikir Investor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
-            margin: 0;
-            font-family: 'montserrat', montserrat;
-            background: linear-gradient(to bottom, #e0f7fa, #ffffff); /* Gradient background */
-            color: #000;
-            animation: fadeIn 1s ease-out;
-            padding-bottom: 50px;
-        }
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffffff; /* Ganti dengan latar belakang putih */
+    color: #333; /* Gunakan warna teks gelap untuk kontras */
+}
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
+.taskbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff; /* Ganti dengan latar belakang putih */
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    border-bottom: 3px solid #fbfbfb;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    animation: fadeInDown 0.6s ease-out;
+}
 
-            to {
-                opacity: 1;
-            }
-        }
+.taskbar a {
+    color: #333; /* Teks tautan menjadi lebih gelap */
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+}
 
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-            }
+.taskbar a:hover {
+    background-color: #ffeb3b;
+    color: #000;
+}
 
-            to {
-                transform: translateY(0);
-            }
-        }
+footer {
+    background-color: #ffffff; /* Ganti dengan latar belakang putih */
+    color: #333; /* Teks footer menjadi lebih gelap */
+    text-align: center;
+    padding: 20px;
+    animation: fadeInUp 1s ease-out;
+}
+
+.section {
+    margin-bottom: 50px;
+    padding: 20px;
+    background-color: #ffffff; /* Ganti dengan latar belakang putih */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease;
+}
+
+.section:hover {
+    background-color: #f9f9f9; /* Latar belakang lebih terang saat hover */
+}
+
+h1, h2, h3 {
+    color: #333; /* Warna teks lebih gelap agar lebih terbaca */
+}
+
+.container {
+    padding: 120px 20px 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeInUp 1s ease-out;
+}
+
+.image-content img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    animation: zoomIn 0.8s ease-out;
+}
+
 
         .taskbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 15px 25px;
+            background-color: #fff;
+            padding: 20px;
             position: fixed;
             top: 0;
             width: 100%;
-            border-bottom: 2px solid #000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            border-bottom: 3px solid #fbfbfb;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            animation: slideDown 0.5s ease-out;
+            animation: fadeInDown 0.6s ease-out;
         }
 
         .taskbar a {
@@ -60,23 +107,22 @@
             border-radius: 5px;
             transition: background-color 0.3s ease, color 0.3s ease;
             font-weight: bold;
-            text-transform: uppercase;
         }
 
         .taskbar a:hover {
-            background-color: #000;
-            color: #fff;
+            background-color: #ffeb3b;
+            color: #000;
         }
 
         .website-name {
             display: flex;
             align-items: center;
+            animation: fadeInLeft 0.8s ease-out;
         }
 
         .website-name img {
             height: 50px;
             margin-right: 15px;
-            cursor: pointer;
         }
 
         .website-name span {
@@ -85,220 +131,243 @@
             color: #000;
         }
 
-        .content {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 100px;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            color: #000;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .section-content {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .section {
+        .menu {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 40px;
+            gap: 20px;
+            animation: fadeInRight 1s ease-out;
         }
 
-        .section .text-content {
-            width: 48%;
-        }
-
-        .section .image-content {
-            width: 48%;
-            text-align: center;
-        }
-
-        .section .image-content img {
-            max-width: 100%;
-            border-radius: 8px;
-        }
-
-        footer {
-            background-color: #fff;
-            color: #000;
-            text-align: center;
-            padding: 15px;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-            z-index: 999;
-            animation: fadeIn 1s ease-out;
-        }
-
-        footer a {
-            color: #000;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #ffeb3b;
-            color: #000;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .cta-button:hover {
-            background-color: #000;
-            color: #ffeb3b;
-        }
-
-        .tradingview-widget-container {
-            position: relative;
-            margin-top: 20px;
-            width: 100%;
-            height: 600px;
-        }
-
-        #music-controls {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .play-button {
-            display: inline-block;
-            padding: 15px 25px;
-            background-color: #000;
-            color: #fff;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 5px;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .play-button:hover {
-            background-color: #ffeb3b;
-            color: #000;
-        }
-
-        /* Hamburger Menu */
-        .menu-icon {
+        .hamburger {
             display: none;
-            flex-direction: column;
-            justify-content: space-around;
-            width: 30px;
-            height: 25px;
             cursor: pointer;
-            position: relative;
+            font-size: 30px;
+            padding: 5px;
         }
 
-        .menu-icon div {
-            height: 5px;
-            width: 100%;
-            background-color: #000;
-            transition: transform 0.3s ease, opacity 0.3s ease;
+        .hamburger.open {
+            transform: rotate(45deg);
         }
 
-        .menu-items {
-            display: flex;
-            align-items: center;
+        .hamburger.open::before {
+            content: '×';
+            font-size: 40px;
         }
 
-        .menu-items a {
-            color: #000;
-            text-decoration: none;
-            padding: 10px 15px;
-            transition: background-color 0.3s ease;
-            font-weight: bold;
-        }
-
-        .menu-items a:hover {
-            background-color: #000;
-            color: #fff;
+        .hamburger::before {
+            content: '☰';
+            font-size: 40px;
         }
 
         @media (max-width: 768px) {
-            .menu-items {
+            .menu {
                 display: none;
                 flex-direction: column;
+                gap: 10px;
                 position: absolute;
                 top: 60px;
                 right: 20px;
                 background-color: #fff;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
                 border-radius: 5px;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-                width: 200px;
-                animation: slideDownMenu 0.5s ease-out;
+                padding: 10px;
+                z-index: 999;
+                animation: slideDown 0.6s ease-out;
             }
 
-            .menu-items.active {
+            .menu.active {
                 display: flex;
             }
 
-            .menu-icon {
-                display: flex;
-                position: absolute;
-                top: 20px;
-                right: 20px;
-            }
-
-            .menu-icon.active div:nth-child(1) {
-                transform: rotate(45deg);
-                position: relative;
-                top: 8px;
-            }
-
-            .menu-icon.active div:nth-child(2) {
-                opacity: 0;
-            }
-
-            .menu-icon.active div:nth-child(3) {
-                transform: rotate(-45deg);
-                position: relative;
-                top: -8px;
+            .hamburger {
+                display: block;
             }
         }
 
-        @keyframes slideDownMenu {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
+        .container {
+            padding: 120px 20px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+        }
 
-            100% {
+        h1, h2, h3 {
+            color: #000;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .about-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            animation: zoomIn 0.8s ease-out;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+
+        .section:hover {
+            background: linear-gradient(to bottom, #f0f0f0, #ffffff);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        .section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .section ul li {
+            padding: 10px;
+            background: #f9f9f9;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .section ul li:hover {
+            background: #f1f1f1;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .about-text {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .team-member {
+            display: inline-block;
+            text-align: center;
+            margin: 20px;
+            opacity: 0;
+            animation: fadeInUp 1.5s forwards;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            animation: zoomIn 0.6s ease-out;
+        }
+
+        .team-member h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .team-member p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background: linear-gradient(to bottom, #00aaff, #ffffff);
+            }
+            50% {
+                background: linear-gradient(to bottom, #0099cc, #ffffff);
+            }
+            100% {
+                background: linear-gradient(to bottom, #00aaff, #ffffff);
+            }
+        }
     </style>
 </head>
-
 <body>
-    <audio id="background-music" loop>
-        <source src="audio/Billie Eilish - No Time To Die.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
 
-    <div id="music-controls">
-        <button class="play-button" onclick="playMusic()">Play Musik</button>
-    </div>
-
+    <!-- Taskbar -->
     <div class="taskbar">
         <div class="website-name">
             <a href="home.html">
@@ -306,29 +375,24 @@
             </a>
             <span>Polapikir Investor</span>
         </div>
-        <div class="menu-icon" id="hamburger-icon" onclick="toggleMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <div class="menu-items">
+        <div class="menu">
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
             <a href="portfolio.html">Portofolio</a>
             <a href="contact.html">Kontak</a>
         </div>
+        <div class="hamburger" onclick="toggleMenu()"></div>
     </div>
 
-    <div class="content">
-        <section class="section">
-            <div class="text-content">
-                 <header>
-        <h1>Sejarah Bitcoin</h1>
+    <header class="hero">
+        <h1></h1>
+        <p class="sub-heading"></p>
     </header>
 
-    <main>
+    <section class="container">
         <section id="awal-penciptaan">
+            <h2 class="section-title">Sejarah Bitcoin (Bagian 1)</h2>
             <h2>Awal Penciptaan (2008-2009)</h2>
             <p><strong>Konsep Awal:</strong> Bitcoin diperkenalkan melalui sebuah whitepaper berjudul <em>"Bitcoin: A Peer-to-Peer Electronic Cash System"</em> yang diterbitkan pada 31 Oktober 2008 oleh seseorang atau kelompok anonim dengan nama samaran <em>Satoshi Nakamoto</em>.</p>
             <p><strong>Peluncuran Blockchain Bitcoin:</strong> Pada 3 Januari 2009, <em>Satoshi Nakamoto</em> meluncurkan <em>block genesis</em>, menandai lahirnya jaringan Bitcoin. Di blok ini terdapat pesan tersembunyi: "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks."</p>
@@ -375,7 +439,7 @@
                 </div>
             </div>
             <div class="image-content">
-                <img src="https://www.example.com/bitcoin-image-1.jpg" alt="Gambar Bitcoin Sejarah 1">
+                <img src="images/crypto.jpg" alt="Gambar Bitcoin Sejarah 1">
             </div>
         </section>
 
@@ -473,51 +537,25 @@
                 </div>
             </div>
             <div class="image-content">
-                <img src="https://www.example.com/whitepaper-image-2.jpg" alt="Whitepaper Bitcoin">
+                <img src="images/whitepaper.jpg" alt="Whitepaper Bitcoin">
             </div>
         </section>
 
+  
 
-        <section>
-            <div class="tradingview-widget-container">
-                <div id="tradingview_1f6b2"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-                <script type="text/javascript">
-                    new TradingView.widget({
-                        "autosize": true,
-                        "symbol": "BINANCE:BTCUSD",
-                        "interval": "60",
-                        "timezone": "Asia/Jakarta",
-                        "theme": "light",
-                        "style": "1",
-                        "locale": "id"
-                    });
-                </script>
-            </div>
-        </section>
-    </div>
-
-    <footer>
-        <p>© 2024 Polapikir Investor | <a href="privacy-policy.html">Kebijakan Privasi</a> | <a href="terms-of-service.html">Syarat & Ketentuan</a></p>
+    <footer class="footer">
+        <p>&copy; 2024 Polapikir Investor. Semua hak dilindungi.</p>
     </footer>
 
     <script>
-        function playMusic() {
-            var audio = document.getElementById('background-music');
-            if (audio.paused) {
-                audio.play();
-            } else {
-                audio.pause();
-            }
-        }
-
+        // Toggle mobile menu
         function toggleMenu() {
-            const menuItems = document.querySelector(".menu-items");
-            const hamburgerIcon = document.getElementById("hamburger-icon");
-            menuItems.classList.toggle("active");
-            hamburgerIcon.classList.toggle("active");
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('active');
+            const hamburger = document.querySelector('.hamburger');
+            hamburger.classList.toggle('open');
         }
     </script>
-</body>
 
+</body>
 </html>
