@@ -7,24 +7,21 @@
     <style>
         body {
             margin: 0;
-            font-family: montserrat, montserrat;
-            background: linear-gradient(to right, #e0f7fa, #ffffff); /* Background gradasi */
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to right, #e0f7fa, #ffffff);
             color: #000;
             overflow-x: hidden;
         }
 
-        /* Animasi Fade In */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Smooth Scrolling */
         html {
             scroll-behavior: smooth;
         }
 
-        /* Taskbar */
         .taskbar {
             display: flex;
             justify-content: space-between;
@@ -38,7 +35,6 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             z-index: 1000;
             animation: fadeIn 1.2s ease-out;
-            transition: all 0.3s ease-in-out;
         }
 
         .taskbar.scrolled {
@@ -66,29 +62,28 @@
         }
 
         .website-name img {
-            height: 50px;
-            margin-right: 15px;
+            height: 40px;
+            margin-right: 10px;
         }
 
         .website-name span {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: bold;
             color: #000;
         }
 
-        /* Hamburger Menu */
         .hamburger {
             display: none;
             flex-direction: column;
             justify-content: space-between;
-            width: 30px;
-            height: 25px;
+            width: 25px;
+            height: 20px;
             cursor: pointer;
         }
 
         .hamburger div {
             background-color: #000;
-            height: 4px;
+            height: 3px;
             width: 100%;
             transition: 0.3s;
         }
@@ -98,10 +93,6 @@
             gap: 20px;
         }
 
-        .menu-items a {
-            display: inline-block;
-        }
-
         .menu-items.active {
             display: block;
             background-color: #fff;
@@ -109,9 +100,8 @@
             top: 60px;
             right: 0;
             width: 200px;
-            padding: 20px;
+            padding: 15px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            z-index: 1001;
         }
 
         .menu-items a {
@@ -128,7 +118,6 @@
             background-color: #ffeb3b;
         }
 
-        /* Responsif */
         @media (max-width: 768px) {
             .hamburger {
                 display: flex;
@@ -141,25 +130,20 @@
             .menu-items.active {
                 display: block;
             }
-
-            .taskbar {
-                justify-content: space-between;
-            }
         }
 
-        /* Container */
         .container {
             display: flex;
             flex-direction: column;
             gap: 20px;
-            padding: 100px 20px 20px;
+            padding: 80px 20px 20px;
         }
 
         .coin-section {
             display: flex;
-            flex-direction: row;
+            flex-wrap: wrap;
             gap: 20px;
-            align-items: flex-start;
+            align-items: center;
             border: 1px solid #ddd;
             border-radius: 10px;
             padding: 20px;
@@ -172,6 +156,15 @@
             flex: 1;
         }
 
+        .image-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            object-fit: cover;
+            aspect-ratio: 4 / 3;
+        }
+
         .footer {
             background-color: #fff;
             padding: 20px;
@@ -180,28 +173,27 @@
             bottom: 0;
             width: 100%;
             box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 1s ease-out;
         }
 
         .footer p {
             color: #000;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
 
         .tradingview-widget-container {
             margin-top: 40px;
             width: 100%;
-            height: 600px;
+            height: 400px;
         }
 
         .tradingview-widget-container iframe {
             width: 100%;
             height: 100%;
+            border: none;
         }
     </style>
 </head>
 <body>
-    <!-- Taskbar -->
     <div class="taskbar">
         <div class="website-name">
             <a href="home.html">
@@ -225,82 +217,43 @@
 
     <div class="container">
         <h1>Pembahasan Meme Coin</h1>
-        <p>Meme coin adalah jenis cryptocurrency yang sering kali dibuat dengan inspirasi dari meme atau tren populer di internet. Meskipun awalnya hanya untuk hiburan, beberapa meme coin kini memiliki komunitas besar dan kapitalisasi pasar yang signifikan. Popularitas meme coin meningkat dengan dukungan dari selebritas atau tren di media sosial. Namun, karena sifatnya yang spekulatif, penting untuk berhati-hati dan melakukan riset sebelum berinvestasi.</p>
+        <p>Meme coin adalah jenis cryptocurrency yang sering kali dibuat dengan inspirasi dari meme atau tren populer di internet...</p>
 
-        <div class="scroll-container">
-            <div class="coin-section">
-                <div class="text-content">
-                    <h1>1. Dogecoin (DOGE)</h1>
-                    <p>Dogecoin adalah cryptocurrency yang awalnya dibuat sebagai lelucon pada tahun 2013 oleh Billy Markus dan Jackson Palmer. Koin ini terinspirasi dari meme internet populer yang menampilkan seekor anjing Shiba Inu. Meskipun awalnya dibuat untuk hiburan, Dogecoin telah menjadi salah satu cryptocurrency terkenal dengan komunitas yang kuat.
-                        Dogecoin menggunakan teknologi blockchain seperti Bitcoin dan memungkinkan transaksi cepat dengan biaya rendah. Koin ini sering digunakan untuk memberi tip secara online atau untuk mendukung proyek amal. Popularitasnya meningkat drastis pada tahun 2021 karena dukungan dari tokoh-tokoh terkenal seperti Elon Musk.</p>
-                </div>
-                <div class="image-content">
-                    <img src="images/doge.jpg" alt="Dogecoin">
-                </div>
+        <div class="coin-section">
+            <div class="text-content">
+                <h2>1. Dogecoin (DOGE)</h2>
+                <p>Dogecoin adalah cryptocurrency yang awalnya dibuat sebagai lelucon pada tahun 2013 oleh Billy Markus dan Jackson Palmer. Koin ini terinspirasi dari meme internet populer yang menampilkan seekor anjing Shiba Inu. Meskipun awalnya dibuat untuk hiburan, Dogecoin telah menjadi salah satu cryptocurrency terkenal dengan komunitas yang kuat.
+Dogecoin menggunakan teknologi blockchain seperti Bitcoin dan memungkinkan transaksi cepat dengan biaya rendah. Koin ini sering digunakan untuk memberi tip secara online atau untuk mendukung proyek amal. Popularitasnya meningkat drastis pada tahun 2021 karena dukungan dari tokoh-tokoh terkenal seperti Elon Musk</p>
             </div>
-
-            <div class="coin-section">
-                <div class="text-content">
-                    <h1>2. Shiba Inu (SHIB)</h1>
-                    <p>Shiba Inu (SHIB) adalah cryptocurrency berbasis meme yang diluncurkan pada Agustus 2020 oleh seorang anonim bernama "Ryoshi." Shiba Inu terinspirasi oleh Dogecoin, tetapi memiliki beberapa perbedaan signifikan. Koin ini dinamai berdasarkan ras anjing Shiba Inu, yang juga menjadi simbolnya.
-                        SHIB adalah token berbasis Ethereum dan menggunakan teknologi blockchain Ethereum untuk mendukung ekosistemnya. Salah satu fitur unik Shiba Inu adalah ekosistemnya yang mencakup proyek-proyek seperti ShibaSwap (platform pertukaran terdesentralisasi) dan token tambahan seperti LEASH dan BONE.
-Shiba Inu menjadi populer karena dukungan komunitas yang kuat, dikenal sebagai "ShibArmy," serta kenaikan harga yang signifikan pada tahun 2021. Shiba Inu juga sering disebut sebagai "Dogecoin Killer" karena aspirasinya untuk melampaui Dogecoin dalam kapitalisasi pasar.</p>
-                </div>
-                <div class="image-content">
-                    <img src="images/shiba inu.jpg" alt="Shiba Inu">
-                </div>
-            </div>
-
-            <div class="coin-section">
-                <div class="text-content">
-                    <h1>3. Baby Doge Coin (BabyDoge)</h1>
-                    <p>Baby Doge Coin (BabyDoge) adalah cryptocurrency yang diluncurkan pada Juni 2021 sebagai turunan dari Dogecoin. Koin ini dirancang dengan tujuan menggabungkan popularitas meme dan elemen komunitas dengan fitur tambahan yang mendukung pengembangan jangka panjang. Baby Doge Coin beroperasi di blockchain Binance Smart Chain (BSC), yang memungkinkan transaksi cepat dengan biaya rendah..</p>
-                </div>
-                <div class="image-content">
-                    <img src="images/baby doge.jpg" alt="Baby Doge">
-                </div>
-            </div>
-
+            <div class="image-content">
+                <img src="images/doge.jpg" alt="Dogecoin">
             </div>
         </div>
 
-        <!-- TradingView Widget -->
+        <div class="coin-section">
+            <div class="text-content">
+                <h2>2. Shiba Inu (SHIB)</h2>
+                <p>Shiba Inu adalah cryptocurrency berbasis meme...</p>
+            </div>
+            <div class="image-content">
+                <img src="images/shiba_inu.jpg" alt="Shiba Inu">
+            </div>
+        </div>
+
+        <div class="coin-section">
+            <div class="text-content">
+                <h2>3. Baby Doge Coin (BabyDoge)</h2>
+                <p>Baby Doge Coin adalah cryptocurrency turunan dari Dogecoin...</p>
+            </div>
+            <div class="image-content">
+                <img src="images/baby_doge.jpg" alt="Baby Doge">
+            </div>
+        </div>
+
         <div class="tradingview-widget-container">
-            <div id="tradingview_3cc07"></div>
-            <div class="tradingview-widget-container">
-                <iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_3cc07&symbol=BINANCE%3ADOGEUSDT&interval=60&hidesidetoolbar=1&theme=light&style=1&timezone=exchange&locale=en" width="100%" height="600" frameborder="0" allowfullscreen="true"></iframe>
-            </div>
-            
-            <script type="text/javascript">
-                new TradingView.widget({
-                    "autosize": true,
-                    "symbol": "BINANCE:DOGEUSDT",
-                    "interval": "60",
-                    "timezone": "exchange",
-                    "theme": "light",
-                    "style": "1",
-                    "locale": "en",
-                    "toolbar_bg": "#f1f3f6",
-                    "enable_publishing": false,
-                    "withdateranges": true,
-                    "hide_side_toolbar": false,
-                    "allow_symbol_change": true,
-                    "container_id": "tradingview_3cc07"
-                });
-            </script>
+            <iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_3cc07&symbol=BINANCE%3ADOGEUSDT&interval=60&theme=light"></iframe>
         </div>
     </div>
 
-    <!-- Footer -->
     <div class="footer">
-        <p>&copy; 2024 Polapikir Investor. All Rights Reserved.</p>
-    </div>
-
-    <script>
-        function toggleMenu() {
-            document.getElementById('menu-items').classList.toggle('active');
-            document.getElementById('hamburger-icon').classList.toggle('active');
-        }
-    </script>
-</body>
-</html>
+        <p>&copy;
