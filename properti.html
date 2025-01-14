@@ -321,6 +321,15 @@
             var totalIncome = rentPerMonth * months;
             document.getElementById('sewa_result').innerText = "Pendapatan Sewa untuk " + months + " bulan: Rp " + totalIncome.toFixed(2);
         }
+ <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            const hamburger = document.querySelector('.hamburger');
+            menu.classList.toggle('active');
+            hamburger.classList.toggle('open');
+        }
+    </script>
+        
     </script>
 </body>
 </html>
