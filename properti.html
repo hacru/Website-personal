@@ -16,70 +16,6 @@
             animation: fadeIn 1s ease-out; /* Menambahkan animasi fadeIn */
         }
 
-        @media screen and (max-width: 768px) {
-    body {
-        font-size: 0.9rem; /* Kurangi ukuran font untuk layar lebih kecil */
-    }
-
-    .taskbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .taskbar a {
-        display: block;
-        margin: 5px 0;
-        text-align: left;
-    }
-
-    .website-name span {
-        font-size: 1.5rem;
-    }
-
-    h1 {
-        font-size: 2.5rem; /* Kurangi ukuran heading untuk layar lebih kecil */
-    }
-
-    .calculator-container {
-        flex-direction: column;
-    }
-
-    .calculator-container input, 
-    .calculator-container button {
-        width: 100%; /* Buat elemen kalkulator menjadi penuh lebar */
-        margin-bottom: 10px;
-    }
-
-    .search-container input, 
-    .search-container select,
-    .search-container button {
-        width: 90%; /* Buat elemen pencarian lebih kecil dan responsif */
-    }
-
-    .property-item {
-        width: 90%; /* Buat item properti mengambil sebagian besar lebar layar */
-    }
-}
-
-@media screen and (max-width: 480px) {
-    body {
-        font-size: 0.8rem; /* Lebih kecil untuk layar yang lebih kecil */
-    }
-
-    .website-name span {
-        font-size: 1.2rem;
-    }
-
-    h1 {
-        font-size: 2rem;
-    }
-
-    .property-item {
-        width: 100%; /* Buat item properti penuh lebar */
-    }
-}
-
-        
         /* Animasi FadeIn */
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -385,15 +321,6 @@
             var totalIncome = rentPerMonth * months;
             document.getElementById('sewa_result').innerText = "Pendapatan Sewa untuk " + months + " bulan: Rp " + totalIncome.toFixed(2);
         }
- <script>
-        function toggleMenu() {
-            const menu = document.querySelector('.menu');
-            const hamburger = document.querySelector('.hamburger');
-            menu.classList.toggle('active');
-            hamburger.classList.toggle('open');
-        }
-    </script>
-        
     </script>
 </body>
 </html>
