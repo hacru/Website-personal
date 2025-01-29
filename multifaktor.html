@@ -3,16 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saham Pemula - Polapikir Investor</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Tambahkan Chart.js -->
+    <title>Teori Model Multi-Faktor</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
             margin: 0;
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(to bottom, #00aaff, #ffffff);
-            color: #000;
-            animation: backgroundAnimation 10s ease infinite;
+            font-family: 'montserrat', montserrat;
+            color: #333;
+            background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+            padding: 20px;
+            transition: background 0.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .taskbar {
@@ -24,10 +33,15 @@
             position: fixed;
             top: 0;
             width: 100%;
-            border-bottom: 3px solid #fbfbfb;
+            border-bottom: 3px solid #e0f7fa;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            animation: fadeInDown 0.6s ease-out;
+            animation: slideDown 1s ease-in-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
         }
 
         .taskbar a {
@@ -40,14 +54,13 @@
         }
 
         .taskbar a:hover {
-            background-color: #ffeb3b;
+            background-color: #e0f7fa;
             color: #000;
         }
 
         .website-name {
             display: flex;
             align-items: center;
-            animation: fadeInLeft 0.8s ease-out;
         }
 
         .website-name img {
@@ -61,243 +74,77 @@
             color: #000;
         }
 
-        .menu {
-            display: flex;
-            gap: 20px;
-            animation: fadeInRight 1s ease-out;
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            animation: fadeIn 1s ease-out;
+            flex-grow: 1;
+            margin-top: 80px; /* Memberikan ruang di atas konten untuk menghindari tumpang tindih dengan taskbar */
         }
 
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 30px;
-            padding: 5px;
+        h1, h2 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease-in-out;
         }
 
-        .hamburger.open {
-            transform: rotate(45deg);
+        h1:hover, h2:hover {
+            transform: scale(1.05);
         }
 
-        .hamburger.open::before {
-            content: '×';
-            font-size: 40px;
+        .intro, .explanation, .example {
+            margin-bottom: 40px;
         }
 
-        .hamburger::before {
-            content: '☰';
-            font-size: 40px;
+        .intro p, .explanation p, .example p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #34495e;
         }
 
-        @media (max-width: 640px) {
-            .menu {
-                display: none;
-                flex-direction: column;
-                gap: 10px;
-                position: absolute;
-                top: 60px;
-                right: 20px;
-                background-color: #fff;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                border-radius: 5px;
-                padding: 10px;
-                z-index: 999;
-                animation: slideDown 0.6s ease-out;
-            }
+        .example h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #34495e;
+        }
 
-            .menu.active {
-                display: flex;
-            }
-
-            .hamburger {
-                display: block;
-            }
+        .example p {
+            font-size: 1.1em;
+            color: #7f8c8d;
         }
 
         .chart-container {
+            position: relative;
             width: 80%;
-            max-width: 600px;
-            margin: 50px auto;
-            text-align: center;
+            height: 400px;
+            margin: 40px auto;
+            animation: slideIn 1s ease-out;
         }
 
-        h1, h2, h3 {
-            color: #000;
-            margin-bottom: 20px;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .about-image {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            animation: zoomIn 0.8s ease-out;
-        }
-
-        .section {
-            margin-bottom: 50px;
-            padding: 20px;
-            background: linear-gradient(to bottom, #ffffff, #f0f0f0);
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background 0.3s ease;
-        }
-
-        .section:hover {
-            background: linear-gradient(to bottom, #f0f0f0, #ffffff);
-        }
-
-        .section h2 {
-            font-size: 1.8rem;
-            color: #333;
-        }
-
-        .section ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .section ul li {
-            padding: 10px;
-            background: #f9f9f9;
-            margin: 5px 0;
-            border-radius: 5px;
-            transition: background 0.3s ease;
-        }
-
-        .section ul li:hover {
-            background: #f1f1f1;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-            }
-            to {
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes zoomIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .about-text {
-            animation: fadeIn 1s ease-out;
-        }
-
-        .team-member {
-            display: inline-block;
-            text-align: center;
-            margin: 20px;
-            opacity: 0;
-            animation: fadeInUp 1.5s forwards;
-        }
-
-        .team-member img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin-bottom: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            animation: zoomIn 0.6s ease-out;
-        }
-
-        .team-member h3 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-
-        .team-member p {
-            font-size: 1rem;
-            color: #555;
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .footer {
-            background-color: #333;
-            color: #fff;
+            margin-top: 40px;
             text-align: center;
+            font-size: 14px;
+            color: #7f8c8d;
+            background-color: #fff;
             padding: 20px;
-            animation: fadeInUp 1s ease-out;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        @keyframes backgroundAnimation {
-            0% {
-                background: linear-gradient(to bottom, #e0f7fa, #ffffff); /* Gradasi linear */
-            }
-            50% {
-                background: linear-gradient(to bottom, #e0f7fa, #ffffff); /* Gradasi linear */
-            }
-            100% {
-                background: linear-gradient(to bottom,bottom, #e0f7fa, #ffffff); /* Gradasi linear */
-            }
-        }
     </style>
 </head>
 <body>
 
-    <!-- Taskbar -->
     <div class="taskbar">
         <div class="website-name">
             <a href="home.html">
@@ -305,97 +152,87 @@
             </a>
             <span>Polapikir Investor</span>
         </div>
-        <div class="menu">
+        <div>
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
             <a href="portfolio.html">Portofolio</a>
             <a href="contact.html">Kontak</a>
         </div>
-        <div class="hamburger" onclick="toggleMenu()"></div>
     </div>
 
-    <header class="hero">
-        <h1></h1>
-        <p class="sub-heading"></p>
-    </header>
+    <div class="content">
+        <div class="intro">
+            <h1>Teori Model Multi-Faktor</h1>
+            <p>Model ini digunakan untuk menjelaskan pengembalian suatu aset atau portofolio dengan mempertimbangkan berbagai faktor risiko yang mempengaruhi kinerja investasi. Berbeda dengan model tradisional yang hanya mengandalkan satu faktor (seperti pasar), model multi-faktor menggabungkan berbagai variabel untuk analisis yang lebih mendalam.</p>
+        </div>
 
+        <div class="explanation">
+            <h2>Pendahuluan</h2>
+            <p>Model Multi-Faktor memberikan gambaran yang lebih luas dalam penilaian investasi. Berbeda dengan Capital Asset Pricing Model (CAPM) yang hanya mempertimbangkan faktor risiko pasar, model ini memperkenalkan banyak faktor yang relevan, termasuk faktor makroekonomi dan karakteristik spesifik perusahaan yang dapat mempengaruhi nilai aset.</p>
+            <p>Contohnya, faktor makroekonomi seperti tingkat suku bunga, inflasi, atau kondisi pasar global dapat mempengaruhi semua sektor. Sementara itu, faktor spesifik perusahaan dapat mencakup ukuran perusahaan, nilai buku, atau kinerja perusahaan di sektor tertentu.</p>
+        </div>
 
-        <div class="section">
-            <div class="content">
-                <div class="intro">
-                    <h1>Teori Model Multi-Faktor</h1>
-                    <p>Model ini digunakan untuk menjelaskan pengembalian suatu aset atau portofolio dengan mempertimbangkan berbagai faktor risiko yang mempengaruhi kinerja investasi. Berbeda dengan model tradisional yang hanya mengandalkan satu faktor (seperti pasar), model multi-faktor menggabungkan berbagai variabel untuk analisis yang lebih mendalam.</p>
-                </div>
-        
-                <div class="explanation">
-                    <h2>Pendahuluan</h2>
-                    <p>Model Multi-Faktor memberikan gambaran yang lebih luas dalam penilaian investasi. Berbeda dengan Capital Asset Pricing Model (CAPM) yang hanya mempertimbangkan faktor risiko pasar, model ini memperkenalkan banyak faktor yang relevan, termasuk faktor makroekonomi dan karakteristik spesifik perusahaan yang dapat mempengaruhi nilai aset.</p>
-                    <p>Contohnya, faktor makroekonomi seperti tingkat suku bunga, inflasi, atau kondisi pasar global dapat mempengaruhi semua sektor. Sementara itu, faktor spesifik perusahaan dapat mencakup ukuran perusahaan, nilai buku, atau kinerja perusahaan di sektor tertentu.</p>
-                </div>
-        
-                <div class="example">
-                    <h2>Contoh Penerapan Model Multi-Faktor</h2>
-                    <h3>Model Fama-French 3-Factor</h3>
-                    <p>Model ini menambahkan dua faktor tambahan ke dalam model CAPM, yaitu faktor ukuran perusahaan (SMB) dan faktor nilai perusahaan (HML). Ini membantu menjelaskan mengapa perusahaan kecil atau yang memiliki nilai rendah cenderung menghasilkan pengembalian yang lebih tinggi.</p>
-                    <pre>
-                    R_i - R_f = α_i + β1(R_m - R_f) + β2(SMB) + β3(HML) + ε_i
-                    </pre>
-                    <p>Di mana: <br>
-                    - R_i adalah pengembalian aset<br>
-                    - R_f adalah tingkat pengembalian bebas risiko<br>
-                    - R_m adalah pengembalian pasar<br>
-                    - SMB adalah perbedaan pengembalian antara perusahaan kecil dan besar<br>
-                    - HML adalah perbedaan pengembalian antara saham dengan nilai tinggi dan rendah.
-                    </p>
-                </div>
-        
-                <div class="chart-container">
-                    <h3>Pembagian Faktor Risiko dalam Model Multi-Faktor</h3>
-                    <canvas id="multiFactorChart"></canvas>
-                </div>
-            
-                <script>
-                    document.addEventListener("DOMContentLoaded", function () {
-                        const chartCanvas = document.getElementById('multiFactorChart');
-                        
-                        if (chartCanvas) {
-                            const ctx = chartCanvas.getContext('2d');
-                            
-                            new Chart(ctx, {
-                                type: 'pie',
-                                data: {
-                                    labels: ['Faktor Pasar', 'Faktor Ukuran Perusahaan (SMB)', 'Faktor Nilai Perusahaan (HML)'],
-                                    datasets: [{
-                                        data: [50, 25, 25],
-                                        backgroundColor: ['#3498db', '#e74c3c', '#2ecc71'],
-                                        borderColor: ['#ffffff', '#ffffff', '#ffffff'],
-                                        borderWidth: 2
-                                    }]
-                                },
-                                options: {
-                                    responsive: true,
-                                    plugins: {
-                                        legend: {
-                                            position: 'top',
-                                        },
-                                        tooltip: {
-                                            callbacks: {
-                                                label: function (tooltipItem) {
-                                                    let dataset = tooltipItem.dataset;
-                                                    let index = tooltipItem.dataIndex;
-                                                    return dataset.labels[index] + ': ' + dataset.data[index] + '%';
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            });
-                        } else {
-                            console.error("Elemen canvas dengan ID 'multiFactorChart' tidak ditemukan.");
+        <div class="example">
+            <h2>Contoh Penerapan Model Multi-Faktor</h2>
+            <h3>Model Fama-French 3-Factor</h3>
+            <p>Model ini menambahkan dua faktor tambahan ke dalam model CAPM, yaitu faktor ukuran perusahaan (SMB) dan faktor nilai perusahaan (HML). Ini membantu menjelaskan mengapa perusahaan kecil atau yang memiliki nilai rendah cenderung menghasilkan pengembalian yang lebih tinggi.</p>
+            <pre>
+                R_i - R_f = α_i + β1(R_m - R_f) + β2(SMB) + β3(HML) + ε_i
+            </pre>
+            <p>Di mana: <br>
+            - R_i adalah pengembalian aset<br>
+            - R_f adalah tingkat pengembalian bebas risiko<br>
+            - R_m adalah pengembalian pasar<br>
+            - SMB adalah perbedaan pengembalian antara perusahaan kecil dan besar<br>
+            - HML adalah perbedaan pengembalian antara saham dengan nilai tinggi dan rendah.
+            </p>
+        </div>
+
+        <div class="chart-container">
+            <h3>Pembagian Faktor Risiko dalam Model Multi-Faktor</h3>
+            <canvas id="multiFactorChart"></canvas>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 Model Multi-Faktor. Semua hak dilindungi.</p>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('multiFactorChart').getContext('2d');
+        const multiFactorChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Faktor Pasar', 'Faktor Ukuran Perusahaan (SMB)', 'Faktor Nilai Perusahaan (HML)'],
+                datasets: [{
+                    label: 'Pembagian Faktor Risiko',
+                    data: [50, 25, 25],  // Prosentase dari faktor risiko
+                    backgroundColor: ['#3498db', '#e74c3c', '#2ecc71'],
+                    borderColor: ['#2980b9', '#c0392b', '#27ae60'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    animateRotate: true,
+                    animateScale: true
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw + '%';
+                            }
                         }
-                    });
-                </script>
-            
-            </body>
-            </html>
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
