@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strategi Investasi - Polapikir Investor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            font-family: montserrat, montserrat;
+            font-family: 'Montserrat', sans-serif;
             color: #000;
             scroll-behavior: smooth;
         }
@@ -25,7 +26,6 @@
             border-bottom: 2px solid #000;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
             z-index: 1000;
-            animation: slideInFromTop 1s ease-in-out;
         }
 
         .taskbar a {
@@ -33,7 +33,6 @@
             text-decoration: none;
             padding: 10px 15px;
             border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
             font-weight: bold;
         }
 
@@ -54,17 +53,81 @@
         }
 
         .website-name span {
-            font-size: 1.8rem;
+            font-size: 1.4rem; /* Ukuran font lebih kecil */
             font-weight: bold;
             color: #000;
         }
 
-        .nav-links {
-            display: flex;
-            justify-content: space-between;
+        /* Hamburger menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 24px;
         }
 
-        /* Section Styles */
+        .hamburger div {
+            width: 100%;
+            height: 3px;
+            background-color: #000;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hamburger.active div:nth-child(1) {
+            transform: translateY(10px) rotate(45deg);
+        }
+
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active div:nth-child(3) {
+            transform: translateY(-10px) rotate(-45deg);
+        }
+
+        /* Menu */
+        .menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #fff;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+                padding: 10px;
+                z-index: 999;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .taskbar {
+                justify-content: space-between;
+                position: relative;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
         section {
             min-height: 100vh;
             display: flex;
@@ -90,7 +153,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Heading and Paragraph Styles */
         h1 {
             font-size: 2.5rem;
             margin-bottom: 20px;
@@ -104,7 +166,11 @@
             animation: slideIn 1.5s ease-out;
         }
 
-        /* Button and Image Styles */
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
         .cta-button {
             display: inline-block;
             padding: 10px 20px;
@@ -144,14 +210,12 @@
             to { transform: scale(1); opacity: 1; }
         }
 
-        /* Footer Styles */
         footer {
             background-color: #fff;
             padding: 20px;
             text-align: center;
         }
 
-        /* Navigation */
         .navigation {
             position: fixed;
             top: 10px;
@@ -171,152 +235,10 @@
             text-decoration: underline;
         }
 
-        /* Indicator Style */
         .indicator {
             font-size: 1rem;
             color: #666;
             margin-top: 10px;
-        }
-
-        /* Hamburger Menu */
-        .menu-icon {
-            display: none;
-            cursor: pointer;
-            z-index: 1001;
-            position: absolute;
-            top: 15px;
-            right: 20px;
-        }
-
-        .menu-icon div {
-            width: 30px;
-            height: 4px;
-            background-color: #000;
-            margin: 6px 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-
-        .menu-icon.open div:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .menu-icon.open div:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-icon.open div:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        .taskbar .nav-links {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .taskbar .nav-links a {
-            padding: 15px;
-            text-align: center;
-            border-top: 1px solid #ccc;
-        }
-
-        /* Media Queries for Responsiveness */
-
-        @media (max-width: 1200px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            p {
-                font-size: 1rem;
-            }
-
-            .cta-button {
-                padding: 8px 16px;
-            }
-
-            .image-container img {
-                max-width: 250px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .taskbar {
-                flex-direction: column;
-                padding: 10px;
-            }
-
-            .taskbar a {
-                padding: 8px 12px;
-            }
-
-            .website-name img {
-                height: 40px;
-            }
-
-            section {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            .cta-button {
-                font-size: 1rem;
-            }
-
-            .image-container img {
-                max-width: 200px;
-            }
-
-            /* Hamburger menu */
-            .menu-icon {
-                display: block;
-            }
-
-            .taskbar .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                background-color: #fff;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            }
-
-            .taskbar .nav-links.open {
-                display: flex;
-            }
-
-            .taskbar .nav-links a {
-                padding: 15px;
-                text-align: center;
-                border-top: 1px solid #ccc;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.5rem;
-            }
-
-            p {
-                font-size: 1rem;
-            }
-
-            .cta-button {
-                padding: 6px 12px;
-            }
-
-            .image-container img {
-                max-width: 180px;
-            }
-
-            footer {
-                font-size: 0.9rem;
-            }
         }
     </style>
 </head>
@@ -330,12 +252,12 @@
             </a>
             <span>Polapikir Investor</span>
         </div>
-        <div class="menu-icon" onclick="toggleMenu()">
+        <div class="hamburger" onclick="toggleMenu()">
             <div></div>
             <div></div>
             <div></div>
         </div>
-        <div class="nav-links">
+        <div class="menu">
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
@@ -344,56 +266,54 @@
         </div>
     </div>
 
-    <!-- Sections -->
-     <section id="strategi investasi">
-        <div class="text-container">
-            <h1>Mengelola Kekayaan</h1>
-            <p>Mempertahankan kekayaan dengan diversifikasi investasi</p>
-            <a href="mengelola kekayaan.html" class="cta-button">Pelajari Lebih Lanjut</a>
-            <div class="indicator">/div>
-        </div>
-        <div class="image-container">
-            <img src="images/saham.jpg" alt="keuangan pribadi">
-        </div>
-    </section>
-
-    <section id="strategi investasi">
-        <div class="text-container">
-            <h1>Investasi Properti</h1>
-            <p>Menghitung Investasi Properti</p>
-            <a href="properti.html" class="cta-button">Pelajari Lebih Lanjut</a>
-            <div class="indicator">/div>
-        </div>
-        <div class="image-container">
-            <img src="images/saham.jpg" alt="keuangan pribadi">
-        </div>
-    </section>
-
-    <section id="strategi investasi">
-        <div class="text-container">
-            <h1>Manajemen Risiko </h1>
-            <p>Identifikasi dan kelola risiko yang terkait dengan investasi dan aset Anda untuk melindungi kekayaan Anda</p>
-            <a href="manajemen risiko.html" class="cta-button">Pelajari Lebih Lanjut</a>
-            <div class="indicator">/div>
-        </div>
-        <div class="image-container">
-            <img src="images/saham.jpg" alt="keuangan pribadi">
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Polapikir Investor. Semua hak dilindungi.</p>
-        <p>Kontak | Privasi | Syarat & Ketentuan</p>
-    </footer>
-
     <script>
         function toggleMenu() {
-            const menu = document.querySelector('.nav-links');
-            const icon = document.querySelector('.menu-icon');
-            menu.classList.toggle('open');
-            icon.classList.toggle('open');
+            document.querySelector('.hamburger').classList.toggle('active');
+            document.querySelector('.menu').classList.toggle('active');
         }
     </script>
+
+ <!-- Sections -->
+ <section id="strategi investasi">
+    <div class="text-container">
+        <h1>Mengelola Kekayaan</h1>
+        <p>Mempertahankan kekayaan dengan diversifikasi investasi</p>
+        <a href="mengelola kekayaan.html" class="cta-button">Pelajari Lebih Lanjut</a>
+        <div class="indicator">/div>
+    </div>
+    <div class="image-container">
+        <img src="images/saham.jpg" alt="keuangan pribadi">
+    </div>
+</section>
+
+<section id="strategi investasi">
+    <div class="text-container">
+        <h1>Investasi Properti</h1>
+        <p>Menghitung Investasi Properti</p>
+        <a href="properti.html" class="cta-button">Pelajari Lebih Lanjut</a>
+        <div class="indicator">/div>
+    </div>
+    <div class="image-container">
+        <img src="images/saham.jpg" alt="keuangan pribadi">
+    </div>
+</section>
+
+<section id="strategi investasi">
+    <div class="text-container">
+        <h1>Manajemen Risiko </h1>
+        <p>Identifikasi dan kelola risiko yang terkait dengan investasi dan aset Anda untuk melindungi kekayaan Anda</p>
+        <a href="manajemen risiko.html" class="cta-button">Pelajari Lebih Lanjut</a>
+        <div class="indicator">/div>
+    </div>
+    <div class="image-container">
+        <img src="images/saham.jpg" alt="keuangan pribadi">
+    </div>
+</section>
+    
+    
+    <footer>
+        <p>&copy; 2024 Polapikir Investor. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
