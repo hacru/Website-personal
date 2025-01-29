@@ -60,41 +60,70 @@
             font-weight: bold;
         }
 
-        /* Container */
-        .container {
-            padding: 120px 20px 100px;
-            max-width: 1200px;
-            margin: 0 auto;
+        /* Hamburger menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            transition: 0.3s ease;
         }
 
-        h1, h2, h3 {
-            color: #000;
-            text-align: center;
-            animation: fadeInUp 1s ease-in-out;
+        .hamburger div {
+            width: 30px;
+            height: 4px;
+            margin: 5px;
+            background-color: #000;
+            transition: 0.3s ease;
         }
 
-        /* Content section */
-        .section {
-            margin-bottom: 50px;
-            animation: fadeInUp 1.5s ease-in-out;
-        }
-
-        .content {
-            line-height: 1.6;
-            font-size: 1.1rem;
-            margin-top: 20px;
-        }
-
-        .chart-container {
+        .menu {
             display: flex;
-            justify-content: center;
-            margin-top: 30px;
-            animation: fadeInUp 2s ease-in-out;
+            gap: 20px;
         }
 
-        .chart-container canvas {
-            max-width: 100%;
-            max-height: 400px;
+        .menu a {
+            display: inline-block;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                gap: 15px;
+                background-color: #fff;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                border: 1px solid #000;
+                padding: 20px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                animation: slideInFromRight 0.5s ease-in-out;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.open div:nth-child(1) {
+                transform: rotate(45deg);
+                position: relative;
+                top: 8px;
+            }
+
+            .hamburger.open div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.open div:nth-child(3) {
+                transform: rotate(-45deg);
+                position: relative;
+                top: -8px;
+            }
+
+            .menu.open {
+                display: flex;
+            }
         }
 
         /* Animations */
@@ -111,6 +140,11 @@
         @keyframes fadeInUp {
             0% { opacity: 0; transform: translateY(20px); }
             100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInFromRight {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
         }
 
         .cta-section {
@@ -152,6 +186,14 @@
             width: 100%;
             bottom: 0;
         }
+
+        /* Adjust container padding to avoid being hidden behind the taskbar */
+        .container {
+            padding: 120px 20px 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
     </style>
 </head>
 <body>
@@ -162,7 +204,12 @@
             <img src="images/logo.webp" alt="Logo">
             <span>Polapikir Investor</span>
         </div>
-        <div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="menu">
             <a href="home.html">Beranda</a>
             <a href="about.html">Tentang</a>
             <a href="media.html">Media</a>
@@ -249,6 +296,13 @@
                 }
             });
         };
+
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const menu = document.querySelector('.menu');
+            hamburger.classList.toggle('open');
+            menu.classList.toggle('open');
+        }
     </script>
 </body>
 </html>
